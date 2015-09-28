@@ -11,11 +11,7 @@ import QuartzCore
 import SceneKit
 
 class GameViewController: UIViewController {
-<<<<<<< HEAD
 
-    override func viewDidLoad() { // test
-=======
-    
     var sceneView: SCNView!
     var camera: SCNNode!
     var ground: SCNNode!
@@ -26,7 +22,7 @@ class GameViewController: UIViewController {
     var stars = [SCNNode]();
     
     override func viewDidLoad() {
->>>>>>> origin/gp
+
         super.viewDidLoad()
         
         sceneView = SCNView(frame: self.view.frame)
