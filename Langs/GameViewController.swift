@@ -1,9 +1,9 @@
 //
 //  GameViewController.swift
-//  Langs
+//  StarII
 //
-//  Created by Chuan Ren on 9/22/15.
-//  Copyright (c) 2015 mg526. All rights reserved.
+//  Created by Vera Wu on 9/26/15.
+//  Copyright (c) 2015 YunruWu. All rights reserved.
 //
 
 import UIKit
@@ -11,95 +11,142 @@ import QuartzCore
 import SceneKit
 
 class GameViewController: UIViewController {
+<<<<<<< HEAD
 
     override func viewDidLoad() { // test
+=======
+    
+    var sceneView: SCNView!
+    var camera: SCNNode!
+    var ground: SCNNode!
+    var light: SCNNode!
+    var sphere1: SCNNode!
+    var sphere2: SCNNode!
+    var sphere3: SCNNode!
+    var stars = [SCNNode]();
+    
+    override func viewDidLoad() {
+>>>>>>> origin/gp
         super.viewDidLoad()
         
-        // create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        sceneView = SCNView(frame: self.view.frame)
+        sceneView.scene = SCNScene()
+        self.view.addSubview(sceneView)
         
-        // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
+        let groundGeometry = SCNFloor()
+        groundGeometry.reflectivity = 0
+        let groundMaterial = SCNMaterial()
+        groundMaterial.diffuse.contents = UIColor.blueColor()
+        groundGeometry.materials = [groundMaterial]
+        ground = SCNNode(geometry: groundGeometry)
+        ground.position = SCNVector3(x: 0, y: -30, z: -20)
+        ground.physicsBody = SCNPhysicsBody(type: SCNPhysicsBodyType.Static, shape: nil)
         
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        //        let earthGeometry = SCNSphere(radius: 150)
+        //        let earthMaterial = SCNMaterial()
+        //        earthMaterial.diffuse.contents = UIColor.blueColor()
+        //        earthGeometry.materials = [earthMaterial]
+        //        sphere3 = SCNNode(geometry: earthGeometry)
+        //        sphere3.position = SCNVector3(x: 0, y: -20, z: 0)
         
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = SCNLightTypeOmni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
+        let camera = SCNCamera()
+        camera.zFar = 10000
+        self.camera = SCNNode()
+        self.camera.camera = camera
+        self.camera.position = SCNVector3(x: -20, y: 15, z: 20)
+        let constraint = SCNLookAtConstraint(target: ground)
+        constraint.gimbalLockEnabled = true
+        //        self.camera.constraints = [constraint]
         
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = SCNLightTypeAmbient
-        ambientLightNode.light!.color = UIColor.darkGrayColor()
-        scene.rootNode.addChildNode(ambientLightNode)
+        let ambientLight = SCNLight()
+        ambientLight.color = UIColor.darkGrayColor()
+        ambientLight.type = SCNLightTypeAmbient
+        self.camera.light = ambientLight
         
-        // retrieve the ship node
-        let ship = scene.rootNode.childNodeWithName("ship", recursively: true)!
+        let spotLight = SCNLight()
+        spotLight.type = SCNLightTypeSpot
+        spotLight.castsShadow = true
+        spotLight.spotInnerAngle = 70.0
+        spotLight.spotOuterAngle = 90.0
+        spotLight.zFar = 1000
+        light = SCNNode()
+        light.light = spotLight
+        light.position = SCNVector3(x: -20, y: 15, z: 25)
+        //        light.constraints = [constraint]
         
-        // animate the 3d object
-        ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
+        let sphereGeometry = SCNSphere(radius: 0.5)
+        let sphereMaterial = SCNMaterial()
+        sphereMaterial.diffuse.contents = UIColor.whiteColor()
+        sphereGeometry.materials = [sphereMaterial]
+        sphere1 = SCNNode(geometry: sphereGeometry)
+        sphere1.position = SCNVector3(x: -20, y: 25, z: -3)
+        sphere2 = SCNNode(geometry: sphereGeometry)
+        sphere2.position = SCNVector3(x: -30, y: 20, z: 0)
+        sphere3 = SCNNode(geometry: sphereGeometry)
+        sphere3.position = SCNVector3(x: -10, y: 18, z: -1)
+        stars.append(sphere1)
+        stars.append(sphere2)
+        stars.append(sphere3)
         
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
-        
-        // set the scene to the view
-        scnView.scene = scene
+        sceneView.scene?.rootNode.addChildNode(self.camera)
+        sceneView.scene?.rootNode.addChildNode(ground)
+        sceneView.scene?.rootNode.addChildNode(light)
+        sceneView.scene?.rootNode.addChildNode(sphere1)
+        sceneView.scene?.rootNode.addChildNode(sphere2)
+        sceneView.scene?.rootNode.addChildNode(sphere3)
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        sceneView.allowsCameraControl = true
         
         // show statistics such as fps and timing information
-        scnView.showsStatistics = true
+        sceneView.showsStatistics = false
         
         // configure the view
-        scnView.backgroundColor = UIColor.blackColor()
+        sceneView.backgroundColor = UIColor.blackColor()
         
         // add a tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
-        scnView.addGestureRecognizer(tapGesture)
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.numberOfTouchesRequired = 1
+        tapRecognizer.addTarget(self, action: "sceneTapped:")
+        sceneView.gestureRecognizers = [tapRecognizer]
     }
     
-    func handleTap(gestureRecognize: UIGestureRecognizer) {
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
+    func sceneTapped(recognizer: UITapGestureRecognizer) {
+        let location = recognizer.locationInView(sceneView)
         
-        // check what nodes are tapped
-        let p = gestureRecognize.locationInView(scnView)
-        let hitResults = scnView.hitTest(p, options: nil)
-        // check that we clicked on at least one object
+        let hitResults = sceneView.hitTest(location, options: nil)
         if hitResults.count > 0 {
-            // retrieved the first clicked object
-            let result: AnyObject! = hitResults[0]
+            let result = hitResults[0] as! SCNHitTestResult
+            let node = result.node
             
-            // get its material
-            let material = result.node!.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.setAnimationDuration(0.5)
-            
-            // on completion - unhighlight
-            SCNTransaction.setCompletionBlock {
+            for node in stars {
                 SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.5)
-                
-                material.emission.contents = UIColor.blackColor()
-                
+                //SCNTransaction.setAnimationDuration(0.5)
+                let materials = node.geometry!.materials as! [SCNMaterial]
+                let material = materials[0]
+                material.diffuse.contents = UIColor.yellowColor()
                 SCNTransaction.commit()
+                
+                //let action = SCNAction.moveByX(0, y: -0.8, z: 0, duration: 0.5)
+                //node.runAction(action)
             }
-            
-            material.emission.contents = UIColor.redColor()
-            
-            SCNTransaction.commit()
         }
     }
+    
+    func lineBetweenNode(nodeA: SCNNode, nodeB: SCNNode) -> SCNNode {
+        let positions: [Float32] = [nodeA.position.x, nodeA.position.y, nodeA.position.z, nodeB.position.x, nodeB.position.y, nodeB.position.z]
+        let positionData = NSData(bytes: positions, length: sizeof(Float32)*positions.count)
+        let indices: [Int32] = [0, 1]
+        let indexData = NSData(bytes: indices, length: sizeof(Int32) * indices.count)
+        
+        let source = SCNGeometrySource(data: positionData, semantic: SCNGeometrySourceSemanticVertex, vectorCount: indices.count, floatComponents: true, componentsPerVector: 3, bytesPerComponent: sizeof(Float32), dataOffset: 0, dataStride: sizeof(Float32) * 3)
+        let element = SCNGeometryElement(data: indexData, primitiveType: SCNGeometryPrimitiveType.Line, primitiveCount: indices.count, bytesPerIndex: sizeof(Int32))
+        
+        let line = SCNGeometry(sources: [source], elements: [element])
+        return SCNNode(geometry: line)
+    }
+    
     
     override func shouldAutorotate() -> Bool {
         return true
@@ -121,5 +168,5 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
 }
