@@ -12,7 +12,7 @@ import SceneKit
 
 class GameViewController: UIViewController {
 
-    override func viewDidLoad() {
+    override func viewDidLoad() { // test
         super.viewDidLoad()
         
         // create a new scene
