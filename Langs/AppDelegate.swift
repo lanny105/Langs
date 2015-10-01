@@ -16,6 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        YQDataMediator.copyFile("SwiftData.sqlite")// test for database
+        
+        let Starlist = YQDataMediator.getStarByAttr()
+        
+        var text = String()
+        
+        for star in Starlist{
+            
+            text += star.returnAttri()
+        }
+        
+        print(text)
+                
         return true
     }
 
