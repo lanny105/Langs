@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		368CC6BC1BB9F58C00A52548 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BB1BB9F58C00A52548 /* StartViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		368CC6BE1BB9F5A100A52548 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BD1BB9F5A100A52548 /* LevelsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		36E329661BBA3B7F004254E8 /* level1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329651BBA3B7F004254E8 /* level1-1.png */; settings = {ASSET_TAGS = (); }; };
-		36E329681BBA3FFE004254E8 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329671BBA3FFE004254E8 /* start.png */; settings = {ASSET_TAGS = (); }; };
 		1845364D1BB9F44A009E3F9C /* YQDataMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */; settings = {ASSET_TAGS = (); }; };
 		184536521BB9FC13009E3F9C /* StarInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1845364F1BB9FC13009E3F9C /* StarInfo.swift */; settings = {ASSET_TAGS = (); }; };
 		184536531BB9FC13009E3F9C /* SwiftData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 184536501BB9FC13009E3F9C /* SwiftData.sqlite */; settings = {ASSET_TAGS = (); }; };
@@ -19,8 +15,9 @@
 		184536581BB9FC54009E3F9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536561BB9FC54009E3F9C /* libsqlite3.tbd */; };
 		1845365A1BBA0163009E3F9C /* testmain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184536591BBA0163009E3F9C /* testmain.swift */; settings = {ASSET_TAGS = (); }; };
 		368CC6BC1BB9F58C00A52548 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BB1BB9F58C00A52548 /* StartViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		368CC6BE1BB9F5A100A52548 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BD1BB9F5A100A52548 /* LevelsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		1845364D1BB9F44A009E3F9C /* YQDataMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */; settings = {ASSET_TAGS = (); }; };
+		36E329661BBA3B7F004254E8 /* level1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329651BBA3B7F004254E8 /* level1-1.png */; settings = {ASSET_TAGS = (); }; };
+		36E329681BBA3FFE004254E8 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329671BBA3FFE004254E8 /* start.png */; settings = {ASSET_TAGS = (); }; };
+		A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513E72C1BBCEB8900902483 /* LevelsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		A5CDB6EB1BB13A5300F2A0F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CDB6EA1BB13A5300F2A0F1 /* AppDelegate.swift */; };
 		A5CDB6ED1BB13A5300F2A0F1 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CDB6EC1BB13A5300F2A0F1 /* art.scnassets */; };
 		A5CDB6EF1BB13A5300F2A0F1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CDB6EE1BB13A5300F2A0F1 /* GameViewController.swift */; };
@@ -29,10 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		368CC6BB1BB9F58C00A52548 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		368CC6BD1BB9F5A100A52548 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
-		36E329651BBA3B7F004254E8 /* level1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level1-1.png"; sourceTree = "<group>"; };
-		36E329671BBA3FFE004254E8 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQDataMediator.swift; sourceTree = "<group>"; };
 		1845364E1BB9FC13009E3F9C /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		1845364F1BB9FC13009E3F9C /* StarInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarInfo.swift; sourceTree = "<group>"; };
@@ -42,8 +35,9 @@
 		184536561BB9FC54009E3F9C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		184536591BBA0163009E3F9C /* testmain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testmain.swift; sourceTree = "<group>"; };
 		368CC6BB1BB9F58C00A52548 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		368CC6BD1BB9F5A100A52548 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
-		1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQDataMediator.swift; sourceTree = "<group>"; };
+		36E329651BBA3B7F004254E8 /* level1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level1-1.png"; sourceTree = "<group>"; };
+		36E329671BBA3FFE004254E8 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		A513E72C1BBCEB8900902483 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		A5CDB6E71BB13A5300F2A0F1 /* Langs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Langs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CDB6EA1BB13A5300F2A0F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CDB6EC1BB13A5300F2A0F1 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -91,7 +85,7 @@
 			children = (
 				A5CDB6EE1BB13A5300F2A0F1 /* GameViewController.swift */,
 				368CC6BB1BB9F58C00A52548 /* StartViewController.swift */,
-				368CC6BD1BB9F5A100A52548 /* LevelsViewController.swift */,
+				A513E72C1BBCEB8900902483 /* LevelsViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -117,7 +111,6 @@
 				1845364F1BB9FC13009E3F9C /* StarInfo.swift */,
 				184536501BB9FC13009E3F9C /* SwiftData.sqlite */,
 				184536511BB9FC13009E3F9C /* SwiftData.swift */,
-				1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */,
 				184536591BBA0163009E3F9C /* testmain.swift */,
 				1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */,
 			);
@@ -250,10 +243,9 @@
 				1845364D1BB9F44A009E3F9C /* YQDataMediator.swift in Sources */,
 				1845365A1BBA0163009E3F9C /* testmain.swift in Sources */,
 				A5CDB6EB1BB13A5300F2A0F1 /* AppDelegate.swift in Sources */,
-				368CC6BE1BB9F5A100A52548 /* LevelsViewController.swift in Sources */,
-				368CC6BE1BB9F5A100A52548 /* LevelsViewController.swift in Sources */,
 				184536521BB9FC13009E3F9C /* StarInfo.swift in Sources */,
 				184536541BB9FC13009E3F9C /* SwiftData.swift in Sources */,
+				A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
