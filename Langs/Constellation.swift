@@ -15,7 +15,7 @@ class Line: NSObject {
     
     func isequal(LineB: Line) -> Bool {
         
-        return self.star1hd == LineB.star1hd && self.star2hd == LineB.star2hd
+        return (self.star1hd == LineB.star1hd && self.star2hd == LineB.star2hd) || (self.star1hd == LineB.star2hd && self.star2hd == LineB.star1hd)
     }
     
     
@@ -116,7 +116,7 @@ class Constellation: NSObject{
         }
         
         
-        for x in 0...self.linelist.count-1 {
+        for x in 0...self.linelist.count {
             if !self.linelist[x].isequal(constellationB.linelist[x]) {
                 return false
             }

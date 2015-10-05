@@ -226,13 +226,10 @@ class GameViewController: UIViewController {
                 temp.star1hd = (x.starA.data?.hd)!
                 temp.star2hd = (x.starB.data?.hd)!
                 temp.adjust()
-                
                 constellationNode.linelist.append(temp)
             }
             
-            print(constellation.linelist.count)
             print(lineNum)
-            
             
             if lineNum == constellation.linelist.count {
                 if constellationNode.isequal(constellation) {
