@@ -82,13 +82,13 @@ class YQDataMediator {
         
         
         let (tables, _) = SD.existingTables()
-        
+        /*
         if let _ = tables.indexOf("starincon"){
             
             print("Database exists!")
             return
         }
-        
+        */
         
         let dbPath: String = getPath(fileName as String)
         let fileManager = NSFileManager.defaultManager()

@@ -225,6 +225,7 @@ class GameViewController: UIViewController {
                 let temp = Line()
                 temp.star1hd = (x.starA.data?.hd)!
                 temp.star2hd = (x.starB.data?.hd)!
+                temp.adjust()
                 
                 constellationNode.linelist.append(temp)
             }
@@ -234,7 +235,7 @@ class GameViewController: UIViewController {
             
             
             if lineNum == constellation.linelist.count {
-                //if constellationNode.isequal(constellation) {
+                if constellationNode.isequal(constellation) {
                     print("!")
                     let gameNameText = SCNText(string: "Amazing", extrusionDepth: 5)
                     gameNameText.font = UIFont(name: "Optima", size: 10)
@@ -242,7 +243,7 @@ class GameViewController: UIViewController {
                     gameNameTextNode.position = SCNVector3(x: -54, y: -3, z: 80)
                     gameNameTextNode.rotation = SCNVector4(0, 0, 1, Float(-3 * (M_PI/7)))
                     sceneView.scene?.rootNode.addChildNode(gameNameTextNode)
-                //}
+                }
             }
         }
         
