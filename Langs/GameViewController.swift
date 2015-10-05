@@ -231,7 +231,7 @@ class GameViewController: UIViewController {
             
             print(lineNum)
             
-            if lineNum == constellation.linelist.count {
+            if lineNum >= constellation.linelist.count {
                 if constellationNode.isequal(constellation) {
                     print("!")
                     let gameNameText = SCNText(string: "Amazing", extrusionDepth: 5)
