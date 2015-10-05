@@ -16,20 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        YQDataMediator.instance.copyFile("SwiftData.sqlite")
         
-        YQDataMediator.copyFile("SwiftData.sqlite")// test for database
+        //YQDataMediator.copyFile("SwiftData.sqlite")// test for database
         
-        let Starlist = YQDataMediator.getStarByAttr()
+        
+        let Cons = YQDataMediator.instance.getConstellationByLevel(1)
         
         var text = String()
         
-        for star in Starlist{
-            
-            text += star.returnAttri()
-        }
+        text = Cons.returnAttri()
         
         print(text)
-                
+        
         return true
     }
 

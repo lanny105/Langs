@@ -8,51 +8,49 @@
 
 /* Begin PBXBuildFile section */
 		1845364D1BB9F44A009E3F9C /* YQDataMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */; settings = {ASSET_TAGS = (); }; };
-		184536521BB9FC13009E3F9C /* StarInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1845364F1BB9FC13009E3F9C /* StarInfo.swift */; settings = {ASSET_TAGS = (); }; };
 		184536531BB9FC13009E3F9C /* SwiftData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 184536501BB9FC13009E3F9C /* SwiftData.sqlite */; settings = {ASSET_TAGS = (); }; };
 		184536541BB9FC13009E3F9C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184536511BB9FC13009E3F9C /* SwiftData.swift */; settings = {ASSET_TAGS = (); }; };
 		184536571BB9FC54009E3F9C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */; };
 		184536581BB9FC54009E3F9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536561BB9FC54009E3F9C /* libsqlite3.tbd */; };
-		1845365A1BBA0163009E3F9C /* testmain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184536591BBA0163009E3F9C /* testmain.swift */; settings = {ASSET_TAGS = (); }; };
 		368CC6BC1BB9F58C00A52548 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BB1BB9F58C00A52548 /* StartViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		36E329661BBA3B7F004254E8 /* level1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329651BBA3B7F004254E8 /* level1-1.png */; settings = {ASSET_TAGS = (); }; };
 		36E329681BBA3FFE004254E8 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329671BBA3FFE004254E8 /* start.png */; settings = {ASSET_TAGS = (); }; };
 		A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513E72C1BBCEB8900902483 /* LevelsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		A539BD7B1BC1CF790048D472 /* ConstellationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539BD7A1BC1CF790048D472 /* ConstellationNode.swift */; settings = {ASSET_TAGS = (); }; };
 		A58D50321BC07DE10029F7BA /* StarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D50311BC07DE10029F7BA /* StarNode.swift */; settings = {ASSET_TAGS = (); }; };
 		A58D50341BC0818A0029F7BA /* LineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D50331BC0818A0029F7BA /* LineNode.swift */; settings = {ASSET_TAGS = (); }; };
 		A58D50381BC0824B0029F7BA /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D50371BC0824B0029F7BA /* Constellation.swift */; settings = {ASSET_TAGS = (); }; };
 		A58D503A1BC0843F0029F7BA /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D50391BC0843F0029F7BA /* Level.swift */; settings = {ASSET_TAGS = (); }; };
 		A5CDB6EB1BB13A5300F2A0F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CDB6EA1BB13A5300F2A0F1 /* AppDelegate.swift */; };
-		A5CDB6ED1BB13A5300F2A0F1 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CDB6EC1BB13A5300F2A0F1 /* art.scnassets */; };
 		A5CDB6EF1BB13A5300F2A0F1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CDB6EE1BB13A5300F2A0F1 /* GameViewController.swift */; };
 		A5CDB6F21BB13A5300F2A0F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CDB6F01BB13A5300F2A0F1 /* Main.storyboard */; };
 		A5CDB6F41BB13A5300F2A0F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CDB6F31BB13A5300F2A0F1 /* Assets.xcassets */; };
+		A5DEA70B1BC0883F00F32C2A /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEA70A1BC0883F00F32C2A /* Star.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQDataMediator.swift; sourceTree = "<group>"; };
 		1845364E1BB9FC13009E3F9C /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		1845364F1BB9FC13009E3F9C /* StarInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarInfo.swift; sourceTree = "<group>"; };
 		184536501BB9FC13009E3F9C /* SwiftData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftData.sqlite; sourceTree = "<group>"; };
 		184536511BB9FC13009E3F9C /* SwiftData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 		184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		184536561BB9FC54009E3F9C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		184536591BBA0163009E3F9C /* testmain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testmain.swift; sourceTree = "<group>"; };
 		368CC6BB1BB9F58C00A52548 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		36E329651BBA3B7F004254E8 /* level1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level1-1.png"; sourceTree = "<group>"; };
 		36E329671BBA3FFE004254E8 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		A513E72C1BBCEB8900902483 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
+		A539BD7A1BC1CF790048D472 /* ConstellationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationNode.swift; sourceTree = "<group>"; };
 		A58D50311BC07DE10029F7BA /* StarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarNode.swift; sourceTree = "<group>"; };
 		A58D50331BC0818A0029F7BA /* LineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNode.swift; sourceTree = "<group>"; };
 		A58D50371BC0824B0029F7BA /* Constellation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
 		A58D50391BC0843F0029F7BA /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A5CDB6E71BB13A5300F2A0F1 /* Langs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Langs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CDB6EA1BB13A5300F2A0F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5CDB6EC1BB13A5300F2A0F1 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		A5CDB6EE1BB13A5300F2A0F1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A5CDB6F11BB13A5300F2A0F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5CDB6F31BB13A5300F2A0F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CDB6F81BB13A5300F2A0F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5DEA70A1BC0883F00F32C2A /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +71,9 @@
 			children = (
 				36E329651BBA3B7F004254E8 /* level1-1.png */,
 				36E329671BBA3FFE004254E8 /* start.png */,
-				A5CDB6EC1BB13A5300F2A0F1 /* art.scnassets */,
+				184536501BB9FC13009E3F9C /* SwiftData.sqlite */,
+				184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */,
+				184536561BB9FC54009E3F9C /* libsqlite3.tbd */,
 				A5CDB6F31BB13A5300F2A0F1 /* Assets.xcassets */,
 				A5CDB6F01BB13A5300F2A0F1 /* Main.storyboard */,
 			);
@@ -83,6 +83,7 @@
 		A55EBD7A1BB13CC3008800D1 /* Other Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1845364E1BB9FC13009E3F9C /* Bridging-Header.h */,
 				A5CDB6F81BB13A5300F2A0F1 /* Info.plist */,
 			);
 			name = "Other Resource";
@@ -101,6 +102,8 @@
 		A55EBD7C1BB13D88008800D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A5DEA70A1BC0883F00F32C2A /* Star.swift */,
+				A58D50371BC0824B0029F7BA /* Constellation.swift */,
 				A58D50391BC0843F0029F7BA /* Level.swift */,
 			);
 			name = Models;
@@ -116,11 +119,7 @@
 		A55EBD7E1BB13DAC008800D1 /* DataMediator */ = {
 			isa = PBXGroup;
 			children = (
-				1845364E1BB9FC13009E3F9C /* Bridging-Header.h */,
-				184536501BB9FC13009E3F9C /* SwiftData.sqlite */,
-				1845364F1BB9FC13009E3F9C /* StarInfo.swift */,
 				184536511BB9FC13009E3F9C /* SwiftData.swift */,
-				184536591BBA0163009E3F9C /* testmain.swift */,
 				1845364C1BB9F44A009E3F9C /* YQDataMediator.swift */,
 			);
 			name = DataMediator;
@@ -131,7 +130,7 @@
 			children = (
 				A58D50311BC07DE10029F7BA /* StarNode.swift */,
 				A58D50331BC0818A0029F7BA /* LineNode.swift */,
-				A58D50371BC0824B0029F7BA /* Constellation.swift */,
+				A539BD7A1BC1CF790048D472 /* ConstellationNode.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -139,8 +138,6 @@
 		A5CDB6DE1BB13A5300F2A0F1 = {
 			isa = PBXGroup;
 			children = (
-				184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */,
-				184536561BB9FC54009E3F9C /* libsqlite3.tbd */,
 				A5CDB6E91BB13A5300F2A0F1 /* Langs */,
 				A5CDB6E81BB13A5300F2A0F1 /* Products */,
 			);
@@ -200,6 +197,7 @@
 				TargetAttributes = {
 					A5CDB6E61BB13A5300F2A0F1 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = N9KJV72CSL;
 					};
 				};
 			};
@@ -226,7 +224,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5CDB6ED1BB13A5300F2A0F1 /* art.scnassets in Resources */,
 				A5CDB6F41BB13A5300F2A0F1 /* Assets.xcassets in Resources */,
 				36E329681BBA3FFE004254E8 /* start.png in Resources */,
 				36E329661BBA3B7F004254E8 /* level1-1.png in Resources */,
@@ -246,14 +243,14 @@
 				A58D50341BC0818A0029F7BA /* LineNode.swift in Sources */,
 				A5CDB6EF1BB13A5300F2A0F1 /* GameViewController.swift in Sources */,
 				1845364D1BB9F44A009E3F9C /* YQDataMediator.swift in Sources */,
-				1845365A1BBA0163009E3F9C /* testmain.swift in Sources */,
+				A5DEA70B1BC0883F00F32C2A /* Star.swift in Sources */,
 				A5CDB6EB1BB13A5300F2A0F1 /* AppDelegate.swift in Sources */,
 				A58D503A1BC0843F0029F7BA /* Level.swift in Sources */,
 				A58D50321BC07DE10029F7BA /* StarNode.swift in Sources */,
-				184536521BB9FC13009E3F9C /* StarInfo.swift in Sources */,
 				184536541BB9FC13009E3F9C /* SwiftData.swift in Sources */,
 				A58D50381BC0824B0029F7BA /* Constellation.swift in Sources */,
 				A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */,
+				A539BD7B1BC1CF790048D472 /* ConstellationNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Langs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mg526.Langs;
@@ -370,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Langs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mg526.Langs;

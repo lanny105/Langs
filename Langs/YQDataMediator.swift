@@ -62,52 +62,28 @@ extension String {
     }
 }
 
+private let _sharedYQDataMediator = YQDataMediator()
+
 class YQDataMediator {
     
-    
-    /*
-    class func copyFile(fileName: NSString) {
-    
-    let (tables, _) = SD.existingTables()
-    
-    if let _ = tables.indexOf("Starmatrix_1"){
-    
-    print("Database exists!")
-    return
+    class var instance : YQDataMediator {
+        return _sharedYQDataMediator
     }
     
-    let dbPath: String = getPath(fileName as String)
-    print("copyFile fileName=\(fileName) to path=\(dbPath)")
-    let fileManager = NSFileManager.defaultManager()
-    let fromPath: String? = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent(fileName as String)
-    if !fileManager.fileExistsAtPath(dbPath) {
-    print("dB not found in document directory filemanager will copy this file from this path=\(fromPath) :::TO::: path=\(dbPath)")
     
     
-    //fileManager.copyItemAtPath(fromPath!, toPath: dbPath)
-    
-    
-    } else {
-    print("DID-NOT copy dB file, file allready exists at path:\(dbPath)")
-    }
-    
-    }
-    
-    */
-    
-    
-    class func getPath(fileName: String) -> String {
+    func getPath(fileName: String) -> String {
         
         
         return (NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString).stringByAppendingPathComponent(fileName)
     }
     
-    class func copyFile(fileName: NSString) {
+    func copyFile(fileName: NSString) {
         
         
         let (tables, _) = SD.existingTables()
         
-        if let _ = tables.indexOf("Starmatic_1"){
+        if let _ = tables.indexOf("starincon"){
             
             print("Database exists!")
             return
@@ -134,7 +110,7 @@ class YQDataMediator {
         } catch let error1 as NSError {
             error = error1
             
-            print("完了！")
+            //print("完了！")
             print(error)
         }
         
@@ -145,17 +121,18 @@ class YQDataMediator {
     }
     
     
+    /*
     
+    class func getStarPrototype {
+    <#properties and methods#>
+    }
     
+    */
     
-    
-    
-    
-    class func getStarByAttr() -> [Star]{
-        
+    func getStarByAttr() -> NSArray{
         
         var Starlist: [Star] = []
-        let (resultSet, err) = SD.executeQuery("SELECT * FROM Starmatic_1 WHERE ID<10000")
+        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE Con_ID = 1")
         
         if err != nil {
             //there was an error during the query, handle it here
@@ -167,106 +144,124 @@ class YQDataMediator {
                 let temp_star = Star()
                 
                 if let ID = row["ID"]?.asInt() {
-                    //println("The Star name is: \(ID)")
-                    temp_star.setID(ID)
+                    print("The Star name is: \(ID)")
+                    temp_star.id = ID
                 }
                 
                 if let Hip = row["Hip"]?.asInt() {
                     //println("The Star Hip is: \(Hip)")
-                    temp_star.setHip(Hip)
-                    
-                    
+                    temp_star.hip = Hip
                 }
+                
+                
+                if let Hd = row["Hd"]?.asInt() {
+                    print("The Star Hd is: \(Hd)")
+                    temp_star.hd = Hd
+                }
+                
+                
                 if let Bf = row["Bf"]?.asString() {
                     //println("The Star Bf is \(Bf)")
-                    temp_star.setBf(Bf)
-                    
+                    temp_star.bf = Bf
                 }
                 
                 if let Proper = row["Proper"]?.asString() {
                     //println("The Star Proper is \(Proper)")
                     
-                    temp_star.setProper(Proper)
+                    temp_star.proper = Proper
                 }
                 
                 if let Ra = row["Ra"]?.asDouble() {
-                    //println("The Star Ra is \(Ra)")
-                    temp_star.setRa(Ra)
+                    print("The Star Ra is \(Ra)")
+                    temp_star.ra = Ra
                     
                 }
                 
                 
-                
-                
                 if let Dec = row["Dec"]?.asDouble() {
-                    //println("The Star Dec is \(Dec)")
+                    print("The Star Dec is \(Dec)")
                     
-                    temp_star.setDec(Dec)
+                    temp_star.dec = Dec
                 }
                 if let Dist = row["Dist"]?.asDouble() {
                     //println("The Star Dist is \(Dist)")
                     
-                    temp_star.setDist(Dist)
+                    temp_star.dist = Dist
                 }
                 
                 if let Mag = row["Mag"]?.asDouble() {
                     //println("The Star Mag is \(Mag)")
-                    temp_star.setMag(Mag)
+                    temp_star.mag = Mag
                     
                 }
                 if let Absmag = row["Absmag"]?.asDouble() {
                     //println("The Star Absmag is \(Absmag)")
-                    temp_star.setAbsmag(Absmag)
+                    temp_star.absmag = Absmag
                     
                 }
                 if let Spect = row["Spect"]?.asString() {
                     //println("The Star Spect is \(Spect)")
                     
-                    temp_star.setSpect(Spect)
+                    temp_star.spect = Spect
                 }
                 if let X = row["X"]?.asDouble() {
                     //println("The Star X is \(X)")
-                    temp_star.setX(X)
+                    temp_star.x = X
                 }
                 
                 if let Y = row["Y"]?.asDouble() {
                     //println("The Star Y is \(Y)")
                     
-                    temp_star.setY(Y)
+                    temp_star.y = Y
                     
                 }
                 if let Z = row["Z"]?.asDouble() {
                     //println("The Star Z is \(Z)")
                     
-                    temp_star.setZ(Z)
+                    temp_star.z = Z
                     
                 }
-                
                 
                 
                 if let Bayer = row["Bayer"]?.asString() {
                     //println("The Star Bayer is \(Bayer)")
                     
-                    temp_star.setSpect(Bayer)
+                    temp_star.bayer = Bayer
                 }
                 if let Flam = row["Flam"]?.asString() {
                     //println("The Star Flam is \(Flam)")
                     
-                    temp_star.setSpect(Flam)
+                    temp_star.flam = Flam
                 }
                 if let Con = row["Con"]?.asString() {
                     //println("The Star Con is \(Con)")
                     
-                    temp_star.setSpect(Con)
+                    temp_star.con = Con
                 }
                 
                 
                 if let Lum = row["Lum"]?.asDouble() {
                     //println("The Star Lum is \(Lum)")
                     
-                    temp_star.setZ(Lum)
+                    temp_star.lum = Lum
                     
                 }
+                
+                if let guanka = row["guanka"]?.asInt() {
+                    //println("The Star Lum is \(Lum)")
+                    
+                    temp_star.guanka = guanka
+                    
+                }
+                
+                if let conid = row["Con_Id"]?.asInt() {
+                    //println("The Star Lum is \(Lum)")
+                    
+                    temp_star.conid = conid
+                }
+                
+                
+                
                 
                 Starlist.append(temp_star)
                 
@@ -280,5 +275,191 @@ class YQDataMediator {
         return Starlist
         
     }
+
     
+    
+    
+    
+    
+    func getConstellationByLevel(level: Int) -> Constellation{
+        
+        let con = Constellation()
+        
+        
+        var (resultSet, err) = SD.executeQuery("select * from startrix_2, constellation, starincon where constellation.Con_ID = starincon.Con_ID and starincon.Hd = Startrix_2.Hd and constellation.Con_ID = \(level);")
+        if err != nil {
+            //there was an error during the query, handle it here
+        } else {
+            
+            if let name = resultSet[0]["Name"]?.asString() {
+                //print("The Constellation name is: \(name)")
+                con.name = name
+            }
+
+            
+            for row in resultSet {
+                
+                let temp_star = Star()
+                
+                if let ID = row["ID"]?.asInt() {
+                    //print("The Star name is: \(ID)")
+                    temp_star.id = ID
+                }
+                
+                if let Hip = row["Hip"]?.asInt() {
+                    //println("The Star Hip is: \(Hip)")
+                    temp_star.hip = Hip
+                }
+                
+                
+                if let Hd = row["Hd"]?.asInt() {
+                    //print("The Star Hd is: \(Hd)")
+                    temp_star.hd = Hd
+                }
+                
+                
+                if let Bf = row["Bf"]?.asString() {
+                    //println("The Star Bf is \(Bf)")
+                    temp_star.bf = Bf
+                }
+                
+                if let Proper = row["Proper"]?.asString() {
+                    //println("The Star Proper is \(Proper)")
+                    
+                    temp_star.proper = Proper
+                }
+                
+                if let Ra = row["Ra"]?.asDouble() {
+                    //print("The Star Ra is \(Ra)")
+                    temp_star.ra = Ra
+                    
+                }
+                
+                
+                if let Dec = row["Dec"]?.asDouble() {
+                    //print("The Star Dec is \(Dec)")
+                    
+                    temp_star.dec = Dec
+                }
+                if let Dist = row["Dist"]?.asDouble() {
+                    //println("The Star Dist is \(Dist)")
+                    
+                    temp_star.dist = Dist
+                }
+                
+                if let Mag = row["Mag"]?.asDouble() {
+                    //println("The Star Mag is \(Mag)")
+                    temp_star.mag = Mag
+                    
+                }
+                if let Absmag = row["Absmag"]?.asDouble() {
+                    //println("The Star Absmag is \(Absmag)")
+                    temp_star.absmag = Absmag
+                    
+                }
+                if let Spect = row["Spect"]?.asString() {
+                    //println("The Star Spect is \(Spect)")
+                    
+                    temp_star.spect = Spect
+                }
+                if let X = row["X"]?.asDouble() {
+                    //println("The Star X is \(X)")
+                    temp_star.x = X
+                }
+                
+                if let Y = row["Y"]?.asDouble() {
+                    //println("The Star Y is \(Y)")
+                    
+                    temp_star.y = Y
+                    
+                }
+                if let Z = row["Z"]?.asDouble() {
+                    //println("The Star Z is \(Z)")
+                    
+                    temp_star.z = Z
+                    
+                }
+                
+                
+                if let Bayer = row["Bayer"]?.asString() {
+                    //println("The Star Bayer is \(Bayer)")
+                    
+                    temp_star.bayer = Bayer
+                }
+                if let Flam = row["Flam"]?.asString() {
+                    //println("The Star Flam is \(Flam)")
+                    
+                    temp_star.flam = Flam
+                }
+                if let Con = row["Con"]?.asString() {
+                    //println("The Star Con is \(Con)")
+                    
+                    temp_star.con = Con
+                }
+                
+                
+                if let Lum = row["Lum"]?.asDouble() {
+                    //println("The Star Lum is \(Lum)")
+                    
+                    temp_star.lum = Lum
+                    
+                }
+                
+                if let guanka = row["guanka"]?.asInt() {
+                    //println("The Star Lum is \(Lum)")
+                    
+                    temp_star.guanka = guanka
+                    
+                }
+                
+                if let conid = row["Con_ID"]?.asInt() {
+                    //println("The Star Lum is \(Lum)")
+                    
+                    temp_star.conid = conid
+                }
+                
+                con.starlist.append(temp_star)
+            }
+        }
+        
+        (resultSet, err) = SD.executeQuery("select * from Line, constellation where Line.Con_ID =constellation.Con_ID AND constellation.Con_ID = \(level); ")
+            
+        if err != nil {
+            //there was an error during the query, handle it here
+        } else {
+                
+            for row in resultSet {
+
+                
+                    
+                let temp_line = Line()
+                
+                
+                    
+                if let star1hd = row["StarA_Hd"]?.asInt() {
+                    temp_line.star1hd = star1hd
+                }
+                    
+                if let star2hd = row["StarB_Hd"]?.asInt() {
+                    //println("The Star Hip is: \(Hip)")
+                    temp_line.star2hd = star2hd
+                }
+                
+                temp_line.adjust()
+                
+                con.linelist.append(temp_line)
+        
+            }
+        }
+        
+
+        return con
+        
+    }
+    
+    
+    
+
+
 }
+
