@@ -12,6 +12,16 @@ import SceneKit
 
 class LevelsViewController: UIViewController {
     
+    let cameraNode = SCNNode()
+    var flag = false
+    var xPosition : Float = 0
+    var yPosition : Float = 0
+    
+    
+    //// animation
+    
+    var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,12 +30,18 @@ class LevelsViewController: UIViewController {
         let scene = SCNScene()
         
         // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
+//        let cameraNode = SCNNode()
+        self.cameraNode.camera = SCNCamera()
+        self.cameraNode.name = "camera"
+        
+        //// animation
+        
+        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
+        
+        scene.rootNode.addChildNode(self.cameraNode)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        self.cameraNode.position = SCNVector3(x: 0, y: 0, z: 30)
         
         
         
@@ -68,7 +84,7 @@ class LevelsViewController: UIViewController {
         scnView.scene = scene
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -77,10 +93,39 @@ class LevelsViewController: UIViewController {
         scnView.backgroundColor = UIColor.blackColor()
         
         
+        // add a pan gesture recognizer
+        let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        scnView.addGestureRecognizer(panGesture)
+        
         
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
         scnView.addGestureRecognizer(tapGesture)
+    }
+    
+    func handlePan(gestureRecognize: UIPanGestureRecognizer) {
+        print("Pan!!")
+        
+        // retrieve the SCNView
+        let scnView = self.view as! SCNView
+        
+        let point = gestureRecognize.translationInView(scnView)
+        
+        print("\(point.x), \(point.y)")
+        
+        //// animation
+        
+        SCNTransaction.begin()
+        SCNTransaction.setAnimationDuration(1.0)
+        
+        SCNTransaction.setCompletionBlock() {
+            print("done")
+        }
+        
+        self.cameraNode.position.x -= Float(point.x)/100
+        self.cameraNode.position.y += Float(point.y)/100
+        
+        SCNTransaction.commit()
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -119,6 +164,7 @@ class LevelsViewController: UIViewController {
             self.performSegueWithIdentifier("levelsViewToGameViewSegue", sender: nil)
         }
         
+
         
     }
     
@@ -142,5 +188,4 @@ class LevelsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-    
 }
