@@ -17,6 +17,10 @@ class LevelsViewController: UIViewController {
     var xPosition : Float = 0
     var yPosition : Float = 0
     
+    let cameraPositionZ : Float = 30
+    
+    var lastLocation : SCNVector3 = SCNVector3(x: 0, y: 0, z: 30)
+    
     
     //// animation
     
@@ -41,7 +45,7 @@ class LevelsViewController: UIViewController {
         scene.rootNode.addChildNode(self.cameraNode)
         
         // place the camera
-        self.cameraNode.position = SCNVector3(x: 0, y: 0, z: 30)
+        self.cameraNode.position = SCNVector3(x: 0, y: 0, z: self.cameraPositionZ)
         
         
         
@@ -122,8 +126,10 @@ class LevelsViewController: UIViewController {
 //            print("done")
 //        }
         
-        self.cameraNode.position.x = -Float(point.x)/10
-        self.cameraNode.position.y = Float(point.y)/10
+        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
+        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
+
+        
         
 //        SCNTransaction.commit()
     }
@@ -187,5 +193,9 @@ class LevelsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        lastLocation = self.cameraNode.position
     }
 }
