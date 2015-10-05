@@ -117,7 +117,7 @@ class Constellation: NSObject{
         
         
         for x in 0...self.linelist.count-1 {
-            if !self.linelist[x].isequal(constellationB.linelist[x]) {
+            if (self.linelist[x].isequal(constellationB.linelist[x])==false) {
                 return false
             }
         }
