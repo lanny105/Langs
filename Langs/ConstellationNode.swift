@@ -31,13 +31,12 @@ class ConstellationNode: SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(constellation: Constellation) {
+    init(lineArray: NSArray) {
         super.init()
         
-        self.data = constellation
+//        self.stars = starArray
+        self.lines = lineArray
         
-        stars = data?.starlist
-        lines = data?.linelist
     }
 
 }
