@@ -36,7 +36,7 @@ class LevelsViewController: UIViewController {
         
         //// animation
         
-        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
+//        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
         
         scene.rootNode.addChildNode(self.cameraNode)
         
@@ -92,7 +92,6 @@ class LevelsViewController: UIViewController {
         // configure the view
         scnView.backgroundColor = UIColor.blackColor()
         
-        
         // add a pan gesture recognizer
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         scnView.addGestureRecognizer(panGesture)
@@ -102,6 +101,7 @@ class LevelsViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
         scnView.addGestureRecognizer(tapGesture)
     }
+    
     
     func handlePan(gestureRecognize: UIPanGestureRecognizer) {
         print("Pan!!")
@@ -115,17 +115,17 @@ class LevelsViewController: UIViewController {
         
         //// animation
         
-        SCNTransaction.begin()
-        SCNTransaction.setAnimationDuration(1.0)
+//        SCNTransaction.begin()
+//        SCNTransaction.setAnimationDuration(0.5)
+//        
+//        SCNTransaction.setCompletionBlock() {
+//            print("done")
+//        }
         
-        SCNTransaction.setCompletionBlock() {
-            print("done")
-        }
+        self.cameraNode.position.x = -Float(point.x)/10
+        self.cameraNode.position.y = Float(point.y)/10
         
-        self.cameraNode.position.x -= Float(point.x)/100
-        self.cameraNode.position.y += Float(point.y)/100
-        
-        SCNTransaction.commit()
+//        SCNTransaction.commit()
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
