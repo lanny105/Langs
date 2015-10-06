@@ -1,19 +1,33 @@
-
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
 *.xcuserstate
 
-Langs.xcodeproj/project.xcworkspace/xcuserdata/Can.xcuserdatad/UserInterfaceState.xcuserstate
-Langs.xcodeproj/project.xcworkspace/xcuserdata/apple.xcuserdatad/UserInterfaceState.xcuserstate
-*.xcuserstate
-Langs.xcodeproj/project.xcworkspace/xcuserdata/BoyangTian.xcuserdatad/UserInterfaceState.xcuserstate
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
+#
+# Pods/
 
-Langs.xcodeproj/project.xcworkspace/xcuserdata/VW.xcuserdatad/UserInterfaceState.xcuserstate
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
 
-*.xcuserstate
-
-Langs.xcodeproj/project.xcworkspace/xcuserdata/Can.xcuserdatad/UserInterfaceState.xcuserstate
-
-Langs.xcodeproj/project.xcworkspace/xcuserdata/apple.xcuserdatad/UserInterfaceState.xcuserstate
-
-Langs/Line.swift
-
-Langs.xcodeproj/project.xcworkspace/xcuserdata/apple.xcuserdatad/UserInterfaceState.xcuserstate
+Carthage/Build
