@@ -92,49 +92,49 @@ class GameViewController: UIViewController {
         
     }
     
-    //    func setScene() {
-    //        let sceneView = self.view as! SCNView
-    //
-    //        let sphere = SCNNode()
-    //        sphere.geometry = SCNSphere(radius: 0.5)
-    //        let materialsphere = SCNMaterial()
-    //        //        materialsphere.diffuse.contents = UIColor.whiteColor()
-    //        materialsphere.transparency = 0.5
-    //        sphere.geometry?.materials = [materialsphere]
-    //        sphere.position = SCNVector3(0, 0, 0)
-    //        //        sphere.camera = camera
-    //        sceneView.scene?.rootNode.addChildNode(sphere)
-    //
-    //        let zCoor = SCNNode()
-    //        zCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
-    //        let material1 = SCNMaterial()
-    //        material1.diffuse.contents = UIColor.yellowColor()
-    //        material1.transparency = 0.5
-    //        zCoor.geometry?.materials = [material1]
-    //        zCoor.position = SCNVector3(0, 0, 0)
-    //        zCoor.rotation = SCNVector4Make(1, 0, 0, Float(M_PI/2))
-    //        sceneView.scene?.rootNode.addChildNode(zCoor)
-    //
-    //        let yCoor = SCNNode()
-    //        yCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
-    //        let material2 = SCNMaterial()
-    //        material2.diffuse.contents = UIColor.greenColor()
-    //        material2.transparency = 0.5
-    //        yCoor.geometry?.materials = [material2]
-    //        yCoor.position = SCNVector3(0, 0, 0)
-    //        yCoor.rotation = SCNVector4Make(0, 1, 0, 0)
-    //        sceneView.scene?.rootNode.addChildNode(yCoor)
-    //
-    //        let xCoor = SCNNode()
-    //        xCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
-    //        let material3 = SCNMaterial()
-    //        material3.diffuse.contents = UIColor.blueColor()
-    //        material3.transparency = 0.5
-    //        xCoor.geometry?.materials = [material3]
-    //        xCoor.position = SCNVector3(0, 0, 0)
-    //        xCoor.rotation = SCNVector4Make(0, 0, 1, Float(M_PI/2))
-    //        sceneView.scene?.rootNode.addChildNode(xCoor)
-    //    }
+//        func setScene() {
+//            let sceneView = self.view as! SCNView
+//    
+//            let sphere = SCNNode()
+//            sphere.geometry = SCNSphere(radius: 0.5)
+//            let materialsphere = SCNMaterial()
+//            //        materialsphere.diffuse.contents = UIColor.whiteColor()
+//            materialsphere.transparency = 0.5
+//            sphere.geometry?.materials = [materialsphere]
+//            sphere.position = SCNVector3(0, 0, 0)
+//            //        sphere.camera = camera
+//            sceneView.scene?.rootNode.addChildNode(sphere)
+//    
+//            let zCoor = SCNNode()
+//            zCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
+//            let material1 = SCNMaterial()
+//            material1.diffuse.contents = UIColor.yellowColor()
+//            material1.transparency = 0.5
+//            zCoor.geometry?.materials = [material1]
+//            zCoor.position = SCNVector3(0, 0, 0)
+//            zCoor.rotation = SCNVector4Make(1, 0, 0, Float(M_PI/2))
+//            sceneView.scene?.rootNode.addChildNode(zCoor)
+//    
+//            let yCoor = SCNNode()
+//            yCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
+//            let material2 = SCNMaterial()
+//            material2.diffuse.contents = UIColor.greenColor()
+//            material2.transparency = 0.5
+//            yCoor.geometry?.materials = [material2]
+//            yCoor.position = SCNVector3(0, 0, 0)
+//            yCoor.rotation = SCNVector4Make(0, 1, 0, 0)
+//            sceneView.scene?.rootNode.addChildNode(yCoor)
+//    
+//            let xCoor = SCNNode()
+//            xCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
+//            let material3 = SCNMaterial()
+//            material3.diffuse.contents = UIColor.blueColor()
+//            material3.transparency = 0.5
+//            xCoor.geometry?.materials = [material3]
+//            xCoor.position = SCNVector3(0, 0, 0)
+//            xCoor.rotation = SCNVector4Make(0, 0, 1, Float(M_PI/2))
+//            sceneView.scene?.rootNode.addChildNode(xCoor)
+//        }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
         let sceneView = self.view as! SCNView

@@ -16,6 +16,7 @@ class StarNode: SCNNode {
     var px: Float = 0
     var py: Float = 0
     var pz: Float = 0
+    var actualStar: SCNNode = SCNNode()
 
     // MARK: - Constructors
 
@@ -48,21 +49,34 @@ class StarNode: SCNNode {
         py = py * R/l
         pz = pz * R/l
 
-        self.geometry = SCNSphere(radius: 0.8)
+        self.geometry = SCNSphere(radius: 3.5)
+        let materialsphere = SCNMaterial()
+        materialsphere.transparency = 0.0
+        self.geometry?.materials = [materialsphere]
         self.position = SCNVector3(x: px, y: py, z: pz)
+        
+        let innerNode = SCNNode()
+        innerNode.geometry = SCNSphere(radius: 0.8)
+        let materialsphere1 = SCNMaterial()
+        materialsphere1.diffuse.contents = UIColor.whiteColor()
+        innerNode.geometry?.materials = [materialsphere1]
+        innerNode.position = SCNVector3(0, 0, 0)
+        actualStar = innerNode
+        self.addChildNode(actualStar)
+        
     }
 
     // MARK: - Member functions
 
     func highlight(b: Bool) {
-        let material = self.geometry!.firstMaterial!
+        let material = actualStar.geometry!.firstMaterial!
         if (b) {
             material.diffuse.contents = UIColor.yellowColor()
         }
         else {
             material.diffuse.contents = UIColor.whiteColor()
         }
-        self.geometry?.materials = [material]
+        actualStar.geometry?.materials = [material]
     }
     
 }
