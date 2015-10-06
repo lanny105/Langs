@@ -1,2 +1,9 @@
-＃Langs
-Basic Structure: UI, Game Main, Data
+#Langs
+
+##UI - User Interface
+
+##GP - Game Play
+
+##DB - Database
+- getStar()
+- getConstellationByLevel()
