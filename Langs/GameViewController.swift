@@ -203,6 +203,7 @@ class GameViewController: UIViewController {
                 activeStar = star
                 star.highlight(true)
             }else{
+                if activeStar != star{
                 if(!checkLine(activeStar!, node2: star)){
                     let line = LineNode(starFrom: activeStar!, starTo: star)
                     starLines.append(line)
@@ -211,7 +212,6 @@ class GameViewController: UIViewController {
                     lineRes.star2hd=(star.data?.hd)!
                     lineRes.adjust()
                     constellationUserState.linelist.append(lineRes)
-                    print(constellationUserState.linelist)
                     let star1Res = Star()
                     star1Res.hd = (activeStar?.data?.hd)!
                     let star2Res = Star()
@@ -270,10 +270,12 @@ class GameViewController: UIViewController {
                 }
                 activeStar = nil
             }
+                
+            }
             
             
             
-            
+            print(lineNum)
             
             
             
