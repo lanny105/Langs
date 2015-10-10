@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
     var activeStar: StarNode?
     var lineNum = 0
     
+    let constellationUserState = Constellation()
     // get star statistics
     let starList = YQDataMediator.instance.getStarByAttr()
     
@@ -136,6 +137,54 @@ class GameViewController: UIViewController {
 //            sceneView.scene?.rootNode.addChildNode(xCoor)
 //        }
     
+    func checkLine(node1: StarNode, node2: StarNode)->Bool{
+        let lineRes = Line()
+        lineRes.star1hd = (node1.data?.hd)!
+        lineRes.star2hd = (node2.data?.hd)!
+        lineRes.adjust()
+        //var index:Int
+        //print(constellationUserState.linelist)
+        
+        //constellationUserState.linelist.append(lineRes)
+        
+        for findline in constellationUserState.linelist{
+            if(findline.star1hd == lineRes.star1hd && findline.star2hd == lineRes.star2hd){
+                return true
+            }
+        }
+        return false
+        
+        
+    }
+    
+    func findLineIndex(node1: StarNode, node2: StarNode)->Int{
+        var index=0
+        let lineRes = Line()
+        lineRes.star1hd=(node1.data?.hd)!
+        lineRes.star2hd=(node2.data?.hd)!
+        lineRes.adjust()
+        for findline in constellationUserState.linelist{
+            if(findline.star1hd == lineRes.star1hd && findline.star2hd == lineRes.star2hd){
+                return index
+            }
+            index++
+        }
+        return index
+    }
+    
+    func findStarIndex(node: StarNode)->Int{
+        var index=0
+        let starRes = Star()
+        starRes.hd = (node.data?.hd)!
+        for findstar in constellationUserState.starlist{
+            if(findstar.hd == starRes.hd){
+                return index
+            }
+            index++
+        }
+        return -1
+    }
+    
     func handleTap(gestureRecognize: UIGestureRecognizer) {
         let sceneView = self.view as! SCNView
         
@@ -147,93 +196,95 @@ class GameViewController: UIViewController {
             // retrieved the first clicked object
             let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
-            var flag = false
-            var index3 = 0
-            var removableline1: LineNode!
             
-            if (activeStar == nil) {
+            
+            
+            if(activeStar == nil){
                 activeStar = star
                 star.highlight(true)
-                if !highLightedStars.contains(star) {
-                    highLightedStars.append(star)
-                }
-                maybedelete.append(star)
-            }
-            else {
-                if (highLightedStars.contains(star)) {
-                    maybedelete.append(star)
-                    if maybedelete.count >= 2 {
-                        var i = 0
-                        for removableline in starLines {
-                            if ((removableline.starA == maybedelete[0] && removableline.starB == maybedelete[1]) || (removableline.starB == maybedelete[0] && removableline.starA == maybedelete[1])) {
-                                var index1 = 0
-                                var index2 = 0
-                                for index in 0...(highLightedStars.count - 1) {
-                                    if highLightedStars[index]==removableline.starA {
-                                        index1 = index
-                                    }
-                                    else if highLightedStars[index]==removableline.starB {
-                                        index2 = index
-                                    }
-                                }
-                                if index1 > index2 {
-                                    highLightedStars.removeAtIndex(index1)
-                                    highLightedStars.removeAtIndex(index2)
-                                }
-                                else if index1 < index2 {
-                                    highLightedStars.removeAtIndex(index2)
-                                    highLightedStars.removeAtIndex(index1)
-                                }
-                                removableline.starA.highlight(false)
-                                removableline.starB.highlight(false)
-                                removableline1 = removableline
-                                maybedelete.removeAll()
-                                index3 = i
-                                flag = true
-                                break
-                            }
-                            i++
+            }else{
+                if(!checkLine(activeStar!, node2: star)){
+                    let line = LineNode(starFrom: activeStar!, starTo: star)
+                    starLines.append(line)
+                    let lineRes = Line()
+                    lineRes.star1hd=(activeStar?.data?.hd)!
+                    lineRes.star2hd=(star.data?.hd)!
+                    lineRes.adjust()
+                    constellationUserState.linelist.append(lineRes)
+                    print(constellationUserState.linelist)
+                    let star1Res = Star()
+                    star1Res.hd = (activeStar?.data?.hd)!
+                    let star2Res = Star()
+                    star2Res.hd = (star.data?.hd)!
+                    constellationUserState.starlist.append(star1Res)
+                    constellationUserState.starlist.append(star2Res)
+                    star.highlight(true)
+                    sceneView.scene?.rootNode.addChildNode(line)
+                    lineNum++
+                }else{
+                    let lineindex = findLineIndex(activeStar!, node2: star)
+                    let removeline = LineNode(starFrom: activeStar!, starTo: star)
+                    for starline in starLines{
+                        if ((starline.starA.data?.hd == removeline.starA.data?.hd && starline.starB.data?.hd == removeline.starB.data?.hd) || (starline.starA.data?.hd == removeline.starB.data?.hd && starline.starB.data?.hd == removeline.starA.data?.hd)){
+                            starline.removeFromParentNode()
+                            let index = starLines.indexOf(starline)
+                            starLines.removeAtIndex(index!)
+                            break
+                        }
+                    }
+                    
+                    if(lineindex != -1){
+                        constellationUserState.linelist.removeAtIndex(lineindex)
+                    }
+                    
+                    lineNum--
+                    //use to unhighlight stars
+                    var flag = 0
+                    for stars in constellationUserState.starlist{
+                        let starnode1: StarNode = StarNode(star: stars as! Star)
+                        if(checkLine(star, node2: starnode1)){
+                            flag++
+                        }
+                    }
+                    if(flag == 0){
+                        star.highlight(false)
+                        let star1index = findStarIndex(star)
+                        if(star1index != -1){
+                            constellationUserState.starlist.removeAtIndex(star1index)
+                        }
+                    }
+                    flag = 0
+                    for stars in constellationUserState.starlist{
+                        let starnode2: StarNode = StarNode(star: stars as! Star)
+                        if(checkLine(activeStar!, node2: starnode2)){
+                            flag++
+                        }
+                    }
+                    if(flag == 0){
+                        activeStar!.highlight(false)
+                        let star2index = findStarIndex(star)
+                        if(star2index != -1){
+                            constellationUserState.starlist.removeAtIndex(star2index)
                         }
                     }
                 }
-                if (!flag) {
-                    maybedelete.removeAll()
-                    let line = LineNode(starFrom: activeStar!, starTo: star)
-                    starLines.append(line)
-                    activeStar = nil
-                    star.highlight(true)
-                    sceneView.scene?.rootNode.addChildNode(line)
-                    if (!highLightedStars.contains(star)) {
-                        highLightedStars.append(star)
-                    }
-                    lineNum++
-                }
-                else if (flag) {
-                    maybedelete.removeAll()
-                    activeStar = nil
-                    starLines.removeAtIndex(index3)
-                    removableline1.removeFromParentNode()
-                    flag = false
-                    lineNum--
-                }
+                activeStar = nil
             }
             
-            let constellationNode = Constellation()
             
-            for x in starLines {
-                
-                let temp = Line()
-                temp.star1hd = (x.starA.data?.hd)!
-                temp.star2hd = (x.starB.data?.hd)!
-                temp.adjust()
-                constellationNode.linelist.append(temp)
-            }
             
-            print(lineNum)
+            
+            
+            
+            
             
             if lineNum >= constellation.linelist.count {
+                let constellationNode = Constellation()
+                
+                for x in constellationUserState.linelist {
+                    constellationNode.linelist.append(x)
+                }
                 if constellationNode.isequal(constellation) {
-                    print("!")
                     let gameNameText = SCNText(string: "Amazing", extrusionDepth: 5)
                     gameNameText.font = UIFont(name: "Optima", size: 10)
                     let gameNameTextNode = SCNNode(geometry: gameNameText)
@@ -245,8 +296,6 @@ class GameViewController: UIViewController {
         }
         
     }
-    
-    
     
     
     
