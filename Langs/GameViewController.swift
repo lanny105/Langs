@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-var indicatefinal = 0
+//var indicatefinal = 0
 
 class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
@@ -260,14 +260,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     constellationNode.linelist.append(x)
                 }
                 if constellationNode.isequal(constellation) {
-                    indicatefinal = 1
+                    //indicatefinal = 1
                     spriteScene.makeHintFinal()
-                    let gameNameText = SCNText(string: "Amazing", extrusionDepth: 5)
-                    gameNameText.font = UIFont(name: "Optima", size: 10)
-                    let gameNameTextNode = SCNNode(geometry: gameNameText)
-                    gameNameTextNode.position = SCNVector3(x: -54, y: -3, z: 80)
-                    gameNameTextNode.rotation = SCNVector4(0, 0, 1, Float(-3 * (M_PI/7)))
-                    sceneView.scene?.rootNode.addChildNode(gameNameTextNode)
+//                    let gameNameText = SCNText(string: "Amazing", extrusionDepth: 5)
+//                    gameNameText.font = UIFont(name: "Optima", size: 10)
+//                    let gameNameTextNode = SCNNode(geometry: gameNameText)
+//                    gameNameTextNode.position = SCNVector3(x: -54, y: -3, z: 80)
+//                    gameNameTextNode.rotation = SCNVector4(0, 0, 1, Float(-3 * (M_PI/7)))
+//                    sceneView.scene?.rootNode.addChildNode(gameNameTextNode)
                 }
             }
         }
@@ -299,9 +299,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         //        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
         
         
-        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
-        
+        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/7000
+        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/7000
+        lastLocation = self.cameraNode.eulerAngles
         
         //        SCNTransaction.commit()
     }
@@ -329,9 +329,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         // Release any cached data, images, etc that aren't in use.
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //        lastLocation = self.cameraNode.position
-        lastLocation = self.cameraNode.eulerAngles
-    }
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        //        lastLocation = self.cameraNode.position
+//        
+//        lastLocation = self.cameraNode.eulerAngles
+//    }
     
 }

@@ -56,7 +56,7 @@ class StarNode: SCNNode {
         self.position = SCNVector3(x: px, y: py, z: pz)
         
         let innerNode = SCNNode()
-        innerNode.geometry = SCNSphere(radius: 0.3)
+        innerNode.geometry = SCNSphere(radius: 0.5)
         let materialsphere1 = SCNMaterial()
         materialsphere1.diffuse.contents = UIColor.whiteColor()
         innerNode.geometry?.materials = [materialsphere1]
