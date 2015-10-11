@@ -40,7 +40,7 @@ class LevelsViewController: UIViewController {
         
         //// animation
         
-//        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
+        //        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
         
         scene.rootNode.addChildNode(self.cameraNode)
         
@@ -119,19 +119,24 @@ class LevelsViewController: UIViewController {
         
         //// animation
         
-//        SCNTransaction.begin()
-//        SCNTransaction.setAnimationDuration(0.5)
-//        
-//        SCNTransaction.setCompletionBlock() {
-//            print("done")
-//        }
-        
-        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
-        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
-
+        //        SCNTransaction.begin()
+        //        SCNTransaction.setAnimationDuration(0.5)
+        //
+        //        SCNTransaction.setCompletionBlock() {
+        //            print("done")
+        //        }
         
         
-//        SCNTransaction.commit()
+        
+        //        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
+        //        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
+        
+        
+        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+        
+        
+        //        SCNTransaction.commit()
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -170,6 +175,9 @@ class LevelsViewController: UIViewController {
             self.performSegueWithIdentifier("levelsViewToGameViewSegue", sender: nil)
         }
         
+        //                self.cameraNode.eulerAngles.x -= 0.1
+        //                self.cameraNode.eulerAngles.y += 0.1
+        //                self.cameraNode.eulerAngles.z += 0.1
         
         
     }
@@ -196,6 +204,7 @@ class LevelsViewController: UIViewController {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        lastLocation = self.cameraNode.position
+        //        lastLocation = self.cameraNode.position
+        lastLocation = self.cameraNode.eulerAngles
     }
 }

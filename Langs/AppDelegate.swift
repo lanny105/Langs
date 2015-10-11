@@ -22,13 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //YQDataMediator.copyFile("SwiftData.sqlite")// test for database
         
         
-        let Cons = YQDataMediator.instance.getConstellationByLevel(1)
+        //let Cons = YQDataMediator.instance.getConstellationByLevel(1)
         
-        var text = String()
+        //var text = String()
         
-        text = Cons.returnAttri()
+        //text = Cons.returnAttri()
         
-        print(text)
+        //print(text)
         
         return true
     }

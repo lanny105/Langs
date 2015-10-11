@@ -29,18 +29,39 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     let constellation = YQDataMediator.instance.getConstellationByLevel(1)
     
     
+    let cameraNode = SCNNode()
+    var flag = false
+    var xPosition : Float = 0
+    var yPosition : Float = 0
+    
+    let cameraPositionZ : Float = 0
+    
+    var lastLocation : SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
+    
+    
+    //// animation
+    
+    var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let scene = SCNScene()
         
-        let camera = SCNCamera()
-        //        camera.focalDistance = 0.0
-        camera.zFar = 10000
-        camera.zNear = 0.1
-        let cameraNode = SCNNode()
-        cameraNode.camera = camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 1)
+        self.cameraNode.camera = SCNCamera()
+        self.cameraNode.name = "camera"
+        
+        //// animation
+        
+        //        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
+        
+        scene.rootNode.addChildNode(self.cameraNode)
+        
+        // place the camera
+        self.cameraNode.position = SCNVector3(x: 0, y: 0, z: self.cameraPositionZ)
         //        let constraint = SCNLookAtConstraint(target: StarNode)
         //        constraint.gimbalLockEnabled = true
         //        cameraNode.constraints = [constraint]
@@ -72,13 +93,16 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         sceneView.scene = scene
         
         // allows the user to manipulate the camera
-        sceneView.allowsCameraControl = true
+        sceneView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
         sceneView.showsStatistics = false
         
         // configure the view
         sceneView.backgroundColor = UIColor.blackColor()
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        sceneView.addGestureRecognizer(panGesture)
         
         // add a tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
@@ -89,8 +113,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         //setScene()
         
-        let spriteScene = OverlayScene(size: self.view.bounds.size)
-        sceneView.overlaySKScene = spriteScene
         
     }
     
@@ -299,7 +321,37 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
     }
     
-    
+    func handlePan(gestureRecognize: UIPanGestureRecognizer) {
+        print("Pan!!")
+        
+        // retrieve the SCNView
+        let scnView = self.view as! SCNView
+        
+        let point = gestureRecognize.translationInView(scnView)
+        
+        print("\(point.x), \(point.y)")
+        
+        //// animation
+        
+        //        SCNTransaction.begin()
+        //        SCNTransaction.setAnimationDuration(0.5)
+        //
+        //        SCNTransaction.setCompletionBlock() {
+        //            print("done")
+        //        }
+        
+        
+        
+        //        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
+        //        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
+        
+        
+        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+        
+        
+        //        SCNTransaction.commit()
+    }
     
     
     //            if result.node.categoryBitMask == 1 {
@@ -345,6 +397,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        //        lastLocation = self.cameraNode.position
+        lastLocation = self.cameraNode.eulerAngles
     }
     
 }
