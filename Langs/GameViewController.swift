@@ -10,6 +10,8 @@ import UIKit
 import QuartzCore
 import SceneKit
 
+var indicatefinal = 1
+
 class GameViewController: UIViewController, SCNSceneRendererDelegate{
     // var level: Level!;
     var light: SCNNode!
@@ -42,6 +44,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     //// animation
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
+    
+    
+    var spriteScene = OverlayScene!()
     
     
     
@@ -100,7 +105,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         // configure the view
         sceneView.backgroundColor = UIColor.blackColor()
-        
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         sceneView.addGestureRecognizer(panGesture)
         
@@ -110,6 +114,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         tapRecognizer.numberOfTouchesRequired = 1
         tapRecognizer.addTarget(self, action: "handleTap:")
         sceneView.addGestureRecognizer(tapRecognizer)
+        
+        spriteScene = OverlayScene(size: self.view.bounds.size)
+        sceneView.overlaySKScene = spriteScene
         
         //setScene()
         
@@ -217,7 +224,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         // check that we clicked on at least one object
         if hitResults.count > 0 {
             // retrieved the first clicked object
-            let result: AnyObject! = hitResults[0]
+            let result:SCNHitTestResult = hitResults[0]
+            //let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
             
             
@@ -299,8 +307,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
             print(lineNum)
             
-            
-            
+            spriteScene.makeHintFinal()
+
             
             if lineNum >= constellation.linelist.count {
                 let constellationNode = Constellation()
@@ -309,6 +317,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     constellationNode.linelist.append(x)
                 }
                 if constellationNode.isequal(constellation) {
+                    indicatefinal = 1
+                    spriteScene.makeHintFinal()
                     let gameNameText = SCNText(string: "Amazing", extrusionDepth: 5)
                     gameNameText.font = UIFont(name: "Optima", size: 10)
                     let gameNameTextNode = SCNNode(geometry: gameNameText)
