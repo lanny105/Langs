@@ -307,7 +307,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
             print(lineNum)
             
-            spriteScene.makeHintFinal()
 
             
             if lineNum >= constellation.linelist.count {
