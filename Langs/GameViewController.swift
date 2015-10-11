@@ -10,8 +10,7 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController {
-    
+class GameViewController: UIViewController, SCNSceneRendererDelegate{
     // var level: Level!;
     var light: SCNNode!
     
@@ -90,6 +89,8 @@ class GameViewController: UIViewController {
         
         //setScene()
         
+        let spriteScene = OverlayScene(size: self.view.bounds.size)
+        sceneView.overlaySKScene = spriteScene
         
     }
     
@@ -196,7 +197,6 @@ class GameViewController: UIViewController {
             // retrieved the first clicked object
             let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
-            
             
             
             if(activeStar == nil){
