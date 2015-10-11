@@ -329,10 +329,5 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         // Release any cached data, images, etc that aren't in use.
     }
     
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        //        lastLocation = self.cameraNode.position
-//        
-//        lastLocation = self.cameraNode.eulerAngles
-//    }
     
 }
