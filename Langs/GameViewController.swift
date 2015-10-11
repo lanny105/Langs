@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-var indicatefinal = 1
+var indicatefinal = 0
 
 class GameViewController: UIViewController, SCNSceneRendererDelegate{
     // var level: Level!;
