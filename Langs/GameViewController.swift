@@ -13,15 +13,15 @@ import SceneKit
 var indicatefinal = 0
 
 class GameViewController: UIViewController, SCNSceneRendererDelegate{
-    // var level: Level!;
+    
     var light: SCNNode!
     
     var line: SCNNode!
     var starLines = [LineNode]()
-    var maybedelete = [StarNode]()
-    var highLightedStars = [StarNode]()
     var activeStar: StarNode?
     var lineNum = 0
+    
+    var spriteScene = OverlayScene!()
     
     let constellationUserState = Constellation()
     // get star statistics
@@ -32,9 +32,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     
     let cameraNode = SCNNode()
-    var flag = false
-    var xPosition : Float = 0
-    var yPosition : Float = 0
     
     let cameraPositionZ : Float = 0
     
@@ -44,12 +41,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     //// animation
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
-    
-    
-    var spriteScene = OverlayScene!()
-    
-    
-    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +59,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         // place the camera
         self.cameraNode.position = SCNVector3(x: 0, y: 0, z: self.cameraPositionZ)
-        //        let constraint = SCNLookAtConstraint(target: StarNode)
-        //        constraint.gimbalLockEnabled = true
-        //        cameraNode.constraints = [constraint]
         scene.rootNode.addChildNode(cameraNode)
         
         let ambientLight = SCNLight()
@@ -118,54 +107,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
         
-        //setScene()
-        
-        
     }
     
-//        func setScene() {
-//            let sceneView = self.view as! SCNView
-//    
-//            let sphere = SCNNode()
-//            sphere.geometry = SCNSphere(radius: 0.5)
-//            let materialsphere = SCNMaterial()
-//            //        materialsphere.diffuse.contents = UIColor.whiteColor()
-//            materialsphere.transparency = 0.5
-//            sphere.geometry?.materials = [materialsphere]
-//            sphere.position = SCNVector3(0, 0, 0)
-//            //        sphere.camera = camera
-//            sceneView.scene?.rootNode.addChildNode(sphere)
-//    
-//            let zCoor = SCNNode()
-//            zCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
-//            let material1 = SCNMaterial()
-//            material1.diffuse.contents = UIColor.yellowColor()
-//            material1.transparency = 0.5
-//            zCoor.geometry?.materials = [material1]
-//            zCoor.position = SCNVector3(0, 0, 0)
-//            zCoor.rotation = SCNVector4Make(1, 0, 0, Float(M_PI/2))
-//            sceneView.scene?.rootNode.addChildNode(zCoor)
-//    
-//            let yCoor = SCNNode()
-//            yCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
-//            let material2 = SCNMaterial()
-//            material2.diffuse.contents = UIColor.greenColor()
-//            material2.transparency = 0.5
-//            yCoor.geometry?.materials = [material2]
-//            yCoor.position = SCNVector3(0, 0, 0)
-//            yCoor.rotation = SCNVector4Make(0, 1, 0, 0)
-//            sceneView.scene?.rootNode.addChildNode(yCoor)
-//    
-//            let xCoor = SCNNode()
-//            xCoor.geometry = SCNCylinder(radius: 0.1, height: 100)
-//            let material3 = SCNMaterial()
-//            material3.diffuse.contents = UIColor.blueColor()
-//            material3.transparency = 0.5
-//            xCoor.geometry?.materials = [material3]
-//            xCoor.position = SCNVector3(0, 0, 0)
-//            xCoor.rotation = SCNVector4Make(0, 0, 1, Float(M_PI/2))
-//            sceneView.scene?.rootNode.addChildNode(xCoor)
-//        }
+
     
     func checkLine(node1: StarNode, node2: StarNode)->Bool{
         let lineRes = Line()
@@ -363,30 +307,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     }
     
     
-    //            if result.node.categoryBitMask == 1 {
-    //                let star = result.node as! StarNode
-    //                if (activeStar == nil) {
-    //                    activeStar = star
-    //                    star.highlight(true)
-    //                    highLightedStars.append(activeStar!)
-    //                }
-    //                else {
-    //                    let line = LineNode(starFrom: activeStar!, starTo: star)
-    //                    activeStar = nil
-    //                    star.highlight(true)
-    //                    sceneView.scene?.rootNode.addChildNode(line)
-    //                    print(line)
-    //                    starLines.append(line)
-    //                }
-    //            }
-    //            else if result.node.categoryBitMask == 2 {
-    //                let removableLine = result.node as! LineNode
-    //                //print("111")
-    //                removableLine.removeFromParentNode()
-    //            }
-    
-    
-    
+   
     override func shouldAutorotate() -> Bool {
         return true
     }
