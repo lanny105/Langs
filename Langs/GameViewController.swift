@@ -299,8 +299,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         //        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
         
         
-        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/7000
-        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/7000
+        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/6000
+        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/6000
         lastLocation = self.cameraNode.eulerAngles
         
         //        SCNTransaction.commit()
