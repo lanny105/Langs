@@ -94,8 +94,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         // configure the view
         sceneView.backgroundColor = UIColor.blackColor()
+        
+        // configure camera gestures
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         sceneView.addGestureRecognizer(panGesture)
+        
+        let pinchGesture = UIPinchGestureRecognizer()
+        pinchGesture.addTarget(self, action: "handlePinch:")
+        sceneView.addGestureRecognizer(pinchGesture)
         
         // add a tap gesture recognizer
         let tapRecognizer = UITapGestureRecognizer()
@@ -262,12 +268,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 if constellationNode.isequal(constellation) {
                     //indicatefinal = 1
                     spriteScene.makeHintFinal()
-//                    let gameNameText = SCNText(string: "Amazing", extrusionDepth: 5)
-//                    gameNameText.font = UIFont(name: "Optima", size: 10)
-//                    let gameNameTextNode = SCNNode(geometry: gameNameText)
-//                    gameNameTextNode.position = SCNVector3(x: -54, y: -3, z: 80)
-//                    gameNameTextNode.rotation = SCNVector4(0, 0, 1, Float(-3 * (M_PI/7)))
-//                    sceneView.scene?.rootNode.addChildNode(gameNameTextNode)
                 }
             }
         }
@@ -275,29 +275,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     }
     
     func handlePan(gestureRecognize: UIPanGestureRecognizer) {
-        print("Pan!!")
-        
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
         let point = gestureRecognize.translationInView(scnView)
         
         print("\(point.x), \(point.y)")
-        
-        //// animation
-        
-        //        SCNTransaction.begin()
-        //        SCNTransaction.setAnimationDuration(0.5)
-        //
-        //        SCNTransaction.setCompletionBlock() {
-        //            print("done")
-        //        }
-        
-        
-        
-        //        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
-        //        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
-        
         
         self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/6000
         self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/6000
@@ -306,6 +289,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         //        SCNTransaction.commit()
     }
     
+    func handlePinch(gestureRecognizer: UIPinchGestureRecognizer) {
+        
+//        if let view = gestureRecognizer.view {
+//            view.transform = CGAffineTransformScale(view.transform,
+//                gestureRecognizer.scale, gestureRecognizer.scale)
+//            gestureRecognizer.scale = 1.0
+//        }
+    }
     
    
     override func shouldAutorotate() -> Bool {

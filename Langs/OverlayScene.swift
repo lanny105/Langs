@@ -20,16 +20,13 @@ class OverlayScene: SKScene {
     let hintImageNamed = "bdqx2"
     let finalImageNamed = "finish"
     
+    let
+    
     override func didMoveToView(view: SKView) {
         
         self.backgroundColor = UIColor.blackColor()
         
         makeHint()
-//        if(indicatefinal == 0){
-//            makeHint()
-//        }else{
-//            makeHintFinal()
-//        }
     }
     
     func makeHint() {
