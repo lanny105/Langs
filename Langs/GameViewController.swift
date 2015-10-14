@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 YunruWu. All rights reserved.
 //
 
+
+
 import UIKit
 import QuartzCore
 import SceneKit
@@ -36,6 +38,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     let cameraPositionZ : Float = 0
     
     var lastLocation : SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
+    var scale: CGFloat = 1.0
     
     
     //// animation
@@ -65,6 +68,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         ambientLight.color = UIColor.whiteColor()
         ambientLight.type = SCNLightTypeAmbient
         cameraNode.light = ambientLight
+        cameraNode.camera?.zFar = 200
         
         let spotLight = SCNLight()
         spotLight.type = SCNLightTypeSpot
@@ -280,22 +284,109 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         let point = gestureRecognize.translationInView(scnView)
         
-        print("\(point.x), \(point.y)")
+        //print("\(point.x), \(point.y)")
         
-        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/6000
-        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/6000
+        self.cameraNode.eulerAngles.x = lastLocation.x - Float(point.y)/2000
+        self.cameraNode.eulerAngles.y = lastLocation.y - Float(point.x)/2000
         lastLocation = self.cameraNode.eulerAngles
+        
+        //print("----",lastLocation)
+        //print("||||",matrix_transform(lastLocation.x,theta2: lastLocation.y))
+        
+        //var a: SCNVector3
+        
+        //a = matrix_transform(lastLocation.x, theta2: lastLocation.y)
+        
+        //self.cameraNode.position = coordinates_transform()
+        //print(cameraNode.position)
+        //print(lastLocation)
+        
+        
+        //let x = self.cameraNode.position.x
+        //let y = self.cameraNode.position.y
+        //let z = self.cameraNode.position.z
+        
+        
+        //print(pow(x*x + y*y + z*z, 0.5))
+        
+        
         
         //        SCNTransaction.commit()
     }
     
+    
+    func matrix_transform(theta1: Float, theta2: Float) ->SCNVector3{
+        
+        //var a: SCNVector3
+        let x = sin(-theta2)*cos(-theta1)
+        let y = -sin(-theta1)
+        let z = -cos(-theta1)*cos(-theta2)
+        
+        return SCNVector3Make(x,y,z)
+        
+    
+    }
+    
+    
+//    func coordinates_transform() ->SCNVector3{
+//        
+//        let theta1 = lastLocation.x
+//        let theta2 = lastLocation.y
+//        
+//        let x = self.cameraNode.position.x * cos(theta2) + sin(theta1) * sin(theta2) * self.cameraNode.position.y + self.cameraNode.position.z * cos(theta1) * sin(theta2)
+//        
+//        
+//        let y = self.cameraNode.position.y * cos(theta1) + sin(-theta1)*self.cameraNode.position.z
+//        
+//        let z = -self.cameraNode.position.x*sin(theta2) + self.cameraNode.position.y * sin(theta1)*cos(theta2) + self.cameraNode.position.z * cos(theta1)*cos(theta2)
+//        
+//        
+//        return SCNVector3Make(x,y,z)
+//        
+//        
+//        
+//    }
+    
+    
     func handlePinch(gestureRecognizer: UIPinchGestureRecognizer) {
         
-//        if let view = gestureRecognizer.view {
-//            view.transform = CGAffineTransformScale(view.transform,
-//                gestureRecognizer.scale, gestureRecognizer.scale)
-//            gestureRecognizer.scale = 1.0
-//        }
+        var a: SCNVector3
+        
+        a = matrix_transform(lastLocation.x, theta2: lastLocation.y)
+        //print("|||||",self.lastLocation)
+        //print("-----",a)
+//        let x = self.cameraNode.position.x
+//        let y = self.cameraNode.position.y
+//        let z = self.cameraNode.position.z
+//        
+//        
+//        print(pow(x*x + y*y + z*z, 0.5))
+//        //print(gestureRecognizer.scale)
+//        self.scale = gestureRecognizer.scale
+        
+        if(gestureRecognizer.scale < 1){
+            
+            self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - a.x, self.cameraNode.position.y - a.y, self.cameraNode.position.z - a.z)
+            //print("fuck!")
+            //print("-----",lastLocation)
+            //print("|||||",self.cameraNode.position)
+            
+        }
+        
+        else{
+            self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + a.x, self.cameraNode.position.y + a.y, self.cameraNode.position.z + a.z)
+            //print("-----",lastLocation)
+            //print("|||||",self.cameraNode.position)
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
    
