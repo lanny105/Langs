@@ -116,6 +116,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
+        self.spriteScene.addObserver(sceneView.scene!, selector: "", options: <#T##NSKeyValueObservingOptions#>, context: <#T##UnsafeMutablePointer<Void>#>)
         
     }
     

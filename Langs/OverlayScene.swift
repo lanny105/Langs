@@ -46,7 +46,7 @@ class OverlayScene: SKScene {
         self.addChild(self.settingNode)
         
         
-        // add the setting button
+        // add the hint button
         let spriteSize2 = size.width/32
         self.hintNode = SKSpriteNode(imageNamed: "Hint Button")
         self.hintNode.size = CGSize(width: spriteSize2, height: spriteSize2)
@@ -55,7 +55,19 @@ class OverlayScene: SKScene {
         self.addChild(self.hintNode)
         
         // add the hint image
-        makeHint()
+        //makeHint()
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        for touch in touches {
+            let location = touch.locationInNode(self)
+        
+            if hintNode.containsPoint(location) {
+                print("1")
+                self.makeHint()
+            }
+        }
     }
     
     func makeHint() {
@@ -77,18 +89,6 @@ class OverlayScene: SKScene {
         
     }
     
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        /* Called when a touch begins */
-        
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            print(location)
-            
-                        
-        }
-    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
