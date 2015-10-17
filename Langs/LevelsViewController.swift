@@ -218,6 +218,9 @@ class LevelsViewController: UIViewController {
 //            let levelID = sender as! Int
 //            print(levelID)
             secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(sender as! Int)
+            
+            secondVC.starList = YQDataMediator.instance.getStarByAttr(sender as! Int) as! [Star]
+            
             print(secondVC.constellation.returnAttri())
         }
     }

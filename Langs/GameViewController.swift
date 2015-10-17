@@ -28,7 +28,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     let constellationUserState = Constellation()
     // get star statistics
-    let starList = YQDataMediator.instance.getStarByAttr()
+//    let starList = YQDataMediator.instance.getStarByAttr(2)
+    var starList = [Star]()
     
     // get constellation
 //    var constellation = YQDataMediator.instance.getConstellationByLevel(1)
@@ -287,6 +288,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 for x in constellationUserState.linelist {
                     constellationNode.linelist.append(x)
                 }
+                print(constellation.returnAttri())
                 if constellationNode.isequal(constellation) {
                     //indicatefinal = 1
                     spriteScene.makeHintFinal()
