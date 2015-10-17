@@ -20,19 +20,39 @@ class OverlayScene: SKScene {
     let finalImageNamed = "finish"
     
     var pauseNode: SKSpriteNode!
+    var settingNode: SKSpriteNode!
+    var hintNode: SKSpriteNode!
     
     
     override func didMoveToView(view: SKView) {
         
         self.backgroundColor = UIColor.clearColor()
         
-        // add the pause button
-        let spriteSize = size.width/24
-        self.pauseNode = SKSpriteNode(imageNamed: "Pause Button")
+        // add the clear button
+        let spriteSize = size.width/28
+        self.pauseNode = SKSpriteNode(imageNamed: "Erase Button")
         self.pauseNode.size = CGSize(width: spriteSize, height: spriteSize)
         self.pauseNode.position = CGPoint(x: spriteSize + 4, y: spriteSize + 4)
         
         self.addChild(self.pauseNode)
+        
+        
+        // add the setting button
+        let spriteSize1 = size.width/30
+        self.settingNode = SKSpriteNode(imageNamed: "Setting Button")
+        self.settingNode.size = CGSize(width: spriteSize1, height: spriteSize1)
+        self.settingNode.position = CGPoint(x: spriteSize1 + 4, y: spriteSize1 + 360)
+        
+        self.addChild(self.settingNode)
+        
+        
+        // add the setting button
+        let spriteSize2 = size.width/32
+        self.hintNode = SKSpriteNode(imageNamed: "Hint Button")
+        self.hintNode.size = CGSize(width: spriteSize2, height: spriteSize2)
+        self.hintNode.position = CGPoint(x: spriteSize2 + 40, y: spriteSize2 + 360)
+        
+        self.addChild(self.hintNode)
         
         // add the hint image
         makeHint()

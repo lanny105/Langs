@@ -380,13 +380,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
         }
         
-        
-        
-        
-        
-        
-        
-        
     }
     
    
