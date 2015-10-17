@@ -91,8 +91,12 @@ class OverlayScene: SKScene {
         
         self.addChild(hintMap)
         
+        
     }
     
+    func changeScene() {
+        NSNotificationCenter.defaultCenter().postNotificationName("changeSceneNotification", object: nil)    }
+
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

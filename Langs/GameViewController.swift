@@ -119,6 +119,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
         //NSNotificationCenter.defaultCenter().addObserver(spriteScene, selector:"handleHint:" as Selector, name:"ShowHintNotification", object:nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeScene", name: "changeSceneNotification", object: nil)
         
     }
     
@@ -126,6 +127,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        spriteScene.makeHint()
 //    }
 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // Function to pop this view controller and go back to my Levels screen
+    func changeScene() {
+        self.performSegueWithIdentifier("gameViewToLevelsViewSegue", sender: nil)
+    }
     
     func checkLine(node1: StarNode, node2: StarNode)->Bool{
         let lineRes = Line()
