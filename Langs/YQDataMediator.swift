@@ -129,10 +129,10 @@ class YQDataMediator {
     
     */
     
-    func getStarByAttr() -> NSArray{
+    func getStarByAttr(level: Int) -> NSArray{
         
         var Starlist: [Star] = []
-        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE ID%3000 = 1 OR CON_ID = 1")
+        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE ID%3000 = \(level) OR CON_ID = \(level)")
         
         if err != nil {
             //there was an error during the query, handle it here
