@@ -11,6 +11,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import SpriteKit
 
 //var indicatefinal = 0
 
@@ -117,10 +118,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
-        self.spriteScene.addObserver(sceneView.scene!, selector: "", options: <#T##NSKeyValueObservingOptions#>, context: <#T##UnsafeMutablePointer<Void>#>)
+        //NSNotificationCenter.defaultCenter().addObserver(spriteScene, selector:"handleHint:" as Selector, name:"ShowHintNotification", object:nil)
         
     }
     
+//    func handleHint() {
+//        spriteScene.makeHint()
+//    }
 
     
     func checkLine(node1: StarNode, node2: StarNode)->Bool{

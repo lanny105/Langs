@@ -22,6 +22,7 @@ class OverlayScene: SKScene {
     var pauseNode: SKSpriteNode!
     var settingNode: SKSpriteNode!
     var hintNode: SKSpriteNode!
+    var hintMap: SKSpriteNode!
     
     
     override func didMoveToView(view: SKView) {
@@ -55,26 +56,29 @@ class OverlayScene: SKScene {
         self.addChild(self.hintNode)
         
         // add the hint image
-        //makeHint()
+        makeHint()
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first as UITouch?
+        //for touch in touches {
+        let location = touch!.locationInNode(self)
         
-        for touch in touches {
-            let location = touch.locationInNode(self)
-        
-            if hintNode.containsPoint(location) {
-                print("1")
-                self.makeHint()
-            }
+        if hintNode.containsPoint(location) {
+            print("1")
+//            NSNotificationCenter.defaultCenter().postNotificationName("ShowHintNotification", object: nil)
+            self.hintMap.hidden = true;
         }
+        //}
     }
     
     func makeHint() {
-        let hintMap = SKSpriteNode(imageNamed: hintImageNamed)
-        hintMap.xScale = 0.25
-        hintMap.yScale = 0.3
-        hintMap.position = CGPoint(x: scene!.size.width * 0.85, y: scene!.size.height * 0.15)
+        self.hintMap = SKSpriteNode(imageNamed: hintImageNamed)
+        self.hintMap.xScale = 0.25
+        self.hintMap.yScale = 0.3
+        self.hintMap.position = CGPoint(x: scene!.size.width * 0.85, y: scene!.size.height * 0.15)
+        //self.hintMap.hidden = true;
+        
         self.addChild(hintMap)
     }
     
