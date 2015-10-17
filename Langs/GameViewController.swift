@@ -30,7 +30,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     let starList = YQDataMediator.instance.getStarByAttr()
     
     // get constellation
-    let constellation = YQDataMediator.instance.getConstellationByLevel(1)
+//    var constellation = YQDataMediator.instance.getConstellationByLevel(1)
+    var constellation = Constellation()
     
     
     let cameraNode = SCNNode()

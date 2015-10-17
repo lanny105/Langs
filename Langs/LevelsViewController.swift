@@ -66,13 +66,26 @@ class LevelsViewController: UIViewController {
         let material = SCNMaterial()
         material.diffuse.contents = UIImage(named: "level1-1.png")
         
+        let material1 = SCNMaterial()
+//        material1.diffuse.contents = UIImage(named: "level1-1.png")
+        
         // add level box
-        let boxGeometry = SCNBox(width: 4, height: 4, length: 4, chamferRadius: 0.4)
+        let boxGeometry = SCNBox(width: 8, height: 8, length: 8, chamferRadius: 0.4)
         boxGeometry.materials = [material]
         let boxNode = SCNNode(geometry: boxGeometry)
+        boxNode.name = "Level1-1"
         boxNode.position = SCNVector3(0, 0, 0)
         
         scene.rootNode.addChildNode(boxNode)
+        
+        // add level box
+        let boxGeometry1 = SCNBox(width: 8, height: 8, length: 8, chamferRadius: 0.4)
+        boxGeometry1.materials = [material1]
+        let boxNode1 = SCNNode(geometry: boxGeometry1)
+        boxNode1.name = "Level1-2"
+        boxNode1.position = SCNVector3(0, 10, 0)
+        
+        scene.rootNode.addChildNode(boxNode1)
         
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -128,12 +141,12 @@ class LevelsViewController: UIViewController {
         
         
         
-        //        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
-        //        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
+                self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
+                self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
         
         
-        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+//        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+//        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
         
         
         //        SCNTransaction.commit()
@@ -150,6 +163,9 @@ class LevelsViewController: UIViewController {
         if hitResults.count > 0 {
             // retrieved the first clicked object
             let result: AnyObject! = hitResults[0]
+//            let results: SCNHitTestResult = hitResults[0]
+//            print("\(results)\n")
+//            let result = results.node as SCNNode!
             
             // get its material
             let material = result.node!.geometry!.firstMaterial!
@@ -172,7 +188,20 @@ class LevelsViewController: UIViewController {
             
             SCNTransaction.commit()
             
-            self.performSegueWithIdentifier("levelsViewToGameViewSegue", sender: nil)
+            print("\(result.node!.name)")
+            
+            let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
+            let dict = NSDictionary(contentsOfFile: path!)
+            
+            print(dict)
+            
+            let levelID = dict?.valueForKey(result.node!.name!) as? Int
+            
+            print(levelID)
+            
+            
+            self.performSegueWithIdentifier("levelsViewToGameViewSegue", sender: levelID)
+            // segue.dest
         }
         
         //                self.cameraNode.eulerAngles.x -= 0.1
@@ -180,6 +209,17 @@ class LevelsViewController: UIViewController {
         //                self.cameraNode.eulerAngles.z += 0.1
         
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "levelsViewToGameViewSegue" {
+            let secondVC = segue.destinationViewController as! GameViewController
+            print(sender)
+//            let levelID = sender as! Int
+//            print(levelID)
+            secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(sender as! Int)
+            print(secondVC.constellation.returnAttri())
+        }
     }
     
     override func shouldAutorotate() -> Bool {
@@ -204,7 +244,7 @@ class LevelsViewController: UIViewController {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //        lastLocation = self.cameraNode.position
-        lastLocation = self.cameraNode.eulerAngles
+        lastLocation = self.cameraNode.position
+//        lastLocation = self.cameraNode.eulerAngles
     }
 }
