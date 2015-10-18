@@ -324,15 +324,16 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 print(constellation.returnAttri())
                 if constellationNode.isequal(constellation) {
                     //indicatefinal = 1
-<<<<<<< Updated upstream
-                    spriteScene.makeHintFinal()
+
+//                    spriteScene.makeHintFinal()
                     spriteScene.timerNode.text = self.result
-                    spriteScene.maketimer()
+                    
                     //spriteScene.updatemem(result)
                     changetimerstate()
-=======
+
                     spriteScene.makeHintFinal(finalImageNamed)
->>>>>>> Stashed changes
+                    spriteScene.maketimer()
+
                 }
             }
         }
