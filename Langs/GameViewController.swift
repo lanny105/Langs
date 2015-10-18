@@ -35,6 +35,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //    var constellation = YQDataMediator.instance.getConstellationByLevel(1)
     var constellation = Constellation()
     
+    var hintImageNamed = "bdqx2"
+    var finalImageNamed = "finish"
+    
     
     let cameraNode = SCNNode()
     
@@ -92,7 +95,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         // add all stars
         for star in starList {
-            let starNode: StarNode = StarNode(star: star as! Star)
+            let starNode: StarNode = StarNode(star: star )
             scene.rootNode.addChildNode(starNode)
         }
         
@@ -123,6 +126,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         tapRecognizer.addTarget(self, action: "handleTap:")
         sceneView.addGestureRecognizer(tapRecognizer)
         
+
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
         //NSNotificationCenter.defaultCenter().addObserver(spriteScene, selector:"handleHint:" as Selector, name:"ShowHintNotification", object:nil)
@@ -157,7 +161,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         let sceneView = self.view as! SCNView
         if(clickHintFlag == 0){
             clickHintFlag = 1
-            spriteScene.makeHint()
+            spriteScene.makeHint(hintImageNamed)
         }else{
             clickHintFlag = 0
             spriteScene.hindHint()
@@ -320,11 +324,15 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 print(constellation.returnAttri())
                 if constellationNode.isequal(constellation) {
                     //indicatefinal = 1
+<<<<<<< Updated upstream
                     spriteScene.makeHintFinal()
                     spriteScene.timerNode.text = self.result
                     spriteScene.maketimer()
                     //spriteScene.updatemem(result)
                     changetimerstate()
+=======
+                    spriteScene.makeHintFinal(finalImageNamed)
+>>>>>>> Stashed changes
                 }
             }
         }

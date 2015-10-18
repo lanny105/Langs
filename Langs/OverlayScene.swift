@@ -15,8 +15,14 @@ class OverlayScene: SKScene {
     
     let starXScale: CGFloat = 0.1
     let starYScale: CGFloat = 0.1
+<<<<<<< Updated upstream
     let hintImageNamed = "bdqx2"
     let finalImageNamed = "finish"
+=======
+//    let starImageNamed = "bdqx"
+//    let hintImageNamed = "bdqx2"
+//    let finalImageNamed = "finish"
+>>>>>>> Stashed changes
     
     var pauseNode: SKSpriteNode!
     var settingNode: SKSpriteNode!
@@ -91,7 +97,7 @@ class OverlayScene: SKScene {
         
     }
     
-    func makeHint() {
+    func makeHint(hintImageNamed: String) {
         removeAllChildren()
         hintMap = SKSpriteNode(imageNamed: hintImageNamed)
         hintMap.xScale = 0.25
@@ -106,6 +112,7 @@ class OverlayScene: SKScene {
         removeAllChildren()
     }
     
+<<<<<<< Updated upstream
     func maketimer(){
         
         //self.addChild(self.pauseNode)
@@ -113,6 +120,9 @@ class OverlayScene: SKScene {
     }
     
     func makeHintFinal(){
+=======
+    func makeHintFinal(finalImageNamed: String){
+>>>>>>> Stashed changes
         
         let hintFinalSize = size.width/2
         finalNode = SKSpriteNode(imageNamed:finalImageNamed)

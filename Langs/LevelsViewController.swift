@@ -188,19 +188,26 @@ class LevelsViewController: UIViewController {
             
             SCNTransaction.commit()
             
-            print("\(result.node!.name)")
+//            print("\(result.node!.name)")
             
-            let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
-            let dict = NSDictionary(contentsOfFile: path!)
+//            let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
+//            let dict = NSDictionary(contentsOfFile: path!)
+//            
+//            print(dict)
+//            
+//            let levelDict = dict?.valueForKey(result.node!.name!)
+//            let levelID = levelDict?.valueForKey("levelID")
+//            let levelHint = levelDict?.valueForKey("hint")
+//            let levelFinal = levelDict?.valueForKey("final")
+//            
+////            dict?.valueForKeyPath(<#T##keyPath: String##String#>)
+//            
+//            print(levelID)
+//            print(levelHint)
+//            print(levelFinal)
             
-            print(dict)
             
-            let levelID = dict?.valueForKey(result.node!.name!) as? Int
-            
-            print(levelID)
-            
-            
-            self.performSegueWithIdentifier("levelsViewToGameViewSegue", sender: levelID)
+            self.performSegueWithIdentifier("levelsViewToGameViewSegue", sender: result.node!.name!)
             // segue.dest
         }
         
@@ -213,13 +220,30 @@ class LevelsViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "levelsViewToGameViewSegue" {
+            
+            let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
+            let dict = NSDictionary(contentsOfFile: path!)
+            
+            let levelDict = dict?.valueForKey(sender as! String)
+            let levelID = levelDict?.valueForKey("levelID")
+            let levelHint = levelDict?.valueForKey("hint")
+            let levelFinal = levelDict?.valueForKey("final")
+            
+            print(levelID)
+            print(levelHint)
+            print(levelFinal)
+            
             let secondVC = segue.destinationViewController as! GameViewController
             print(sender)
 //            let levelID = sender as! Int
 //            print(levelID)
-            secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(sender as! Int)
+            secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(levelID as! Int)
             
-            secondVC.starList = YQDataMediator.instance.getStarByAttr(sender as! Int) as! [Star]
+            secondVC.starList = YQDataMediator.instance.getStarByAttr(levelID as! Int) as! [Star]
+            
+            secondVC.hintImageNamed = levelHint as! String
+            
+            secondVC.finalImageNamed = levelFinal as! String
             
             print(secondVC.constellation.returnAttri())
         }
