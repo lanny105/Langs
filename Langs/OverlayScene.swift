@@ -22,8 +22,10 @@ class OverlayScene: SKScene {
     var pauseNode: SKSpriteNode!
     var settingNode: SKSpriteNode!
     var hintNode: SKSpriteNode!
-//    var hintMap: SKSpriteNode!
+    var hintMap: SKSpriteNode!
     
+    var finalNode: SKSpriteNode!
+        
     
     override func didMoveToView(view: SKView) {
         
@@ -55,57 +57,65 @@ class OverlayScene: SKScene {
         
         self.addChild(self.hintNode)
         
-        // add the hint image
-        //makeHint()
+        self.finalNode = SKSpriteNode()
+        
+        
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first as UITouch?
+        
+    
+        
         //for touch in touches {
         let location = touch!.locationInNode(self)
-        
         if hintNode.containsPoint(location) {
-            print("1")
-//            NSNotificationCenter.defaultCenter().postNotificationName("ShowHintNotification", object: nil)
-            //self.hintMap.hidden = true;
-            makeHint()
+            self.makeHintNotifi()
+            print("888888")
         }
-        //}
+        
+        if finalNode.containsPoint(location) {
+            print("666666")
+            self.changeScene()
+            print("77777")
+        }
+        
     }
     
     func makeHint() {
-//        self.hintMap = SKSpriteNode(imageNamed: hintImageNamed)
-//        self.hintMap.xScale = 0.25
-//        self.hintMap.yScale = 0.3
-//        self.hintMap.position = CGPoint(x: scene!.size.width * 0.85, y: scene!.size.height * 0.15)
-//        //self.hintMap.hidden = true;
-//        
-//        self.addChild(hintMap)
-        print("sdfsdf")
-        let hintMap = SKSpriteNode(imageNamed: hintImageNamed)
+        hintMap = SKSpriteNode(imageNamed: hintImageNamed)
         hintMap.xScale = 0.25
         hintMap.yScale = 0.3
         hintMap.position = CGPoint(x: scene!.size.width * 0.85, y: scene!.size.height * 0.15)
-        //self.hintMap.hidden = true;
-        print(self.children)
-        self.addChild(hintMap)
-        print(self.children)
+        addChild(hintMap)
+    }
+    
+    func hindHint() {
+        hintMap.hidden = true
     }
     
     func makeHintFinal(){
+        
         let hintFinalSize = size.width/2
-        let hintMap = SKSpriteNode(imageNamed:finalImageNamed)
-        hintMap.xScale = 1.2
-        hintMap.yScale = 1
-        hintMap.position = CGPoint(x: 350, y: 200)
-        
-        self.addChild(hintMap)
-        
+        finalNode = SKSpriteNode(imageNamed:finalImageNamed)
+        finalNode.xScale = 1.2
+        finalNode.yScale = 1
+        finalNode.position = CGPoint(x: 350, y: 200)
+        addChild(finalNode)
         
     }
     
     func changeScene() {
-        NSNotificationCenter.defaultCenter().postNotificationName("changeSceneNotification", object: nil)    }
+        print("55555")
+        NSNotificationCenter.defaultCenter().postNotificationName("changeSceneNotification", object: nil)
+        
+        print("33333")
+    }
+    
+    func makeHintNotifi() {
+        NSNotificationCenter.defaultCenter().postNotificationName("makeHintNotification", object: nil)
+    }
 
     
     override func update(currentTime: CFTimeInterval) {

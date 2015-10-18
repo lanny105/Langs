@@ -43,11 +43,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var lastLocation : SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
     var scale: CGFloat = 1.0
     
-    
+    var clickHintFlag=0
     //// animation
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
    
+    var timer = NSTimer()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,21 +122,44 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
         //NSNotificationCenter.defaultCenter().addObserver(spriteScene, selector:"handleHint:" as Selector, name:"ShowHintNotification", object:nil)
+        print("44444")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeScene", name: "changeSceneNotification", object: nil)
         
+        
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)
+        
+        print("22222")
     }
     
-//    func handleHint() {
-//        spriteScene.makeHint()
-//    }
-
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // Function to pop this view controller and go back to my Levels screen
     func changeScene() {
+        print("0000000")
         self.performSegueWithIdentifier("gameViewToLevelsViewSegue", sender: nil)
+        print("1111")
+    }
+    
+    func callHintNotifi(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
+    }
+    
+    func makeHintNotifi(){
+        
+        let sceneView = self.view as! SCNView
+        if(clickHintFlag == 0){
+            clickHintFlag = 1
+            spriteScene.makeHint()
+        }else{
+            clickHintFlag = 0
+            spriteScene.hindHint()
+            
+        }
+        sceneView.overlaySKScene=spriteScene
+        
     }
     
     func checkLine(node1: StarNode, node2: StarNode)->Bool{
@@ -187,7 +212,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
         let sceneView = self.view as! SCNView
-        
         // check what nodes are tapped
         let p = gestureRecognize.locationInView(sceneView)
         let hitResults = sceneView.hitTest(p, options: nil)
@@ -278,7 +302,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
             
             
-            print(lineNum)
+            //print(lineNum)
             
 
             
@@ -295,6 +319,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 }
             }
         }
+        
+        
+        
         
     }
     
