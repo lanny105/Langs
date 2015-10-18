@@ -132,7 +132,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         timer2 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)        
+//        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)        
         print("22222")
     }
     
