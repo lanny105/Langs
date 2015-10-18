@@ -24,6 +24,8 @@ class OverlayScene: SKScene {
     var hintMap: SKSpriteNode!
     
     var finalNode: SKSpriteNode!
+    
+    var timerNode: SKLabelNode!
         
     
     override func didMoveToView(view: SKView) {
@@ -60,7 +62,12 @@ class OverlayScene: SKScene {
         
         self.finalNode = SKSpriteNode()
         
-        
+        self.timerNode = SKLabelNode(text: "")
+        self.timerNode.name = "time"
+        self.timerNode.fontName = "DINAlternate-Bold"
+        self.timerNode.fontColor = UIColor.whiteColor()
+        self.timerNode.fontSize = 24
+        self.timerNode.position = CGPoint(x: size.width/2, y: spriteSize + 4)
         
     }
     
@@ -97,6 +104,12 @@ class OverlayScene: SKScene {
         //hintMap.hidden = true
         //hintMap.removeFromParent()
         removeAllChildren()
+    }
+    
+    func maketimer(){
+        
+        //self.addChild(self.pauseNode)
+        self.addChild(self.timerNode)
     }
     
     func makeHintFinal(){

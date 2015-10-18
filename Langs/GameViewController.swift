@@ -49,9 +49,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
    
     var timer = NSTimer()
-    var timer2 = NSTimer()
+    //var timer2 = NSTimer()
     var timecount = 0
     var timerRuning = true
+    var result = "Time: "
     
     
     override func viewDidLoad() {
@@ -130,7 +131,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
         
-        timer2 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
 //        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)        
         print("22222")
@@ -320,6 +321,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 if constellationNode.isequal(constellation) {
                     //indicatefinal = 1
                     spriteScene.makeHintFinal()
+                    spriteScene.timerNode.text = self.result
+                    spriteScene.maketimer()
+                    //spriteScene.updatemem(result)
+                    changetimerstate()
                 }
             }
         }
@@ -393,20 +398,20 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         
         
-        var result: String
+        result = "Time: "
         
         let minute = self.timecount/60;
         
         if(minute>=1 && minute<10){
-            result = "0\(minute):"
+            result += "0\(minute):"
         }
             
         else if(minute>=10){
-            result = "\(minute):"
+            result += "\(minute):"
         }
             
         else{
-            result = "00:"
+            result += "00:"
         }
         
         if(self.timecount%60<10){
