@@ -49,6 +49,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
    
     var timer = NSTimer()
+    var timer2 = NSTimer()
+    var timecount = 0
+    var timerRuning = true
     
     
     override func viewDidLoad() {
@@ -126,6 +129,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeScene", name: "changeSceneNotification", object: nil)
         
         
+        timer2 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)
         
@@ -360,6 +364,74 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         //        SCNTransaction.commit()
     }
+    
+    
+    func changetimerstate(){
+        
+        if(!timerRuning){
+            timerRuning = true
+        }
+            
+        else{
+            timerRuning = false
+        }
+    }
+    
+    
+    func Counting(){
+        
+        
+        if(!timerRuning){
+            return
+        }
+        //let sceneView = self.view as! SCNView
+        self.timecount += 1
+        
+        //spriteScene = OverlayScene(size: self.view.bounds.size)
+        //spriteScene.timer()
+        
+        
+        
+        
+        var result: String
+        
+        let minute = self.timecount/60;
+        
+        if(minute>=1 && minute<10){
+            result = "0\(minute):"
+        }
+            
+        else if(minute>=10){
+            result = "\(minute):"
+        }
+            
+        else{
+            result = "00:"
+        }
+        
+        if(self.timecount%60<10){
+            result += "0\(self.timecount%60)"
+        }
+            
+        else{
+            result += "\(self.timecount%60)"
+        }
+        
+        
+        
+        //spriteScene.scoreNode.text = "Time: "+result
+        //spriteScene.updatemem(result)
+        
+        
+        //sceneView.overlaySKScene = spriteScene
+        
+        print(result)
+        
+        //spriteScene.timer()
+        //print("hello")
+        
+    }
+    
     
     
     func matrix_transform(theta1: Float, theta2: Float) ->SCNVector3{
