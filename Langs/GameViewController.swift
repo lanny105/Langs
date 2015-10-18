@@ -125,9 +125,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         print("44444")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeScene", name: "changeSceneNotification", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
         
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)
+        //timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)
         
         print("22222")
     }
@@ -143,9 +143,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         print("1111")
     }
     
-    func callHintNotifi(){
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
-    }
+//    func callHintNotifi(){
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
+//    }
     
     func makeHintNotifi(){
         

@@ -66,7 +66,7 @@ class OverlayScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first as UITouch?
         
-    
+        print(children.count)
         
         //for touch in touches {
         let location = touch!.locationInNode(self)
@@ -84,6 +84,7 @@ class OverlayScene: SKScene {
     }
     
     func makeHint() {
+        removeAllChildren()
         hintMap = SKSpriteNode(imageNamed: hintImageNamed)
         hintMap.xScale = 0.25
         hintMap.yScale = 0.3
@@ -92,7 +93,9 @@ class OverlayScene: SKScene {
     }
     
     func hindHint() {
-        hintMap.hidden = true
+        //hintMap.hidden = true
+        //hintMap.removeFromParent()
+        removeAllChildren()
     }
     
     func makeHintFinal(){
