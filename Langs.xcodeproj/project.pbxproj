@@ -14,8 +14,6 @@
 		184536581BB9FC54009E3F9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536561BB9FC54009E3F9C /* libsqlite3.tbd */; };
 		3679B94E1BD2CBA30012211D /* LevelConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3679B94D1BD2CBA30012211D /* LevelConfig.plist */; settings = {ASSET_TAGS = (); }; };
 		368CC6BC1BB9F58C00A52548 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BB1BB9F58C00A52548 /* StartViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		36E329661BBA3B7F004254E8 /* level1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329651BBA3B7F004254E8 /* level1-1.png */; settings = {ASSET_TAGS = (); }; };
-		36E329681BBA3FFE004254E8 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E329671BBA3FFE004254E8 /* start.png */; settings = {ASSET_TAGS = (); }; };
 		A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513E72C1BBCEB8900902483 /* LevelsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		A539BD7B1BC1CF790048D472 /* ConstellationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539BD7A1BC1CF790048D472 /* ConstellationNode.swift */; settings = {ASSET_TAGS = (); }; };
 		A58D50321BC07DE10029F7BA /* StarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D50311BC07DE10029F7BA /* StarNode.swift */; settings = {ASSET_TAGS = (); }; };
@@ -39,8 +37,6 @@
 		184536561BB9FC54009E3F9C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		3679B94D1BD2CBA30012211D /* LevelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LevelConfig.plist; sourceTree = "<group>"; };
 		368CC6BB1BB9F58C00A52548 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		36E329651BBA3B7F004254E8 /* level1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level1-1.png"; sourceTree = "<group>"; };
-		36E329671BBA3FFE004254E8 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		A513E72C1BBCEB8900902483 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		A539BD7A1BC1CF790048D472 /* ConstellationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationNode.swift; sourceTree = "<group>"; };
 		A58D50311BC07DE10029F7BA /* StarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarNode.swift; sourceTree = "<group>"; };
@@ -73,8 +69,6 @@
 		A55EBD791BB13C67008800D1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				36E329651BBA3B7F004254E8 /* level1-1.png */,
-				36E329671BBA3FFE004254E8 /* start.png */,
 				184536501BB9FC13009E3F9C /* SwiftData.sqlite */,
 				184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */,
 				184536561BB9FC54009E3F9C /* libsqlite3.tbd */,
@@ -231,8 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CDB6F41BB13A5300F2A0F1 /* Assets.xcassets in Resources */,
-				36E329681BBA3FFE004254E8 /* start.png in Resources */,
-				36E329661BBA3B7F004254E8 /* level1-1.png in Resources */,
 				A5CDB6F21BB13A5300F2A0F1 /* Main.storyboard in Resources */,
 				184536531BB9FC13009E3F9C /* SwiftData.sqlite in Resources */,
 				3679B94E1BD2CBA30012211D /* LevelConfig.plist in Resources */,
