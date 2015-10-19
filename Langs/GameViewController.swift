@@ -239,6 +239,18 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         return -1
     }
     
+    func findDoubleClickStarIndex(node: StarNode)->Int{
+        var index=0
+        for findstar in starArray{
+            if(findstar == node){
+                return index
+            }
+            index++
+        }
+        return -1
+    }
+    
+    
     func handleTap(gestureRecognize: UIGestureRecognizer) {
         let sceneView = self.view as! SCNView
         // check what nodes are tapped
@@ -328,7 +340,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     activeStar = nil
                 }else{
                     star.highlight(false)
-                    starArray.removeAtIndex(findStarIndex(star))
+                    starArray.removeAtIndex(findDoubleClickStarIndex(star))
                     activeStar = nil
                 }
                 
