@@ -13,6 +13,7 @@ import SceneKit
 class LevelsViewController: UIViewController {
     
     let cameraNode = SCNNode()
+    let lightNode = SCNNode()
     var flag = false
     var xPosition : Float = 0
     var yPosition : Float = 0
@@ -56,6 +57,7 @@ class LevelsViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGrayColor()
         scene.rootNode.addChildNode(ambientLightNode)
         
+        
         //        // retrieve the ship node
         //        let ship = scene.rootNode.childNodeWithName("ship", recursively: true)!
         //
@@ -67,10 +69,10 @@ class LevelsViewController: UIViewController {
         material.diffuse.contents = UIImage(named: "level1-1.png")
         
         let material1 = SCNMaterial()
-//        material1.diffuse.contents = UIImage(named: "level1-1.png")
+        material1.diffuse.contents = UIImage(named: "level1-2.png")
         
         // add level box
-        let boxGeometry = SCNBox(width: 8, height: 8, length: 8, chamferRadius: 0.4)
+        let boxGeometry = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
         boxGeometry.materials = [material]
         let boxNode = SCNNode(geometry: boxGeometry)
         boxNode.name = "Level1-1"
@@ -79,20 +81,22 @@ class LevelsViewController: UIViewController {
         scene.rootNode.addChildNode(boxNode)
         
         // add level box
-        let boxGeometry1 = SCNBox(width: 8, height: 8, length: 8, chamferRadius: 0.4)
+        let boxGeometry1 = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
         boxGeometry1.materials = [material1]
         let boxNode1 = SCNNode(geometry: boxGeometry1)
         boxNode1.name = "Level1-2"
-        boxNode1.position = SCNVector3(0, 10, 0)
+        boxNode1.position = SCNVector3(10, 0, 0)
         
         scene.rootNode.addChildNode(boxNode1)
         
         // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = SCNLightTypeOmni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
+        self.lightNode.light = SCNLight()
+        self.lightNode.light!.type = SCNLightTypeOmni
+//        self.lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+        scene.rootNode.addChildNode(self.lightNode)
+        
+        // place the light
+        self.lightNode.position = SCNVector3(x: 0, y: 0, z: 5)
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
@@ -141,8 +145,10 @@ class LevelsViewController: UIViewController {
         
         
         
-                self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
-                self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
+        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
+        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
+        self.lightNode.position.x = lastLocation.x - Float(point.x)/10
+        self.lightNode.position.y = lastLocation.y + Float(point.y)/10
         
         
 //        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
