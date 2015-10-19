@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Langs/YQDataMediator.swift"
-            timestampString = "465689649.484351"
+            timestampString = "466989116.262515"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
             endingLineNumber = "134"
-            landmarkName = "getStarByAttr()"
+            landmarkName = "getStarByAttr(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Langs/GameViewController.swift"
-            timestampString = "466908721.872315"
+            timestampString = "466988346.037632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
             landmarkName = "Counting()"
             landmarkType = "5">
          </BreakpointContent>

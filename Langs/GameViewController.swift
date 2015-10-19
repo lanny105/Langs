@@ -58,6 +58,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var result = "Time: "
     
     var zoomindex = 2
+    var zoom = 0
     
     
     override func viewDidLoad() {
@@ -144,9 +145,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
+    
         
-        print(self.cameraNode.position)
-        print(self.cameraNode.eulerAngles)
         
     }
     
@@ -363,9 +363,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             }
         }
         
-        
-        
-        
     }
     
     func handlePan(gestureRecognize: UIPanGestureRecognizer) {
@@ -533,22 +530,27 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        //print(gestureRecognizer.scale)
 //        self.scale = gestureRecognizer.scale
         
+    
         
 //        if()
         
         if(gestureRecognizer.scale < 1){
-            
-            self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - Float(zoomindex)*a.x, self.cameraNode.position.y - Float(zoomindex)*a.y, self.cameraNode.position.z - Float(zoomindex)*a.z)
+            if(self.zoom > -10){
+                self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - Float(zoomindex)*a.x, self.cameraNode.position.y - Float(zoomindex)*a.y, self.cameraNode.position.z - Float(zoomindex)*a.z)
+                self.zoom = self.zoom - 1
+            }
             //print("fuck!")
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
             
         }
         
-        else{
+        else if(self.zoom < 10){
             self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + Float(zoomindex)*a.x, self.cameraNode.position.y + Float(zoomindex)*a.y, self.cameraNode.position.z + Float(zoomindex)*a.z)
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
+            
+            self.zoom = self.zoom + 1
             
         }
         
