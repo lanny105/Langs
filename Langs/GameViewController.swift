@@ -57,6 +57,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var timerRuning = true
     var result = "Time: "
     
+    var zoomindex = 2
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +113,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         sceneView.addGestureRecognizer(panGesture)
         
+        let doubletapGesture = UITapGestureRecognizer(target: self, action: "handleDoubleTapped:")
+        doubletapGesture.numberOfTapsRequired = 2
+        //doubletapGesture.numberOfTouchesRequired = 2
+        sceneView.addGestureRecognizer(doubletapGesture)
+//        let tap = UITapGestureRecognizer(target: self, action: "doubleTapped")
+        
+        
         let pinchGesture = UIPinchGestureRecognizer()
         pinchGesture.addTarget(self, action: "handlePinch:")
         sceneView.addGestureRecognizer(pinchGesture)
@@ -134,6 +143,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "eraseAllNotifi", name: "eraseAllNotification", object: nil)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
+        
+        
+        print(self.cameraNode.position)
+        print(self.cameraNode.eulerAngles)
         
     }
     
@@ -492,12 +505,23 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        
 //    }
     
+    func handleDoubleTapped(gestureRecognizer: UITapGestureRecognizer) {
+        
+        
+//        print("hello")
+        self.cameraNode.position = SCNVector3Make(0.0, 0.0, 0.0)
+        self.cameraNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+        lastLocation = self.cameraNode.eulerAngles
+        
+    }
+    
     
     func handlePinch(gestureRecognizer: UIPinchGestureRecognizer) {
         
         var a: SCNVector3
         
         a = matrix_transform(lastLocation.x, theta2: lastLocation.y)
+        
         //print("|||||",self.lastLocation)
         //print("-----",a)
 //        let x = self.cameraNode.position.x
@@ -509,9 +533,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        //print(gestureRecognizer.scale)
 //        self.scale = gestureRecognizer.scale
         
+        
+//        if()
+        
         if(gestureRecognizer.scale < 1){
             
-            self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - a.x, self.cameraNode.position.y - a.y, self.cameraNode.position.z - a.z)
+            self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - Float(zoomindex)*a.x, self.cameraNode.position.y - Float(zoomindex)*a.y, self.cameraNode.position.z - Float(zoomindex)*a.z)
             //print("fuck!")
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
@@ -519,7 +546,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         }
         
         else{
-            self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + a.x, self.cameraNode.position.y + a.y, self.cameraNode.position.z + a.z)
+            self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + Float(zoomindex)*a.x, self.cameraNode.position.y + Float(zoomindex)*a.y, self.cameraNode.position.z + Float(zoomindex)*a.z)
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
             
