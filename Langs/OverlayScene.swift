@@ -24,10 +24,10 @@ class OverlayScene: SKScene {
     var eraseNode: SKSpriteNode!
     var settingNode: SKSpriteNode!
     var hintNode: SKSpriteNode!
+    var nextNode: SKSpriteNode!
+    
     var hintMap: SKSpriteNode!
-    
     var finalNode: SKSpriteNode!
-    
     var timerNode: SKLabelNode!
         
     
@@ -65,6 +65,7 @@ class OverlayScene: SKScene {
         self.addChild(self.hintNode)
         
         self.finalNode = SKSpriteNode()
+        self.nextNode = SKSpriteNode()
         
         self.timerNode = SKLabelNode(text: "")
         self.timerNode.name = "time"
@@ -87,7 +88,7 @@ class OverlayScene: SKScene {
             self.makeHintNotifi()
         }
         
-        if finalNode.containsPoint(location) {
+        if nextNode.containsPoint(location) {
             self.changeScene()
         }
         
@@ -100,8 +101,8 @@ class OverlayScene: SKScene {
     func makeHint(hintImageNamed: String) {
         removeAllChildren()
         hintMap = SKSpriteNode(imageNamed: hintImageNamed)
-        hintMap.xScale = 0.25
-        hintMap.yScale = 0.3
+        hintMap.xScale = 0.4
+        hintMap.yScale = 0.5
         hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
         addChild(hintMap)
     }
@@ -119,13 +120,19 @@ class OverlayScene: SKScene {
     }
     
     func makeHintFinal(finalImageNamed: String){
-        
-        let hintFinalSize = size.width/2
         finalNode = SKSpriteNode(imageNamed:finalImageNamed)
         finalNode.xScale = 0.8
         finalNode.yScale = 0.6
         finalNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         finalNode.position = CGPoint(x: size.width/2, y: size.height/2)
+        
+        // add the next button
+        let spriteSize4 = size.width/24
+        nextNode = SKSpriteNode(imageNamed: "Next Button")
+        nextNode.size = CGSize(width: spriteSize4, height: spriteSize4)
+        nextNode.position = CGPoint(x: size.width*12/13, y: size.height/2)
+        
+        addChild(nextNode)
         addChild(finalNode)
         
     }

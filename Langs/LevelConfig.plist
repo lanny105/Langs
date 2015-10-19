@@ -16,9 +16,9 @@
 		<key>levelID</key>
 		<integer>1</integer>
 		<key>hint</key>
-		<string>Big_Dipper</string>
+		<string>big dipper</string>
 		<key>final</key>
-		<string>finish</string>
+		<string>big dipper finish</string>
 	</dict>
 </dict>
 </plist>
