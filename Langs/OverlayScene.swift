@@ -36,9 +36,10 @@ class OverlayScene: SKScene {
         self.backgroundColor = UIColor.clearColor()
         
         //let aspectRatio = (self.view?.bounds.size.height)! / (self.view?.bounds.size.width)!
+        //size.width = (self.view?.bounds.size.width)!
         
         // add the clear button
-        let spriteSize = size.width/30
+        let spriteSize = size.width/32
         self.eraseNode = SKSpriteNode(imageNamed: "Erase Button")
         self.eraseNode.size = CGSize(width: spriteSize, height: spriteSize)
         self.eraseNode.position = CGPoint(x: spriteSize + 4, y: spriteSize + 4)
@@ -50,7 +51,7 @@ class OverlayScene: SKScene {
         let spriteSize1 = size.width/32
         self.settingNode = SKSpriteNode(imageNamed: "Setting Button")
         self.settingNode.size = CGSize(width: spriteSize1, height: spriteSize1)
-        self.settingNode.position = CGPoint(x: spriteSize + 4, y: self.size.width/1.9)
+        self.settingNode.position = CGPoint(x: spriteSize + 4, y: size.height*12.1/13)
         
         self.addChild(self.settingNode)
         
@@ -59,7 +60,7 @@ class OverlayScene: SKScene {
         let spriteSize2 = size.width/32
         self.hintNode = SKSpriteNode(imageNamed: "Hint Button")
         self.hintNode.size = CGSize(width: spriteSize2, height: spriteSize2)
-        self.hintNode.position = CGPoint(x: settingNode.position.x + size.width/20, y: self.size.width/1.9)
+        self.hintNode.position = CGPoint(x: settingNode.position.x + size.width/20, y: size.height*12.1/13)
         
         self.addChild(self.hintNode)
         
