@@ -21,6 +21,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     var line: SCNNode!
     var starLines = [LineNode]()
+    var starArray = [StarNode]()
     var activeStar: StarNode?
     var lineNum = 0
     
@@ -47,7 +48,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var scale: CGFloat = 1.0
     
     var clickHintFlag=0
-    //// animation
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
    
@@ -65,10 +65,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         self.cameraNode.camera = SCNCamera()
         self.cameraNode.name = "camera"
-        
-        //// animation
-        
-        //        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
         
         scene.rootNode.addChildNode(self.cameraNode)
         
@@ -129,16 +125,16 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
-        //NSNotificationCenter.defaultCenter().addObserver(spriteScene, selector:"handleHint:" as Selector, name:"ShowHintNotification", object:nil)
-        print("44444")
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeScene", name: "changeSceneNotification", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
         
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eraseAllNotifi", name: "eraseAllNotification", object: nil)
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
-//        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: ("callHintNotifi"), userInfo: nil, repeats: true)        
-        print("22222")
     }
     
     deinit {
@@ -147,15 +143,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     // Function to pop this view controller and go back to my Levels screen
     func changeScene() {
-        print("0000000")
         self.performSegueWithIdentifier("gameViewToLevelsViewSegue", sender: nil)
-        print("1111")
     }
     
-//    func callHintNotifi(){
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
-//    }
-    
+    // show hint image
     func makeHintNotifi(){
         
         let sceneView = self.view as! SCNView
@@ -168,6 +159,22 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
         }
         sceneView.overlaySKScene=spriteScene
+        
+    }
+    
+    // erase everything on screen
+    func eraseAllNotifi() {
+        let sceneView = self.view as! SCNView
+        for star in starArray {
+            star.highlight(false)
+        }
+        
+        for line in starLines {
+            line.removeFromParentNode()
+        }
+        starArray.removeAll()
+        constellationUserState.starlist.removeAll()
+        constellationUserState.linelist.removeAll()
         
     }
     
@@ -235,6 +242,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             if(activeStar == nil){
                 activeStar = star
                 star.highlight(true)
+                starArray.append(star)
             }else{
                 if activeStar != star{
                     if(!checkLine(activeStar!, node2: star)){
@@ -252,6 +260,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                         constellationUserState.starlist.append(star1Res)
                         constellationUserState.starlist.append(star2Res)
                         star.highlight(true)
+                        starArray.append(star)
                         sceneView.scene?.rootNode.addChildNode(line)
                         lineNum++
                     }else{
@@ -281,6 +290,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                         }
                         if(flag == 0){
                             star.highlight(false)
+                            starArray.removeAtIndex(findStarIndex(star))
                             let star1index = findStarIndex(star)
                             if(star1index != -1){
                                 constellationUserState.starlist.removeAtIndex(star1index)
@@ -295,6 +305,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                         }
                         if(flag == 0){
                             activeStar!.highlight(false)
+                            starArray.removeAtIndex(findStarIndex(activeStar!))
                             let star2index = findStarIndex(star)
                             if(star2index != -1){
                                 constellationUserState.starlist.removeAtIndex(star2index)
@@ -304,6 +315,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     activeStar = nil
                 }else{
                     star.highlight(false)
+                    starArray.removeAtIndex(findStarIndex(star))
                     activeStar = nil
                 }
                 
@@ -351,8 +363,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         //print("\(point.x), \(point.y)")
         
-        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/2000
-        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/2000
+        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/4000
+        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/4000
         lastLocation = self.cameraNode.eulerAngles
         
         //print("----",lastLocation)

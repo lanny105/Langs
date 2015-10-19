@@ -21,7 +21,7 @@ class OverlayScene: SKScene {
 //    let finalImageNamed = "finish"
 
     
-    var pauseNode: SKSpriteNode!
+    var eraseNode: SKSpriteNode!
     var settingNode: SKSpriteNode!
     var hintNode: SKSpriteNode!
     var hintMap: SKSpriteNode!
@@ -39,11 +39,11 @@ class OverlayScene: SKScene {
         
         // add the clear button
         let spriteSize = size.width/30
-        self.pauseNode = SKSpriteNode(imageNamed: "Erase Button")
-        self.pauseNode.size = CGSize(width: spriteSize, height: spriteSize)
-        self.pauseNode.position = CGPoint(x: spriteSize + 4, y: spriteSize + 4)
+        self.eraseNode = SKSpriteNode(imageNamed: "Erase Button")
+        self.eraseNode.size = CGSize(width: spriteSize, height: spriteSize)
+        self.eraseNode.position = CGPoint(x: spriteSize + 4, y: spriteSize + 4)
         
-        self.addChild(self.pauseNode)
+        self.addChild(self.eraseNode)
         
         
         // add the setting button
@@ -83,13 +83,14 @@ class OverlayScene: SKScene {
         let location = touch!.locationInNode(self)
         if hintNode.containsPoint(location) {
             self.makeHintNotifi()
-            print("888888")
         }
         
         if finalNode.containsPoint(location) {
-            print("666666")
             self.changeScene()
-            print("77777")
+        }
+        
+        if eraseNode.containsPoint(location) {
+            self.eraseAllNotifi()
         }
         
     }
@@ -99,7 +100,7 @@ class OverlayScene: SKScene {
         hintMap = SKSpriteNode(imageNamed: hintImageNamed)
         hintMap.xScale = 0.25
         hintMap.yScale = 0.3
-        hintMap.position = CGPoint(x: scene!.size.width * 0.85, y: scene!.size.height * 0.15)
+        hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
         addChild(hintMap)
     }
     
@@ -108,7 +109,6 @@ class OverlayScene: SKScene {
         //hintMap.removeFromParent()
         removeAllChildren()
     }
-    
 
     func maketimer(){
         
@@ -116,17 +116,18 @@ class OverlayScene: SKScene {
         self.addChild(self.timerNode)
     }
     
-
     func makeHintFinal(finalImageNamed: String){
         
         let hintFinalSize = size.width/2
         finalNode = SKSpriteNode(imageNamed:finalImageNamed)
-        finalNode.xScale = 1.2
-        finalNode.yScale = 1
-        finalNode.position = CGPoint(x: 350, y: 200)
+        finalNode.xScale = 0.8
+        finalNode.yScale = 0.6
+        finalNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        finalNode.position = CGPoint(x: size.width/2, y: size.height/2)
         addChild(finalNode)
         
     }
+    
     
     func changeScene() {
         print("55555")
@@ -135,8 +136,14 @@ class OverlayScene: SKScene {
         print("33333")
     }
     
+    
     func makeHintNotifi() {
         NSNotificationCenter.defaultCenter().postNotificationName("makeHintNotification", object: nil)
+    }
+    
+    
+    func eraseAllNotifi() {
+        NSNotificationCenter.defaultCenter().postNotificationName("eraseAllNotification", object: nil)
     }
 
     
