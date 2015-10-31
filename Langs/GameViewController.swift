@@ -383,11 +383,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         let point = gestureRecognize.translationInView(scnView)
         
-        //print("\(point.x), \(point.y)")
+        print("\(point.x), \(point.y)")
         
         self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/4000
         self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/4000
-        lastLocation = self.cameraNode.eulerAngles
+        //lastLocation = self.cameraNode.eulerAngles
         
         //print("----",lastLocation)
         //print("||||",matrix_transform(lastLocation.x,theta2: lastLocation.y))
@@ -590,5 +590,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         // Release any cached data, images, etc that aren't in use.
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        lastLocation = self.cameraNode.eulerAngles
+        //        lastLocation = self.cameraNode.eulerAngles
+    }
     
 }
