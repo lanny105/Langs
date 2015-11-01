@@ -9,8 +9,6 @@
 
 import SpriteKit
 
-
-
 class OverlayScene: SKScene {
     
     let starXScale: CGFloat = 0.1
@@ -35,15 +33,14 @@ class OverlayScene: SKScene {
         
         self.backgroundColor = UIColor.clearColor()
         self.userInteractionEnabled = false;
-        //let aspectRatio = (self.view?.bounds.size.height)! / (self.view?.bounds.size.width)!
-        //size.width = (self.view?.bounds.size.width)!
         
         // add the clear button
         let spriteSize = size.width/32
         self.eraseNode = SKSpriteNode(imageNamed: "Erase Button")
         self.eraseNode.size = CGSize(width: spriteSize, height: spriteSize)
         self.eraseNode.position = CGPoint(x: spriteSize + 4, y: spriteSize + 4)
-        eraseNode.userInteractionEnabled = true;
+        //self.eraseNode.userInteractionEnabled = true;
+        self.eraseNode.zPosition = 200.0
         self.addChild(self.eraseNode)
         
         
@@ -61,7 +58,7 @@ class OverlayScene: SKScene {
         self.hintNode = SKSpriteNode(imageNamed: "Hint Button")
         self.hintNode.size = CGSize(width: spriteSize2, height: spriteSize2)
         self.hintNode.position = CGPoint(x: settingNode.position.x + size.width/20, y: size.height*12.1/13)
-        hintNode.userInteractionEnabled = true;
+        //self.hintNode.userInteractionEnabled = true;
         self.addChild(self.hintNode)
         
         self.finalNode = SKSpriteNode()
@@ -79,7 +76,7 @@ class OverlayScene: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first as UITouch?
-        
+        print("111")
         //print(children.count)
         
         //for touch in touches {

@@ -385,8 +385,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         print("\(point.x), \(point.y)")
         
-        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/4000
-        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/4000
+        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
         //lastLocation = self.cameraNode.eulerAngles
         
         //print("----",lastLocation)
