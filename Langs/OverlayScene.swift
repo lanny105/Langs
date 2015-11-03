@@ -32,7 +32,7 @@ class OverlayScene: SKScene {
     override func didMoveToView(view: SKView) {
         
         self.backgroundColor = UIColor.clearColor()
-        self.userInteractionEnabled = false;
+        //self.userInteractionEnabled = false;
         
         // add the clear button
         let spriteSize = size.width/32
@@ -91,6 +91,9 @@ class OverlayScene: SKScene {
         
         if eraseNode.containsPoint(location) {
             self.eraseAllNotifi()
+        }
+        else {
+            NSNotificationCenter.defaultCenter().postNotificationName("updateTouchNotification", object: nil)
         }
         
     }

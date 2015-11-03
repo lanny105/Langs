@@ -143,6 +143,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "eraseAllNotifi", name: "eraseAllNotification", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTouch", name: "updateTouchNotification", object: nil)
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
     
@@ -590,9 +592,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         // Release any cached data, images, etc that aren't in use.
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func updateTouch() {
         lastLocation = self.cameraNode.eulerAngles
-        //        lastLocation = self.cameraNode.eulerAngles
     }
     
 }
