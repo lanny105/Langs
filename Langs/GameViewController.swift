@@ -92,6 +92,25 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         light.position = SCNVector3(x: 0, y: 0, z: 0)
         scene.rootNode.addChildNode(light)
         
+        
+//        /******/
+//        
+//        let secondSphereGeometry = SCNSphere(radius: 0.5)
+//        let secondSphereNode = SCNNode(geometry: secondSphereGeometry)
+//        secondSphereNode.position = SCNVector3(x: 0.0, y: 10.0, z: 0.0)
+//        scene.rootNode.addChildNode(secondSphereNode)
+//        
+//        
+//        
+//        let firstSphereGeometry = SCNSphere(radius: 1.5)
+//        let firstSphereNode = SCNNode(geometry: secondSphereGeometry)
+//        secondSphereNode.position = SCNVector3(x: 0.0, y: -10.0, z: 0.0)
+//        scene.rootNode.addChildNode(secondSphereNode)
+//        
+//        /*****/
+        
+        
+        
         // add all stars
         for star in starList {
             let starNode: StarNode = StarNode(star: star )
@@ -385,10 +404,36 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         let point = gestureRecognize.translationInView(scnView)
         
-        print("\(point.x), \(point.y)")
+        //print("\(point.x), \(point.y)")
         
-        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+        if self.cameraNode.eulerAngles.x <= 1.57 && self.cameraNode.eulerAngles.x >= -1.57{
+            
+            self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+
+        }
+        
+        else {
+            
+            if self.cameraNode.eulerAngles.x > 0 && point.y < 0{
+                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+                
+                
+            }
+            
+            
+            else if self.cameraNode.eulerAngles.x < 0 && point.y > 0 {
+                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+                
+            }
+            
+            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+            
+        }
+        
+        
+        
+        
         //lastLocation = self.cameraNode.eulerAngles
         
         //print("----",lastLocation)
@@ -475,7 +520,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         //sceneView.overlaySKScene = spriteScene
         
-        print(result)
+        //print(result)
         
         //spriteScene.timer()
         //print("hello")
@@ -548,7 +593,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
 //        if()
         
-        if(gestureRecognizer.scale < 1){
+        if(gestureRecognizer.scale < 1) {
             if(self.zoom > -10){
                 self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - Float(zoomindex)*a.x, self.cameraNode.position.y - Float(zoomindex)*a.y, self.cameraNode.position.z - Float(zoomindex)*a.z)
                 self.zoom = self.zoom - 1
@@ -559,7 +604,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
         }
         
-        else if(self.zoom < 10){
+        else if(self.zoom < 10) {
             self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + Float(zoomindex)*a.x, self.cameraNode.position.y + Float(zoomindex)*a.y, self.cameraNode.position.z + Float(zoomindex)*a.z)
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
