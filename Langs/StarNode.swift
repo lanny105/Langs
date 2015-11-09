@@ -38,7 +38,7 @@ class StarNode: SCNNode {
         super.init()
 
         self.data = star
-        
+
         self.categoryBitMask = 1
 
         px = Float((data?.x)!)
@@ -49,13 +49,13 @@ class StarNode: SCNNode {
         py = py * R/l
         pz = pz * R/l
 
-        // Modify star size
         self.geometry = SCNSphere(radius: 3.5)
         let materialsphere = SCNMaterial()
         materialsphere.transparency = 0.0
         self.geometry?.materials = [materialsphere]
         self.position = SCNVector3(x: px, y: py, z: pz)
-        
+
+        // Modify star size
         let innerNode = SCNNode()
         innerNode.geometry = SCNSphere(radius: CGFloat(star.mag) / 10.0 * 0.8)
         let materialsphere1 = SCNMaterial()
@@ -63,6 +63,20 @@ class StarNode: SCNNode {
         innerNode.geometry?.materials = [materialsphere1]
         innerNode.position = SCNVector3(0, 0, 0)
         actualStar = innerNode
+
+        // Shiny
+        let biggerAnimation = CABasicAnimation(keyPath: "opacity")
+        biggerAnimation.fromValue = 1.0
+        biggerAnimation.toValue = 0.4
+
+        let group = CAAnimationGroup()
+        group.duration = 0.8 * drand48() + 0.3
+        group.beginTime = 0.8 * drand48()
+        group.repeatCount = .infinity
+        group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        group.animations = [biggerAnimation]
+        actualStar.addAnimation(group, forKey: "shinyAnimation")
+
         self.addChildNode(actualStar)
     }
 
