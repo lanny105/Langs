@@ -64,23 +64,30 @@ class StarNode: SCNNode {
         innerNode.position = SCNVector3(0, 0, 0)
         actualStar = innerNode
 
-        // Shiny
-        let biggerAnimation = CABasicAnimation(keyPath: "opacity")
-        biggerAnimation.fromValue = 1.0
-        biggerAnimation.toValue = 0.4
-
-        let group = CAAnimationGroup()
-        group.duration = 0.8 * drand48() + 0.3
-        group.beginTime = 0.8 * drand48()
-        group.repeatCount = .infinity
-        group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        group.animations = [biggerAnimation]
-        actualStar.addAnimation(group, forKey: "shinyAnimation")
+        self.shiny(true)
 
         self.addChildNode(actualStar)
     }
 
     // MARK: - Member functions
+
+    func shiny(b: Bool) {
+
+        // Shiny
+        let biggerAnimation = CABasicAnimation(keyPath: "opacity")
+        biggerAnimation.fromValue = 1.0
+        biggerAnimation.toValue = 0.6
+
+        let group = CAAnimationGroup()
+        group.duration = 0.8 * drand48() + 0.6
+        group.beginTime = 0.8 * drand48()
+        // group.autoreverses = true
+        group.repeatCount = .infinity
+        group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        group.animations = [biggerAnimation]
+
+        actualStar.addAnimation(group, forKey: "shinyAnimation")
+    }
 
     func highlight(b: Bool) {
         let material = actualStar.geometry!.firstMaterial!
