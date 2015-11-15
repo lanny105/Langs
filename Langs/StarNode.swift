@@ -65,7 +65,7 @@ class StarNode: SCNNode {
         innerNode.position = SCNVector3(0, 0, 0)
         actualStar = innerNode
 
-        self.shiny(true)
+        //self.shiny(true)
 
         self.addChildNode(actualStar)
     }

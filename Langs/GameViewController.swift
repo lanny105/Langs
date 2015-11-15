@@ -114,7 +114,23 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         // add all stars
         for star in starList {
             let starNode: StarNode = StarNode(star: star )
+            //starNode.shiny(true)
+            for findstar in constellation.starlist {
+                if(findstar.hd==star.hd){
+                  starNode.shiny(true)
+                }
+            }
             scene.rootNode.addChildNode(starNode)
+        }
+        
+        
+        
+        
+        for answer in constellation.starlist{
+            let starnode1: StarNode = StarNode(star: answer as! Star)
+            print(",............",starnode1)
+            starnode1.shiny(true)
+            scene.rootNode.addChildNode(starnode1)
         }
         
         let sceneView = self.view as! SCNView
@@ -598,7 +614,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - Float(zoomindex)*a.x, self.cameraNode.position.y - Float(zoomindex)*a.y, self.cameraNode.position.z - Float(zoomindex)*a.z)
                 self.zoom = self.zoom - 1
             }
-            //print("fuck!")
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
             
