@@ -132,8 +132,8 @@ class YQDataMediator {
     func getStarByAttr(level: Int) -> NSArray{
         
         var Starlist: [Star] = []
-        var ran = random() % 300
-        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE ID%300 = \(ran) OR CON_ID = \(level)")
+        //var ran = random() % 300
+        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE MAG < 5 OR CON_ID = \(level)")
         
         if err != nil {
             //there was an error during the query, handle it here

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Langs/GameViewController.swift"
-            timestampString = "468714117.501179"
+            timestampString = "468803940.302571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "checkLine(_:node2:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Langs/YQDataMediator.swift"
-            timestampString = "466989116.262515"
+            timestampString = "468802649.957984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "getStarByAttr(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Langs/GameViewController.swift"
-            timestampString = "468716039.0893"
+            timestampString = "468803940.302571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
-            landmarkName = "Counting()"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "handleTap(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Langs/GameViewController.swift"
-            timestampString = "468714117.501179"
+            filePath = "Langs/Constellation.swift"
+            timestampString = "469321533.897538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
-            landmarkName = "handleTap(_:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "adjust()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
