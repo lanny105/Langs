@@ -57,7 +57,7 @@ class StarNode: SCNNode {
 
         // Modify star size
         let innerNode = SCNNode()
-        print(star.mag)
+        //print(star.mag)
         innerNode.geometry = SCNSphere(radius: ((-0.25)*CGFloat(star.mag) + 1.75) * 0.8)
         let materialsphere1 = SCNMaterial()
         materialsphere1.diffuse.contents = UIColor.whiteColor()

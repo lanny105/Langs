@@ -290,6 +290,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             index++
         }
         return -1
+        
     }
     
     
@@ -600,10 +601,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         
 //        print("hello")
-        self.cameraNode.position = SCNVector3Make(0.0, 0.0, 0.0)
-        self.cameraNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-        lastLocation = self.cameraNode.eulerAngles
-        
+//        self.cameraNode.position = SCNVector3Make(0.0, 0.0, 0.0)
+//        self.cameraNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+//        lastLocation = self.cameraNode.eulerAngles
+
+        return
     }
     
     
