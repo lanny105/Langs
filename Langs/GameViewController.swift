@@ -633,7 +633,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        if()
         
         if(gestureRecognizer.scale < 1) {
-            if(self.zoom > -10){
+            if(self.zoom > -20){
                 self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - Float(zoomindex)*a.x, self.cameraNode.position.y - Float(zoomindex)*a.y, self.cameraNode.position.z - Float(zoomindex)*a.z)
                 self.zoom = self.zoom - 1
             }
@@ -642,7 +642,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
         }
         
-        else if(self.zoom < 10) {
+        else if(self.zoom < 20) {
             self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + Float(zoomindex)*a.x, self.cameraNode.position.y + Float(zoomindex)*a.y, self.cameraNode.position.z + Float(zoomindex)*a.z)
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
