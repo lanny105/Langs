@@ -77,6 +77,10 @@ class Constellation: NSObject{
     
     var name: String = ""
     
+    var category: Int = 0 //true means western
+    
+    var story: String = ""
+    
     var starlist: [Star] = []
     var linelist: [Line] = []
     
@@ -134,6 +138,12 @@ class Constellation: NSObject{
         var result = String()
         
         result += "Constellation name: \(self.name)\n"
+        
+        result += "Constellation category: \(self.category)\n"
+        
+        result += "Constellation story: \(self.story)\n"
+            
+        
         
         result += "\(starlist.count) stars\n"
         
