@@ -120,18 +120,23 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                   starNode.shiny(true)
                 }
             }
+            let x=drand48()
+            if(x>0.8){
+                starNode.shiny(true)
+            }
+            //starNode.shiny(true)
             scene.rootNode.addChildNode(starNode)
         }
         
         
         
         
-        for answer in constellation.starlist{
-            let starnode1: StarNode = StarNode(star: answer as! Star)
-            print(",............",starnode1)
-            starnode1.shiny(true)
-            scene.rootNode.addChildNode(starnode1)
-        }
+//        for answer in constellation.starlist{
+//            let starnode1: StarNode = StarNode(star: answer as! Star)
+//            print(",............",starnode1)
+//            starnode1.shiny(true)
+//            scene.rootNode.addChildNode(starnode1)
+//        }
         
         let sceneView = self.view as! SCNView
         sceneView.scene = scene
