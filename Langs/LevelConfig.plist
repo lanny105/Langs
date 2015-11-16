@@ -2,6 +2,60 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Level1-8</key>
+	<dict>
+		<key>levelID</key>
+		<integer>8</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>Level1-7</key>
+	<dict>
+		<key>levelID</key>
+		<integer>7</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>Level1-6</key>
+	<dict>
+		<key>levelID</key>
+		<integer>6</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>Level1-5</key>
+	<dict>
+		<key>levelID</key>
+		<integer>5</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>Level1-4</key>
+	<dict>
+		<key>levelID</key>
+		<integer>4</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>Level1-3</key>
+	<dict>
+		<key>levelID</key>
+		<integer>3</integer>
+		<key>hint</key>
+		<string>big dipper</string>
+		<key>final</key>
+		<string>big dipper finish</string>
+	</dict>
 	<key>Level1-2</key>
 	<dict>
 		<key>levelID</key>

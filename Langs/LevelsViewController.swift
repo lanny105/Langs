@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import SpriteKit
 
 class LevelsViewController: UIViewController {
     
@@ -21,6 +22,11 @@ class LevelsViewController: UIViewController {
     let cameraPositionZ : Float = 30
     
     var lastLocation : SCNVector3 = SCNVector3(x: 0, y: 0, z: 30)
+    
+    
+    // camera position boundary
+    var leftPosition : Float = 0
+    var rightPosition : Float = 0
     
     
     //// animation
@@ -41,7 +47,7 @@ class LevelsViewController: UIViewController {
         
         //// animation
         
-        //        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
+//        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
         
         scene.rootNode.addChildNode(self.cameraNode)
         
@@ -69,7 +75,8 @@ class LevelsViewController: UIViewController {
         material.diffuse.contents = UIImage(named: "level1-1.png")
         
         let material1 = SCNMaterial()
-        material1.diffuse.contents = UIImage(named: "level1-2.png")
+//        material1.diffuse.contents = UIImage(named: "level1-2.png")
+        material1.diffuse.contents = SKTexture()
         
         // add level box
         let boxGeometry = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
@@ -77,6 +84,8 @@ class LevelsViewController: UIViewController {
         let boxNode = SCNNode(geometry: boxGeometry)
         boxNode.name = "Level1-1"
         boxNode.position = SCNVector3(0, 0, 0)
+        
+        self.leftPosition = boxNode.position.x - 1
         
         scene.rootNode.addChildNode(boxNode)
         
@@ -86,6 +95,8 @@ class LevelsViewController: UIViewController {
         let boxNode1 = SCNNode(geometry: boxGeometry1)
         boxNode1.name = "Level1-2"
         boxNode1.position = SCNVector3(10, 0, 0)
+        
+        self.rightPosition = boxNode1.position.x + 1
         
         scene.rootNode.addChildNode(boxNode1)
         
@@ -136,26 +147,32 @@ class LevelsViewController: UIViewController {
         
         //// animation
         
-        //        SCNTransaction.begin()
-        //        SCNTransaction.setAnimationDuration(0.5)
-        //
-        //        SCNTransaction.setCompletionBlock() {
-        //            print("done")
-        //        }
+//                SCNTransaction.begin()
+//                SCNTransaction.setAnimationDuration(0.5)
+//        
+//                SCNTransaction.setCompletionBlock() {
+//                    print("done")
+//                }
         
         
-        
-        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
-        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
-        self.lightNode.position.x = lastLocation.x - Float(point.x)/10
-        self.lightNode.position.y = lastLocation.y + Float(point.y)/10
+        if (lastLocation.x - Float(point.x)/10 <= self.rightPosition) && (lastLocation.x - Float(point.x)/10 >= self.leftPosition)   {
+            self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
+//        print("Current pos: \(self.cameraNode.position.x)")
+    //        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
+            self.lightNode.position.x = lastLocation.x - Float(point.x)/10
+    //        self.lightNode.position.y = lastLocation.y + Float(point.y)/10
+        }
+        else {
+//            self.cameraNode.position.x =
+//            self.lightNode.position.x =
+        }
         
         
 //        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
 //        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
         
         
-        //        SCNTransaction.commit()
+//                SCNTransaction.commit()
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
