@@ -296,6 +296,16 @@ class YQDataMediator {
                 //print("The Constellation name is: \(name)")
                 con.name = name
             }
+            
+            if let category = resultSet[0]["category"]?.asInt() {
+                //print("The Constellation name is: \(name)")
+                con.category = category
+            }
+            
+            if let story = resultSet[0]["story"]?.asString() {
+                //print("The Constellation name is: \(name)")
+                con.story = story
+            }
 
             
             for row in resultSet {
