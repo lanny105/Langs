@@ -197,11 +197,7 @@
 				TargetAttributes = {
 					A5CDB6E61BB13A5300F2A0F1 = {
 						CreatedOnToolsVersion = 7.0;
-<<<<<<< Updated upstream
 						DevelopmentTeam = N9KJV72CSL;
-=======
-						DevelopmentTeam = B25HSC5722;
->>>>>>> Stashed changes
 					};
 				};
 			};

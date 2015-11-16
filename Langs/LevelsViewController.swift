@@ -47,11 +47,7 @@ class LevelsViewController: UIViewController {
         
         //// animation
         
-<<<<<<< Updated upstream
 //        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
-=======
-        self.cameraHandleTranforms.insert(cameraNode.transform, atIndex: 0)
->>>>>>> Stashed changes
         
         scene.rootNode.addChildNode(self.cameraNode)
         
@@ -159,7 +155,6 @@ class LevelsViewController: UIViewController {
 //                }
         
         
-<<<<<<< Updated upstream
         if (lastLocation.x - Float(point.x)/10 <= self.rightPosition) && (lastLocation.x - Float(point.x)/10 >= self.leftPosition)   {
             self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
 //        print("Current pos: \(self.cameraNode.position.x)")
@@ -171,25 +166,13 @@ class LevelsViewController: UIViewController {
 //            self.cameraNode.position.x =
 //            self.lightNode.position.x =
         }
-=======
->>>>>>> Stashed changes
-        
-//        self.cameraNode.position.x = lastLocation.x - Float(point.x)/10
-////        self.cameraNode.position.y = lastLocation.y + Float(point.y)/10
-//        self.lightNode.position.x = lastLocation.x - Float(point.x)/10
-////        self.lightNode.position.y = lastLocation.y + Float(point.y)/10
-//        
-//        
-////        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-////        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
         
         
-<<<<<<< Updated upstream
+//        self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+//        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+        
         
 //                SCNTransaction.commit()
-=======
-                SCNTransaction.commit()
->>>>>>> Stashed changes
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -269,12 +252,12 @@ class LevelsViewController: UIViewController {
             let levelHint = levelDict?.valueForKey("hint")
             let levelFinal = levelDict?.valueForKey("final")
             
-//            print(levelID)
-//            print(levelHint)
-//            print(levelFinal)
+            print(levelID)
+            print(levelHint)
+            print(levelFinal)
             
             let secondVC = segue.destinationViewController as! GameViewController
-//            print(sender)
+            print(sender)
 //            let levelID = sender as! Int
 //            print(levelID)
             secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(levelID as! Int)
