@@ -394,10 +394,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     if(flag == 0){
                         star.highlight(false)
                         starArray.removeAtIndex(findDoubleClickStarIndex(star))
-                        let star1index = findStarIndex(star)
-                        if(star1index != -1){
-                            constellationUserState.starlist.removeAtIndex(star1index)
-                        }
                     }
                     
                     
