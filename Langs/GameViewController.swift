@@ -381,8 +381,26 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     }
                     activeStar = nil
                 }else{
-                    star.highlight(false)
-                    starArray.removeAtIndex(findDoubleClickStarIndex(star))
+                    
+                    //star.highlight(false)
+                    //starArray.removeAtIndex(findDoubleClickStarIndex(star))
+                    var flag = 0
+                    for stars in constellationUserState.starlist{
+                        let starnode1: StarNode = StarNode(star: stars as! Star)
+                        if(checkLine(star, node2: starnode1)){
+                            flag++
+                        }
+                    }
+                    if(flag == 0){
+                        star.highlight(false)
+                        starArray.removeAtIndex(findDoubleClickStarIndex(star))
+                        let star1index = findStarIndex(star)
+                        if(star1index != -1){
+                            constellationUserState.starlist.removeAtIndex(star1index)
+                        }
+                    }
+                    
+                    
                     activeStar = nil
                 }
                 
