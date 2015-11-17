@@ -142,7 +142,7 @@ class LevelsViewController: UIViewController {
         layer.backgroundColor = UIColor.whiteColor().CGColor
         
         let textLayer = CATextLayer()
-        print(layer.bounds)
+//        print(layer.bounds)
         textLayer.frame = CGRectMake(0, -320, layer.bounds.width, layer.bounds.height)
         textLayer.fontSize = 140
         textLayer.string = textStr
@@ -156,14 +156,14 @@ class LevelsViewController: UIViewController {
     
     
     func handlePan(gestureRecognize: UIPanGestureRecognizer) {
-        print("Pan!!")
+//        print("Pan!!")
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
         let point = gestureRecognize.translationInView(scnView)
         
-        print("\(point.x), \(point.y)")
+//        print("\(point.x), \(point.y)")
         
         //// animation
         
@@ -288,8 +288,7 @@ class LevelsViewController: UIViewController {
             secondVC.hintImageNamed = levelHint as! String
             
             secondVC.finalImageNamed = levelFinal as! String
-//
-//            print(secondVC.constellation.returnAttri())
+
         }
     }
     

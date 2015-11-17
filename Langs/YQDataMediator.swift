@@ -114,8 +114,8 @@ class YQDataMediator {
             print(error)
         }
         
-        print("\(fromPath)")
-        print("\(dbPath)")
+//        print("\(fromPath)")
+//        print("\(dbPath)")
         
         
     }
@@ -133,7 +133,7 @@ class YQDataMediator {
         
         var Starlist: [Star] = []
         //var ran = random() % 300
-        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE MAG < 4.5 OR CON_ID = \(level)")
+        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE MAG < 4 OR CON_ID = \(level)")
         
         if err != nil {
             //there was an error during the query, handle it here
@@ -145,7 +145,7 @@ class YQDataMediator {
                 let temp_star = Star()
                 
                 if let ID = row["ID"]?.asInt() {
-                    print("The Star name is: \(ID)")
+//                    print("The Star name is: \(ID)")
                     temp_star.id = ID
                 }
                 
@@ -156,7 +156,7 @@ class YQDataMediator {
                 
                 
                 if let Hd = row["Hd"]?.asInt() {
-                    print("The Star Hd is: \(Hd)")
+//                    print("The Star Hd is: \(Hd)")
                     temp_star.hd = Hd
                 }
                 
@@ -173,14 +173,14 @@ class YQDataMediator {
                 }
                 
                 if let Ra = row["Ra"]?.asDouble() {
-                    print("The Star Ra is \(Ra)")
+//                    print("The Star Ra is \(Ra)")
                     temp_star.ra = Ra
                     
                 }
                 
                 
                 if let Dec = row["Dec"]?.asDouble() {
-                    print("The Star Dec is \(Dec)")
+//                    print("The Star Dec is \(Dec)")
                     
                     temp_star.dec = Dec
                 }
@@ -295,6 +295,16 @@ class YQDataMediator {
             if let name = resultSet[0]["Name"]?.asString() {
                 //print("The Constellation name is: \(name)")
                 con.name = name
+            }
+            
+            if let category = resultSet[0]["category"]?.asInt() {
+                //print("The Constellation name is: \(name)")
+                con.category = category
+            }
+            
+            if let story = resultSet[0]["story"]?.asString() {
+                //print("The Constellation name is: \(name)")
+                con.story = story
             }
 
             

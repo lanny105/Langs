@@ -186,9 +186,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
-    
-        
-        
+        self.spriteScene.makeHint(hintImageNamed, showHint: 1)
+        clickHintFlag = 1
     }
     
     deinit {
@@ -202,11 +201,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     // show hint image
     func makeHintNotifi(){
-        
         let sceneView = self.view as! SCNView
         if(clickHintFlag == 0){
             clickHintFlag = 1
-            spriteScene.makeHint(hintImageNamed)
+            spriteScene.makeHint(hintImageNamed, showHint: 0)
         }else{
             clickHintFlag = 0
             spriteScene.hindHint()
@@ -229,7 +227,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         starArray.removeAll()
         constellationUserState.starlist.removeAll()
         constellationUserState.linelist.removeAll()
-        
+        activeStar = nil
+        starLines.removeAll()
     }
     
     func checkLine(node1: StarNode, node2: StarNode)->Bool{
@@ -289,6 +288,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             index++
         }
         return -1
+        
     }
     
     
@@ -303,7 +303,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             let result:SCNHitTestResult = hitResults[0]
             //let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
-            
             
             if(activeStar == nil){
                 activeStar = star
@@ -380,7 +379,21 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     }
                     activeStar = nil
                 }else{
-                    star.highlight(false)
+                    
+                    //star.highlight(false)
+                    //starArray.removeAtIndex(findDoubleClickStarIndex(star))
+                    var flag = 0
+                    for stars in constellationUserState.starlist{
+                        let starnode1: StarNode = StarNode(star: stars as! Star)
+                        if(checkLine(star, node2: starnode1)){
+                            flag++
+                        }
+                    }
+                    if(flag == 0){
+                        star.highlight(false)
+                    }
+                    
+                    
                     starArray.removeAtIndex(findDoubleClickStarIndex(star))
                     activeStar = nil
                 }
@@ -399,7 +412,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 for x in constellationUserState.linelist {
                     constellationNode.linelist.append(x)
                 }
-                print(constellation.returnAttri())
+                //print(constellation.returnAttri())
                 if constellationNode.isequal(constellation) {
                     //indicatefinal = 1
 
@@ -450,6 +463,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
             
         }
+        
+        print(self.cameraNode.eulerAngles)
         
         
         
@@ -585,10 +600,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         
 //        print("hello")
-        self.cameraNode.position = SCNVector3Make(0.0, 0.0, 0.0)
-        self.cameraNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-        lastLocation = self.cameraNode.eulerAngles
-        
+//        self.cameraNode.position = SCNVector3Make(0.0, 0.0, 0.0)
+//        self.cameraNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+//        lastLocation = self.cameraNode.eulerAngles
+
+        return
     }
     
     
@@ -614,7 +630,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        if()
         
         if(gestureRecognizer.scale < 1) {
-            if(self.zoom > -10){
+            if(self.zoom > -20){
                 self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x - Float(zoomindex)*a.x, self.cameraNode.position.y - Float(zoomindex)*a.y, self.cameraNode.position.z - Float(zoomindex)*a.z)
                 self.zoom = self.zoom - 1
             }
@@ -623,7 +639,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
         }
         
-        else if(self.zoom < 10) {
+        else if(self.zoom < 20) {
             self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + Float(zoomindex)*a.x, self.cameraNode.position.y + Float(zoomindex)*a.y, self.cameraNode.position.z + Float(zoomindex)*a.z)
             //print("-----",lastLocation)
             //print("|||||",self.cameraNode.position)
