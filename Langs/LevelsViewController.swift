@@ -268,7 +268,7 @@ class LevelsViewController: UIViewController {
             
             secondVC.finalImageNamed = levelFinal as! String
             
-            print(secondVC.constellation.returnAttri())
+            //print(secondVC.constellation.returnAttri())
         }
     }
     

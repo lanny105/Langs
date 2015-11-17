@@ -412,7 +412,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 for x in constellationUserState.linelist {
                     constellationNode.linelist.append(x)
                 }
-                print(constellation.returnAttri())
+                //print(constellation.returnAttri())
                 if constellationNode.isequal(constellation) {
                     //indicatefinal = 1
 
@@ -463,6 +463,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
             
         }
+        
+        print(self.cameraNode.eulerAngles)
         
         
         
