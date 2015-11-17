@@ -114,8 +114,8 @@ class YQDataMediator {
             print(error)
         }
         
-        print("\(fromPath)")
-        print("\(dbPath)")
+//        print("\(fromPath)")
+//        print("\(dbPath)")
         
         
     }
@@ -145,7 +145,7 @@ class YQDataMediator {
                 let temp_star = Star()
                 
                 if let ID = row["ID"]?.asInt() {
-                    print("The Star name is: \(ID)")
+//                    print("The Star name is: \(ID)")
                     temp_star.id = ID
                 }
                 
@@ -156,7 +156,7 @@ class YQDataMediator {
                 
                 
                 if let Hd = row["Hd"]?.asInt() {
-                    print("The Star Hd is: \(Hd)")
+//                    print("The Star Hd is: \(Hd)")
                     temp_star.hd = Hd
                 }
                 
@@ -173,14 +173,14 @@ class YQDataMediator {
                 }
                 
                 if let Ra = row["Ra"]?.asDouble() {
-                    print("The Star Ra is \(Ra)")
+//                    print("The Star Ra is \(Ra)")
                     temp_star.ra = Ra
                     
                 }
                 
                 
                 if let Dec = row["Dec"]?.asDouble() {
-                    print("The Star Dec is \(Dec)")
+//                    print("The Star Dec is \(Dec)")
                     
                     temp_star.dec = Dec
                 }
