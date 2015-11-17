@@ -187,9 +187,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
-    
-        
-        
+        self.spriteScene.makeHint(hintImageNamed, showHint: 1)
+        clickHintFlag = 1
     }
     
     deinit {
@@ -203,11 +202,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     // show hint image
     func makeHintNotifi(){
-        
         let sceneView = self.view as! SCNView
         if(clickHintFlag == 0){
             clickHintFlag = 1
-            spriteScene.makeHint(hintImageNamed)
+            spriteScene.makeHint(hintImageNamed, showHint: 0)
         }else{
             clickHintFlag = 0
             spriteScene.hindHint()

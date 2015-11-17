@@ -98,13 +98,22 @@ class OverlayScene: SKScene {
         
     }
     
-    func makeHint(hintImageNamed: String) {
-        removeAllChildren()
-        hintMap = SKSpriteNode(imageNamed: hintImageNamed)
-        hintMap.xScale = 0.4
-        hintMap.yScale = 0.5
-        hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
-        addChild(hintMap)
+    func makeHint(hintImageNamed: String, showHint: Int) {
+        if (showHint == 1) {
+            hintMap = SKSpriteNode(imageNamed: hintImageNamed)
+            hintMap.xScale = 0.4
+            hintMap.yScale = 0.5
+            hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
+            addChild(hintMap)
+        }
+        else {
+            removeAllChildren()
+            hintMap = SKSpriteNode(imageNamed: hintImageNamed)
+            hintMap.xScale = 0.4
+            hintMap.yScale = 0.5
+            hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
+            addChild(hintMap)
+        }
     }
     
     func hindHint() {
