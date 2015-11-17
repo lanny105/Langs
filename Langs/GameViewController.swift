@@ -303,13 +303,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             let result:SCNHitTestResult = hitResults[0]
             //let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
-            print(activeStar,"...........")
             
             if(activeStar == nil){
                 activeStar = star
                 star.highlight(true)
                 starArray.append(star)
-                print(activeStar,".....11111......")
             }else{
                 if activeStar != star{
                     if(!checkLine(activeStar!, node2: star)){
