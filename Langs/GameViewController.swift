@@ -229,6 +229,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         constellationUserState.starlist.removeAll()
         constellationUserState.linelist.removeAll()
         activeStar = nil
+        starLines.removeAll()
     }
     
     func checkLine(node1: StarNode, node2: StarNode)->Bool{
@@ -391,10 +392,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     }
                     if(flag == 0){
                         star.highlight(false)
-                        starArray.removeAtIndex(findDoubleClickStarIndex(star))
                     }
                     
                     
+                    starArray.removeAtIndex(findDoubleClickStarIndex(star))
                     activeStar = nil
                 }
                 
