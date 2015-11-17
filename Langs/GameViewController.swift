@@ -11,7 +11,6 @@
 import UIKit
 import QuartzCore
 import SceneKit
-import SpriteKit
 
 //var indicatefinal = 0
 

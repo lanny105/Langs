@@ -50,9 +50,26 @@ class StartViewController: UIViewController {
         
         scene.rootNode.addChildNode(gameNameTextNode)
         
-        // add start info with pic
+        // add start info with text
+        let layer = CALayer()
+        layer.frame = CGRectMake(0, 0, 400, 200)
+        layer.backgroundColor = UIColor.whiteColor().CGColor
+        
+        let textLayer = CATextLayer()
+        print(layer.bounds)
+        textLayer.frame = CGRectMake(0, -45, layer.bounds.width, layer.bounds.height)
+        textLayer.fontSize = 80
+        textLayer.string = "Start"
+        textLayer.alignmentMode = kCAAlignmentCenter
+        textLayer.foregroundColor = UIColor.blackColor().CGColor
+        textLayer.display()
+        layer.addSublayer(textLayer)
+        
         let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "start.png")
+        material.diffuse.contents = layer
+        
+//        material.diffuse.contents = UIImage(named: "start.png")
+
         
         // add start box
         let boxGeometry = SCNBox(width: 4, height: 2, length: 2, chamferRadius: 0.4)
@@ -76,7 +93,7 @@ class StartViewController: UIViewController {
         scnView.scene = scene
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = false

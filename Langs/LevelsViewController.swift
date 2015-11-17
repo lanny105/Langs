@@ -9,7 +9,6 @@
 import UIKit
 import QuartzCore
 import SceneKit
-import SpriteKit
 
 class LevelsViewController: UIViewController {
     
@@ -70,35 +69,23 @@ class LevelsViewController: UIViewController {
         //        // animate the 3d object
         //        ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
         
-        // add level info with pic
-        let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "level1-1.png")
         
-        let material1 = SCNMaterial()
-//        material1.diffuse.contents = UIImage(named: "level1-2.png")
-        material1.diffuse.contents = SKTexture()
+        // load level info and generate level boxNode
+        let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
+        let ary = NSArray(contentsOfFile: path!)
+//        print(ary)
         
-        // add level box
-        let boxGeometry = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
-        boxGeometry.materials = [material]
-        let boxNode = SCNNode(geometry: boxGeometry)
-        boxNode.name = "Level1-1"
-        boxNode.position = SCNVector3(0, 0, 0)
+        for index in 0...((ary?.count)!-1) {
+            let boxNode = genLevelBoxNode(index)
+            if index == 0 {
+                self.leftPosition = boxNode.position.x - 1
+            }
+            else if index == ((ary?.count)!-1) {
+                self.rightPosition = boxNode.position.x + 1
+            }
+            scene.rootNode.addChildNode(boxNode)
+        }
         
-        self.leftPosition = boxNode.position.x - 1
-        
-        scene.rootNode.addChildNode(boxNode)
-        
-        // add level box
-        let boxGeometry1 = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
-        boxGeometry1.materials = [material1]
-        let boxNode1 = SCNNode(geometry: boxGeometry1)
-        boxNode1.name = "Level1-2"
-        boxNode1.position = SCNVector3(10, 0, 0)
-        
-        self.rightPosition = boxNode1.position.x + 1
-        
-        scene.rootNode.addChildNode(boxNode1)
         
         // create and add a light to the scene
         self.lightNode.light = SCNLight()
@@ -132,6 +119,39 @@ class LevelsViewController: UIViewController {
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
         scnView.addGestureRecognizer(tapGesture)
+    }
+    
+    func genLevelBoxNode(indexNum: Int) -> SCNNode {
+        let material = SCNMaterial()
+        //        material.diffuse.contents = UIImage(named: "level1-1.png")
+        material.diffuse.contents = genTextLayer("Level-\(indexNum)")
+        
+        // add level box
+        let boxGeometry = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
+        boxGeometry.materials = [material]
+        let boxNode = SCNNode(geometry: boxGeometry)
+        boxNode.name = String(indexNum)
+        boxNode.position = SCNVector3(indexNum * 10, 0, 0)
+        
+        return boxNode
+    }
+    
+    func genTextLayer(textStr: String) -> CALayer {
+        let layer = CALayer()
+        layer.frame = CGRectMake(0, 0, 800, 800)
+        layer.backgroundColor = UIColor.whiteColor().CGColor
+        
+        let textLayer = CATextLayer()
+        print(layer.bounds)
+        textLayer.frame = CGRectMake(0, -320, layer.bounds.width, layer.bounds.height)
+        textLayer.fontSize = 140
+        textLayer.string = textStr
+        textLayer.alignmentMode = kCAAlignmentCenter
+        textLayer.foregroundColor = UIColor.blackColor().CGColor
+        textLayer.display()
+        layer.addSublayer(textLayer)
+        
+        return layer
     }
     
     
@@ -245,21 +265,22 @@ class LevelsViewController: UIViewController {
         if segue.identifier == "levelsViewToGameViewSegue" {
             
             let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
-            let dict = NSDictionary(contentsOfFile: path!)
+            let ary = NSArray(contentsOfFile: path!)
             
-            let levelDict = dict?.valueForKey(sender as! String)
-            let levelID = levelDict?.valueForKey("levelID")
-            let levelHint = levelDict?.valueForKey("hint")
-            let levelFinal = levelDict?.valueForKey("final")
+            let index: Int = Int(sender as! String)!
+            
+            let levelDict = ary![index]
+//            print(levelDict)
+            let levelID = levelDict.valueForKey("levelID")
+            let levelHint = levelDict.valueForKey("hint")
+            let levelFinal = levelDict.valueForKey("final")
             
             print(levelID)
             print(levelHint)
             print(levelFinal)
             
             let secondVC = segue.destinationViewController as! GameViewController
-            print(sender)
-//            let levelID = sender as! Int
-//            print(levelID)
+
             secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(levelID as! Int)
             
             secondVC.starList = YQDataMediator.instance.getStarByAttr(levelID as! Int) as! [Star]
@@ -267,8 +288,8 @@ class LevelsViewController: UIViewController {
             secondVC.hintImageNamed = levelHint as! String
             
             secondVC.finalImageNamed = levelFinal as! String
-            
-            print(secondVC.constellation.returnAttri())
+//
+//            print(secondVC.constellation.returnAttri())
         }
     }
     
