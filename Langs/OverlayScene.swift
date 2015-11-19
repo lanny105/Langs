@@ -27,6 +27,9 @@ class OverlayScene: SKScene {
     var hintMap: SKSpriteNode!
     var finalNode: SKSpriteNode!
     var timerNode: SKLabelNode!
+    
+    var progressbar: CircularProgressNode!
+    var barra: Map!
         
     
     override func didMoveToView(view: SKView) {
@@ -69,14 +72,34 @@ class OverlayScene: SKScene {
         self.timerNode.fontName = "Menlo"
         self.timerNode.fontColor = UIColor.whiteColor()
         self.timerNode.fontSize = 24
-        self.timerNode.position = CGPoint(x: size.width/2, y: spriteSize )
+        self.timerNode.position = CGPoint(x: size.width/2, y: size.height*12.1/13 )
+        
+        
+        //init(radius: CGFloat, color: SKColor, width: CGFloat, startAngle: CGFloat = CGFloat(M_PI_2))
+        self.progressbar = CircularProgressNode(radius: 20, color: SKColor.redColor(), width: 5, startAngle: 0.0)
+        self.progressbar.position = CGPoint(x: size.width*12/13, y: size.height*12/13 )
+        //self.progressbar.zPosition = 0.0
+        self.addChild(self.progressbar)
+        
         //self.addChild(self.timerNode)
+        
+        
+        self.barra = Map(width: 100, color: SKColor.whiteColor(), height: 100)
+        self.barra.position = CGPoint(x: size.width * 0.85, y: size.height * 0.48)
+        
+//        var barra = SKShapeNode(rectOfSize: CGSize(width: 100, height: 100))
+//        
+//        barra.name = "bar"
+//        barra.fillColor = SKColor.clearColor()
+        //barra.position = CGPoint(x: size.width * 0.85, y: size.height * 0.48)
+        
+        self.addChild(barra)
         
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first as UITouch?
-        print("111")
+        //print("111")
         //print(children.count)
         
         //for touch in touches {
@@ -127,6 +150,25 @@ class OverlayScene: SKScene {
         //self.addChild(self.pauseNode)
         self.addChild(self.timerNode)
     }
+    
+    
+    
+    func updateProgressbar(percentageCompleted: Double) {
+        
+        self.progressbar.updateProgress(CGFloat(percentageCompleted))
+    }
+    
+    func updateMaplocation(x: Double, y: Double) {
+        
+        self.barra.updatelocation(CGFloat(x), y: CGFloat(y))
+        
+        
+        //        let progress = percentageCompleted <= 0.0 ? 1.0 : (percentageCompleted >= 1.0 ? 0.0 : 1.0 - percentageCompleted)
+        //        let endAngle = self.startAngle + progress * CGFloat(2.0 * M_PI)
+        //
+        //        self.path = UIBezierPath(arcCenter: CGPointZero, radius: self.radius, startAngle: self.startAngle, endAngle: endAngle, clockwise: true).CGPath
+    }
+    
     
     func makeHintFinal(finalImageNamed: String){
         finalNode = SKSpriteNode(imageNamed:finalImageNamed)

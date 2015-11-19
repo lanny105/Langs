@@ -12,6 +12,8 @@
 		184536541BB9FC13009E3F9C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184536511BB9FC13009E3F9C /* SwiftData.swift */; };
 		184536571BB9FC54009E3F9C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */; };
 		184536581BB9FC54009E3F9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536561BB9FC54009E3F9C /* libsqlite3.tbd */; };
+		187E16B81BFD458100EBBE55 /* Progressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B71BFD458100EBBE55 /* Progressbar.swift */; settings = {ASSET_TAGS = (); }; };
+		187E16BA1BFD571B00EBBE55 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B91BFD571B00EBBE55 /* Map.swift */; settings = {ASSET_TAGS = (); }; };
 		3679B94E1BD2CBA30012211D /* LevelConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3679B94D1BD2CBA30012211D /* LevelConfig.plist */; };
 		368CC6BC1BB9F58C00A52548 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BB1BB9F58C00A52548 /* StartViewController.swift */; };
 		A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513E72C1BBCEB8900902483 /* LevelsViewController.swift */; };
@@ -35,6 +37,8 @@
 		184536511BB9FC13009E3F9C /* SwiftData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 		184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		184536561BB9FC54009E3F9C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		187E16B71BFD458100EBBE55 /* Progressbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progressbar.swift; sourceTree = "<group>"; };
+		187E16B91BFD571B00EBBE55 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		3679B94D1BD2CBA30012211D /* LevelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LevelConfig.plist; sourceTree = "<group>"; };
 		368CC6BB1BB9F58C00A52548 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		A513E72C1BBCEB8900902483 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 				368CC6BB1BB9F58C00A52548 /* StartViewController.swift */,
 				A513E72C1BBCEB8900902483 /* LevelsViewController.swift */,
 				D7053B2C1BC9E1EA00A807EC /* OverlayScene.swift */,
+				187E16B71BFD458100EBBE55 /* Progressbar.swift */,
+				187E16B91BFD571B00EBBE55 /* Map.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -242,11 +248,13 @@
 				A58D50341BC0818A0029F7BA /* LineNode.swift in Sources */,
 				A5CDB6EF1BB13A5300F2A0F1 /* GameViewController.swift in Sources */,
 				1845364D1BB9F44A009E3F9C /* YQDataMediator.swift in Sources */,
+				187E16B81BFD458100EBBE55 /* Progressbar.swift in Sources */,
 				D7053B2D1BC9E1EA00A807EC /* OverlayScene.swift in Sources */,
 				A5DEA70B1BC0883F00F32C2A /* Star.swift in Sources */,
 				A5CDB6EB1BB13A5300F2A0F1 /* AppDelegate.swift in Sources */,
 				A58D503A1BC0843F0029F7BA /* Level.swift in Sources */,
 				A58D50321BC07DE10029F7BA /* StarNode.swift in Sources */,
+				187E16BA1BFD571B00EBBE55 /* Map.swift in Sources */,
 				184536541BB9FC13009E3F9C /* SwiftData.swift in Sources */,
 				A58D50381BC0824B0029F7BA /* Constellation.swift in Sources */,
 				A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */,

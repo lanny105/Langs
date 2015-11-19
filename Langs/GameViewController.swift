@@ -431,40 +431,105 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
     }
     
+    
+    
+    func similarity(x: Double,y: Double,z: Double, x1: Double,y1: Double, z1:Double) ->Double{
+        
+        
+        var a = x*x1 + y*y1 + z*z1
+        
+        var b = sqrt(x*x + y*y + z*z)*sqrt(x1*x1 + y1*y1 + z1*z1)
+        
+        return a/b
+        
+    }
+    
+    
     func handlePan(gestureRecognize: UIPanGestureRecognizer) {
         // retrieve the SCNView
         let scnView = self.view as! SCNView
+        
+        //print(self.cameraNode.eulerAngles)
         
         let point = gestureRecognize.translationInView(scnView)
         
         //print("\(point.x), \(point.y)")
         
-        if self.cameraNode.eulerAngles.x <= 1.57 && self.cameraNode.eulerAngles.x >= -1.57{
+        
+        if(lastLocation.x + Float(point.y)/400 > 1.57) {
+            self.cameraNode.eulerAngles.x = 1.57
+        }
+        
+        else if (lastLocation.x + Float(point.y)/400 < -1.57) {
+            self.cameraNode.eulerAngles.x = -1.57
             
-            self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
-
         }
         
         else {
-            
-            if self.cameraNode.eulerAngles.x > 0 && point.y < 0{
-                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-                
-                
-            }
-            
-            
-            else if self.cameraNode.eulerAngles.x < 0 && point.y > 0 {
-                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-                
-            }
-            
-            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+            self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
             
         }
         
-        print(self.cameraNode.eulerAngles)
+        self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+        
+//        
+//        
+//        if self.cameraNode.eulerAngles.x <= 1.57 && self.cameraNode.eulerAngles.x >= -1.57{
+//            
+//            self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+//            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+//
+//        }
+//        
+//        else {
+//            
+//            if self.cameraNode.eulerAngles.x > 0 && point.y < 0{
+//                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+//                
+//                
+//            }
+//            
+//            
+//            else if self.cameraNode.eulerAngles.x < 0 && point.y > 0 {
+//                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+//                
+//            }
+//            
+//            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+//            
+//        }
+//        
+        
+        
+        //print(self.cameraNode.eulerAngles)
+        //print(matrix_transform(self.cameraNode.eulerAngles.x,theta2: self.cameraNode.eulerAngles.y))
+        
+        let a = matrix_transform(self.cameraNode.eulerAngles.x,theta2: self.cameraNode.eulerAngles.y)
+        
+//        print(a)
+        
+        
+        let c = matrix_transform2(a.x,y: a.y,z: a.z)
+        
+        
+//        print("----------------------")
+        //print(c)
+        
+        let b = similarity((Double)(a.x),y: (Double)(a.y),z: (Double)(a.z),x1: (Double)(constellation.starlist[0].x),y1: (Double)(constellation.starlist[0].y),z1: (Double)(constellation.starlist[0].z))
+        
+ 
+        
+        spriteScene.updateProgressbar(0.5 - b/2)
+        spriteScene.updateMaplocation(Double(c[0]), y: Double(c[1]))
+        
+        if( b>0.9) {
+            
+            
+            
+            
+            print("Almost there!")
+            print(b)
+        }
         
         
         
@@ -574,6 +639,43 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         return SCNVector3Make(x,y,z)
         
     
+    }
+    
+    
+    func matrix_transform2(x:Float,y:Float,z:Float) ->[Float] {
+        
+        var a = asin(x/(sqrt(pow(x, 2))+pow(z,2)))
+        var jingdu: Float
+        
+        if(x<0&&z<0) {
+            print(a)
+            jingdu = -a
+            //print("1")
+        }
+        
+        else if(x<=0&&z>=0){
+            print(a)
+            jingdu = a + Float((M_PI))
+            //print("2")
+        }
+        
+        else if (x > 0 && z>=0 ) {
+            print(a)
+            jingdu = a + Float((M_PI))
+            //print("3")
+        }
+        
+        else {
+            print(a)
+            jingdu = Float((M_PI))*2 - a
+            //print("4")
+        }
+        
+        
+        
+        let weidu = asin(y)
+        
+        return [jingdu,weidu]
     }
     
     
