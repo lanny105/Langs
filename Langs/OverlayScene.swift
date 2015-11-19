@@ -84,7 +84,7 @@ class OverlayScene: SKScene {
         //self.addChild(self.timerNode)
         
         
-        self.barra = Map(width: 100, color: SKColor.whiteColor(), height: 100)
+        self.barra = Map(width: size.width*0.12, color: SKColor.whiteColor(), height: size.width*0.12)
         self.barra.position = CGPoint(x: size.width * 0.85, y: size.height * 0.48)
         
 //        var barra = SKShapeNode(rectOfSize: CGSize(width: 100, height: 100))
