@@ -75,6 +75,8 @@ class LevelsViewController: UIViewController {
         let ary = NSArray(contentsOfFile: path!)
 //        print(ary)
         
+        
+        
         for index in 0...((ary?.count)!-1) {
             let boxNode = genLevelBoxNode(index)
             if index == 0 {
@@ -182,9 +184,13 @@ class LevelsViewController: UIViewController {
             self.lightNode.position.x = lastLocation.x - Float(point.x)/10
     //        self.lightNode.position.y = lastLocation.y + Float(point.y)/10
         }
-        else {
-//            self.cameraNode.position.x =
-//            self.lightNode.position.x =
+        else if (lastLocation.x - Float(point.x)/10 > self.rightPosition) {
+            self.cameraNode.position.x = self.rightPosition;
+            self.lightNode.position.x = self.rightPosition;
+        }
+        else if (lastLocation.x - Float(point.x)/10 < self.leftPosition) {
+            self.cameraNode.position.x = self.leftPosition;
+            self.lightNode.position.x = self.leftPosition;
         }
         
         
