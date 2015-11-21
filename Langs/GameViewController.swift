@@ -97,6 +97,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         scene.rootNode.addChildNode(light)
         
         
+        
 //        /******/
 //        
 //        let secondSphereGeometry = SCNSphere(radius: 0.5)
@@ -419,9 +420,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 }
                 //print(constellation.returnAttri())
                 if constellationNode.isequal(constellation) {
+                    
+                    // to disable 3D
+                    for recognizer in self.view.gestureRecognizers! {
+                        self.view.removeGestureRecognizer(recognizer)
+                    }
                     //indicatefinal = 1
-
-//                    spriteScene.makeHintFinal()
+                    //                    spriteScene.makeHintFinal()
                     spriteScene.timerNode.text = self.result
                     
                     //spriteScene.updatemem(result)
