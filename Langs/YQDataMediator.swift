@@ -129,6 +129,19 @@ class YQDataMediator {
     
     */
     
+    
+    
+    func getConstellation() -> NSArray {
+        
+        
+        // levelID
+        // levelName
+        // levelCat
+//        NSDictionary("levelID" )
+//        int, string, int
+        return []
+    }
+    
     func getStarByAttr(level: Int) -> NSArray{
         
         var Starlist: [Star] = []

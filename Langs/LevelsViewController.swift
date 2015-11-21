@@ -276,6 +276,8 @@ class LevelsViewController: UIViewController {
             let levelFinal = levelDict.valueForKey("final")
             
             print(levelID)
+            //print(name)
+            
             print(levelHint)
             print(levelFinal)
             

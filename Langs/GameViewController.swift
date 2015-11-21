@@ -72,6 +72,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         // place the camera
         self.cameraNode.position = SCNVector3(x: 0, y: 0, z: self.cameraPositionZ)
+        
+
+        
+//        self.cameraNode.eulerAngles = SCNVector3Make((Float(x)*Float(M_PI)), (2*Float(y))*Float(M_PI)),0)
+        
         scene.rootNode.addChildNode(cameraNode)
         
         let ambientLight = SCNLight()
@@ -120,9 +125,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 }
             }
             let x=drand48()
-            if(x>0.8){
-                starNode.shiny(true)
-            }
+//            if(x>0.8){
+//                starNode.shiny(true)
+//            }
             //starNode.shiny(true)
             scene.rootNode.addChildNode(starNode)
         }
@@ -453,6 +458,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         let point = gestureRecognize.translationInView(scnView)
         
+        //print(self.cameraNode.eulerAngles)
+        
         //print("\(point.x), \(point.y)")
         
         
@@ -648,25 +655,25 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         var jingdu: Float
         
         if(x<0&&z<0) {
-            print(a)
+            //print(a)
             jingdu = -a
             //print("1")
         }
         
         else if(x<=0&&z>=0){
-            print(a)
+            //print(a)
             jingdu = a + Float((M_PI))
             //print("2")
         }
         
         else if (x > 0 && z>=0 ) {
-            print(a)
+            //print(a)
             jingdu = a + Float((M_PI))
             //print("3")
         }
         
         else {
-            print(a)
+            //print(a)
             jingdu = Float((M_PI))*2 - a
             //print("4")
         }
