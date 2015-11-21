@@ -12,8 +12,8 @@
 		184536541BB9FC13009E3F9C /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184536511BB9FC13009E3F9C /* SwiftData.swift */; };
 		184536571BB9FC54009E3F9C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536551BB9FC54009E3F9C /* libsqlite3.0.tbd */; };
 		184536581BB9FC54009E3F9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536561BB9FC54009E3F9C /* libsqlite3.tbd */; };
-		187E16B81BFD458100EBBE55 /* Progressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B71BFD458100EBBE55 /* Progressbar.swift */; settings = {ASSET_TAGS = (); }; };
-		187E16BA1BFD571B00EBBE55 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B91BFD571B00EBBE55 /* Map.swift */; settings = {ASSET_TAGS = (); }; };
+		187E16B81BFD458100EBBE55 /* Progressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B71BFD458100EBBE55 /* Progressbar.swift */; };
+		187E16BA1BFD571B00EBBE55 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B91BFD571B00EBBE55 /* Map.swift */; };
 		3679B94E1BD2CBA30012211D /* LevelConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3679B94D1BD2CBA30012211D /* LevelConfig.plist */; };
 		368CC6BC1BB9F58C00A52548 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BB1BB9F58C00A52548 /* StartViewController.swift */; };
 		A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513E72C1BBCEB8900902483 /* LevelsViewController.swift */; };

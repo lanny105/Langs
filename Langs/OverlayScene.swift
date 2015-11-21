@@ -13,11 +13,6 @@ class OverlayScene: SKScene {
     
     let starXScale: CGFloat = 0.1
     let starYScale: CGFloat = 0.1
-
-//    let starImageNamed = "bdqx"
-//    let hintImageNamed = "bdqx2"
-//    let finalImageNamed = "finish"
-
     
     var eraseNode: SKSpriteNode!
     var settingNode: SKSpriteNode!
@@ -27,10 +22,12 @@ class OverlayScene: SKScene {
     var hintMap: SKSpriteNode!
     var finalNode: SKSpriteNode!
     var timerNode: SKLabelNode!
+    var quitNode: SKLabelNode!
     
     var progressbar: CircularProgressNode!
     var barra: Map!
-        
+    
+    var isShow: Int = 0
     
     override func didMoveToView(view: SKView) {
         
@@ -69,11 +66,19 @@ class OverlayScene: SKScene {
         
         self.timerNode = SKLabelNode(text: "")
         self.timerNode.name = "time"
-        self.timerNode.fontName = "Menlo"
+        self.timerNode.fontName = "AppleSDGothicNeo-Medium"
         self.timerNode.fontColor = UIColor.whiteColor()
         self.timerNode.fontSize = 24
-        self.timerNode.position = CGPoint(x: size.width/2, y: size.height*12.1/13 )
+        self.timerNode.position = CGPoint(x: size.width/2, y: size.height*12.1/13)
         
+        
+        // add setting menu
+        self.quitNode = SKLabelNode(text: "Quit Level")
+        self.quitNode.name = "quit"
+        self.quitNode.fontName = "AppleSDGothicNeo-Medium"
+        self.quitNode.fontColor = UIColor.whiteColor()
+        self.quitNode.fontSize = 28
+        self.quitNode.position = CGPoint(x: size.width/2, y: size.height/2+10)
         
         //init(radius: CGFloat, color: SKColor, width: CGFloat, startAngle: CGFloat = CGFloat(M_PI_2))
         self.progressbar = CircularProgressNode(radius: 20, color: SKColor.redColor(), width: 5, startAngle: 0.0)
@@ -115,6 +120,9 @@ class OverlayScene: SKScene {
         if eraseNode.containsPoint(location) {
             self.eraseAllNotifi()
         }
+        if settingNode.containsPoint(location) {
+            self.showSettings()
+        }
         else {
             NSNotificationCenter.defaultCenter().postNotificationName("updateTouchNotification", object: nil)
         }
@@ -139,22 +147,18 @@ class OverlayScene: SKScene {
         }
     }
     
+    
     func hindHint() {
-        //hintMap.hidden = true
-        //hintMap.removeFromParent()
         removeAllChildren()
     }
+    
 
     func maketimer(){
-        
-        //self.addChild(self.pauseNode)
         self.addChild(self.timerNode)
     }
     
     
-    
     func updateProgressbar(percentageCompleted: Double) {
-        
         self.progressbar.updateProgress(CGFloat(percentageCompleted))
     }
     
@@ -190,10 +194,7 @@ class OverlayScene: SKScene {
     
     
     func changeScene() {
-        print("55555")
         NSNotificationCenter.defaultCenter().postNotificationName("changeSceneNotification", object: nil)
-        
-        print("33333")
     }
     
     
@@ -204,6 +205,18 @@ class OverlayScene: SKScene {
     
     func eraseAllNotifi() {
         NSNotificationCenter.defaultCenter().postNotificationName("eraseAllNotification", object: nil)
+    }
+    
+    
+    func showSettings() {
+        if (isShow == 0) {
+            isShow = 1
+            addChild(quitNode)
+        }
+        else {
+            isShow = 0
+            quitNode.removeFromParent()
+        }
     }
 
     

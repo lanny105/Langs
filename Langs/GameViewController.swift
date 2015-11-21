@@ -420,7 +420,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 }
                 //print(constellation.returnAttri())
                 if constellationNode.isequal(constellation) {
-                    
                     // to disable 3D
                     for recognizer in self.view.gestureRecognizers! {
                         self.view.removeGestureRecognizer(recognizer)
@@ -534,9 +533,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         spriteScene.updateProgressbar(0.5 - b/2)
         spriteScene.updateMaplocation(Double(c[0]), y: Double(c[1]))
         
+        print(b)
         if( b>0.9) {
-            
-            
             
             
             print("Almost there!")
