@@ -112,7 +112,9 @@ class OverlayScene: SKScene {
         if hintNode.containsPoint(location) {
             self.makeHintNotifi()
         }
-        
+        if quitNode.containsPoint(location) {
+            self.changeScene()
+        }
         if nextNode.containsPoint(location) {
             self.changeScene()
         }
