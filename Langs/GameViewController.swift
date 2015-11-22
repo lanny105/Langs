@@ -124,7 +124,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         sceneView.showsStatistics = false
         
         // configure the view
-        sceneView.backgroundColor = UIColor.blackColor()
+        sceneView.backgroundColor = UIColor(red: 14.0/255, green: 18.0/255, blue: 60.0/255, alpha: 1.0)
         
         // configure camera gestures
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
