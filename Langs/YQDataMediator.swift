@@ -175,7 +175,7 @@ class YQDataMediator {
                     //                    print("The Star Hd is: \(Hd)")
                     dic["levelCat"] = String(category)
                     
-                    print("333333------",category)
+//                    print("333333------",category)
                 }
                 
                 myArrayOfDict.append(dic)

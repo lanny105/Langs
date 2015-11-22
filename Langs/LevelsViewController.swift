@@ -73,12 +73,20 @@ class LevelsViewController: UIViewController {
         // load level info and generate level boxNode
         
         let levelInfo: NSArray = YQDataMediator.instance.getConstellation()
-        print(levelInfo)
-        print(levelInfo.count)
-//        let kk = levelInfo[0]
-        var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
-        print(airports)
-        print(airports["YYZ"])
+//        print(levelInfo)
+//        print(levelInfo.count)
+        
+        
+        for index in 0...((levelInfo.count)-1) {
+            let boxNode = genLevelBoxNode(index, dic: levelInfo[index] as! NSDictionary)
+            if index == 0 {
+                self.leftPosition = boxNode.position.x - 1
+            }
+            else if index == ((levelInfo.count)-1) {
+                self.rightPosition = boxNode.position.x + 1
+            }
+            scene.rootNode.addChildNode(boxNode)
+        }
         
 
         
@@ -131,16 +139,24 @@ class LevelsViewController: UIViewController {
         scnView.addGestureRecognizer(tapGesture)
     }
     
-    func genLevelBoxNode(indexNum: Int) -> SCNNode {
+    func genLevelBoxNode(indexNum: Int, dic: NSDictionary) -> SCNNode {
+        let levelID = dic.objectForKey("levelID") as! String
+        let levelName = dic.objectForKey("levelName") as! String
+        let levelCat = dic.objectForKey("levelCat") as! String
+//        print(levelID)
+//        print(levelName)
+//        print(levelCat)
+        
         let material = SCNMaterial()
         //        material.diffuse.contents = UIImage(named: "level1-1.png")
-        material.diffuse.contents = genTextLayer("Level-\(indexNum)")
+        
+        material.diffuse.contents = genTextLayer(levelName)
         
         // add level box
         let boxGeometry = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
         boxGeometry.materials = [material]
         let boxNode = SCNNode(geometry: boxGeometry)
-        boxNode.name = String(indexNum)
+        boxNode.name = levelID
         boxNode.position = SCNVector3(indexNum * 10, 0, 0)
         
         return boxNode
@@ -280,12 +296,15 @@ class LevelsViewController: UIViewController {
             
             let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
             let dict = NSDictionary(contentsOfFile: path!)
-
             
-            let levelDict = dict?.valueForKey(sender as! String)
+//            print(dict)
+            
+            let levelDict = dict!.valueForKey(sender as! String)
+            
+//            print(levelDict)
 
-            let levelHint = levelDict?.valueForKey("hint")
-            let levelFinal = levelDict?.valueForKey("final")
+            let levelHint = levelDict!.valueForKey("hint")
+            let levelFinal = levelDict!.valueForKey("final")
             
             //print(name)
             
@@ -293,10 +312,12 @@ class LevelsViewController: UIViewController {
             print(levelFinal)
             
             let secondVC = segue.destinationViewController as! GameViewController
-
-            secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(sender as! Int)
             
-            secondVC.starList = YQDataMediator.instance.getStarByAttr(sender as! Int) as! [Star]
+            print(sender as! String)
+            let levelIDNum = Int(sender as! String)!
+            secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(levelIDNum)
+            
+            secondVC.starList = YQDataMediator.instance.getStarByAttr(levelIDNum) as! [Star]
             
             secondVC.hintImageNamed = levelHint as! String
             
