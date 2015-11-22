@@ -168,6 +168,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         self.spriteScene.makeHint(hintImageNamed, showHint: 1)
         
         //self.spriteScene.addObserver(sceneView.scene!, forKeyPath: "isShow", options: .New, context: nil)
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let score = defaults.stringForKey("userScore") {
+            defaults.setFloat(Float(score)!+Float(100), forKey: "userScore")
+        }
         
     }
     

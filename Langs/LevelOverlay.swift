@@ -11,7 +11,7 @@ import SpriteKit
 class LevelOverlay: SKScene {
     
     let backButtonNode = SKSpriteNode(imageNamed: "go_back")
-    
+
     override func didMoveToView(view: SKView) {
         // add back button
         let iconSize = size.width/30
@@ -20,7 +20,25 @@ class LevelOverlay: SKScene {
         
         self.addChild(self.backButtonNode)
         
-        // add score label
+        let defaults = NSUserDefaults.standardUserDefaults()
+//        defaults.setFloat(2001, forKey: "userScore")
+        
+        if let score = defaults.stringForKey("userScore") {
+            print(score)
+            // add score label
+            let scoreLabelNode = SKLabelNode(text: "Score: \(score)")
+            scoreLabelNode.fontName = "AppleSDGothicNeo-Medium"
+            scoreLabelNode.fontColor = UIColor.whiteColor()
+            scoreLabelNode.fontSize = size.width/30
+            scoreLabelNode.position = CGPoint(x: size.width/2, y: size.height*11.7/13)
+            
+            self.addChild(scoreLabelNode)
+        }
+        else {
+            defaults.setFloat(0, forKey: "userScore")
+        }
+        
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -31,7 +49,7 @@ class LevelOverlay: SKScene {
             NSNotificationCenter.defaultCenter().postNotificationName("backNotification", object: nil)
         }
         else {
-            NSNotificationCenter.defaultCenter().postNotificationName("updateTouchNotification", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("keepTouchNotification", object: nil)
         }
         
     }

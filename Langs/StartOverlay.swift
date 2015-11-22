@@ -23,8 +23,8 @@ class StartOverlay: SKScene {
         titleLabelNode.name = "Startrix"
         titleLabelNode.fontName = "AppleSDGothicNeo-Medium"
         titleLabelNode.fontColor = UIColor.whiteColor()
-        titleLabelNode.fontSize = 280
-        titleLabelNode.position = CGPoint(x: size.width/2, y: size.height/2+100)
+        titleLabelNode.fontSize = size.height/3
+        titleLabelNode.position = CGPoint(x: size.width/2, y: size.height/2+size.height/7)
         self.addChild(titleLabelNode)
         
         
@@ -32,8 +32,8 @@ class StartOverlay: SKScene {
         let crLabelNode = SKLabelNode(text: "Copyright © Langs 2015")
         crLabelNode.fontName = "AppleSDGothicNeo-Medium"
         crLabelNode.fontColor = UIColor.whiteColor()
-        crLabelNode.fontSize = 20
-        crLabelNode.position = CGPoint(x: size.width/2, y: size.height/2-350)
+        crLabelNode.fontSize = size.width/40
+        crLabelNode.position = CGPoint(x: size.width/2, y: size.height/30)
         self.addChild(crLabelNode)
         
     }

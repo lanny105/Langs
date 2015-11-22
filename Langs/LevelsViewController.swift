@@ -36,6 +36,7 @@ class LevelsViewController: UIViewController {
 //        code
 //    }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,6 +150,11 @@ class LevelsViewController: UIViewController {
         scnView.overlaySKScene = spriteScene
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToStartView", name: "backNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keepTouch", name: "keepTouchNotification", object: nil)
+    }
+    
+    func keepTouch() {
+        self.lastLocation = self.cameraNode.position
     }
     
     func goToStartView() {
@@ -369,7 +375,7 @@ class LevelsViewController: UIViewController {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        lastLocation = self.cameraNode.position
+        self.lastLocation = self.cameraNode.position
 //        lastLocation = self.cameraNode.eulerAngles
     }
 }
