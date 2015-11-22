@@ -173,7 +173,7 @@ class YQDataMediator {
                 
                 if let category = row["category"]?.asInt() {
                     //                    print("The Star Hd is: \(Hd)")
-//                    dic["levelCat"] = String(category)
+                    dic["levelCat"] = String(category)
                     
                     print("333333------",category)
                 }
