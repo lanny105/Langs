@@ -140,37 +140,42 @@ class YQDataMediator {
 //        NSDictionary("levelID" )
 //        int, string, int
         
-        var myArrayOfDict: [NSDictionary]!
+        var myArrayOfDict: [NSDictionary] = []
 //        NSDictionary()
         
         //select con_id, name,category from Constellation
         
-        var (resultSet, err) = SD.executeQuery("select con_id, name,category from Constellation;")
+        var (resultSet, err) = SD.executeQuery("select * from Constellation")
         
         if err != nil {
             //there was an error during the query, handle it here
         } else {
             
             for row in resultSet {
-                var dic: [Int:String]!
+                var dic = [ "levelID" : "", "levelName": "" , "levelCat": ""]
                 
-                if let con_id = row["con_id"]?.asInt() {
+                if let con_id = row["Con_ID"]?.asInt() {
                     //                    print("The Star name is: \(ID)")
                     //temp_star.id = ID
                     
-                    dic[0] = String(con_id)
+//                    print("111111----",con_id)
+                    dic["levelID"] = String(con_id)
                     
                 }
                 
-                if let name = row["name"]?.asString() {
+                if let name = row["Name"]?.asString() {
                     //println("The Star Hip is: \(Hip)")
-                    dic[1] = name
+
+//                    print("222222-----",name)
+                    dic["levelName"] = name
                 }
                 
                 
                 if let category = row["category"]?.asInt() {
                     //                    print("The Star Hd is: \(Hd)")
-                    dic[2] = String(category)
+//                    dic["levelCat"] = String(category)
+                    
+                    print("333333------",category)
                 }
                 
                 myArrayOfDict.append(dic)
@@ -201,7 +206,7 @@ class YQDataMediator {
                 let temp_star = Star()
                 
                 if let ID = row["ID"]?.asInt() {
-//                    print("The Star name is: \(ID)")
+                    //print("The Star name is: \(ID)")
                     temp_star.id = ID
                 }
                 
