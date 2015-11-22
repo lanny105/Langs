@@ -580,6 +580,18 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     }
     
     
+    func handleDoubleTapped(gestureRecognizer: UITapGestureRecognizer) {
+        
+        
+        //        print("hello")
+        //        self.cameraNode.position = SCNVector3Make(0.0, 0.0, 0.0)
+        //        self.cameraNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
+        //        lastLocation = self.cameraNode.eulerAngles
+        
+        return
+    }
+    
+    
     func changetimerstate(){
         
         if(!timerRuning){
