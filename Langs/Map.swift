@@ -28,7 +28,7 @@ class Map : SKShapeNode
         self.width = width
         self.height = height
         
-        var rect = CGRect(origin: CGPoint(x: 0.5, y: 0.5), size: CGSize(width: width, height: height))
+        let rect = CGRect(origin: CGPoint(x: 0.5, y: 0.5), size: CGSize(width: width, height: height))
         
         self.path = CGPathCreateWithRoundedRect(rect, 2.0, 2.0, nil)
 

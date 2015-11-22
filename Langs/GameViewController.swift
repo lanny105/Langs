@@ -125,11 +125,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                   starNode.shiny(true)
                 }
             }
-            let x=drand48()
-//            if(x>0.8){
-//                starNode.shiny(true)
-//            }
-            //starNode.shiny(true)
+//            let x=drand48()
+////            if(x>0.8){
+////                starNode.shiny(true)
+////            }
+//            //starNode.shiny(true)
             scene.rootNode.addChildNode(starNode)
         }
         
@@ -222,7 +222,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     // erase everything on screen
     func eraseAllNotifi() {
-        let sceneView = self.view as! SCNView
+        //let sceneView = self.view as! SCNView
         for star in starArray {
             star.highlight(false)
         }
@@ -354,7 +354,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                         //use to unhighlight stars
                         var flag = 0
                         for stars in constellationUserState.starlist{
-                            let starnode1: StarNode = StarNode(star: stars as! Star)
+                            let starnode1: StarNode = StarNode(star: stars as Star)
                             if(checkLine(star, node2: starnode1)){
                                 flag++
                             }
@@ -369,7 +369,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                         }
                         flag = 0
                         for stars in constellationUserState.starlist{
-                            let starnode2: StarNode = StarNode(star: stars as! Star)
+                            let starnode2: StarNode = StarNode(star: stars as Star)
                             if(checkLine(activeStar!, node2: starnode2)){
                                 flag++
                             }
@@ -390,7 +390,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     //starArray.removeAtIndex(findDoubleClickStarIndex(star))
                     var flag = 0
                     for stars in constellationUserState.starlist{
-                        let starnode1: StarNode = StarNode(star: stars as! Star)
+                        let starnode1: StarNode = StarNode(star: stars as Star)
                         if(checkLine(star, node2: starnode1)){
                             flag++
                         }
@@ -423,6 +423,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     // to disable 3D
                     for recognizer in self.view.gestureRecognizers! {
                         self.view.removeGestureRecognizer(recognizer)
+                        spriteScene.hintNode.paused = true;
                     }
                     //indicatefinal = 1
                     //                    spriteScene.makeHintFinal()
@@ -445,9 +446,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     func similarity(x: Double,y: Double,z: Double, x1: Double,y1: Double, z1:Double) ->Double{
         
         
-        var a = x*x1 + y*y1 + z*z1
+        let a = x*x1 + y*y1 + z*z1
         
-        var b = sqrt(x*x + y*y + z*z)*sqrt(x1*x1 + y1*y1 + z1*z1)
+        let b = sqrt(x*x + y*y + z*z)*sqrt(x1*x1 + y1*y1 + z1*z1)
         
         return a/b
         
@@ -654,7 +655,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     func matrix_transform2(x:Float,y:Float,z:Float) ->[Float] {
         
-        var a = asin(x/(sqrt(pow(x, 2))+pow(z,2)))
+        let a = asin(x/(sqrt(pow(x, 2))+pow(z,2)))
         var jingdu: Float
         
         if(x<0&&z<0) {

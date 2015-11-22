@@ -112,18 +112,24 @@ class OverlayScene: SKScene {
         if hintNode.containsPoint(location) {
             self.makeHintNotifi()
         }
-        if quitNode.containsPoint(location) {
-            self.changeScene()
-        }
-        if nextNode.containsPoint(location) {
+        
+//        if quitNode.containsPoint(location) {
+//            self.changeScene()
+//        }
+        
+        else if nextNode.containsPoint(location) {
             self.changeScene()
         }
         
-        if eraseNode.containsPoint(location) {
+        else if eraseNode.containsPoint(location) {
             self.eraseAllNotifi()
         }
-        if settingNode.containsPoint(location) {
+        
+        else if settingNode.containsPoint(location) {
             self.showSettings()
+        }
+        else if (isShow == 1 && quitNode.containsPoint(location)) {
+            self.changeScene()
         }
         else {
             NSNotificationCenter.defaultCenter().postNotificationName("updateTouchNotification", object: nil)
