@@ -1,70 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<array>
+<dict>
+	<key>1</key>
 	<dict>
-		<key>levelID</key>
-		<integer>1</integer>
 		<key>hint</key>
 		<string>big dipper</string>
 		<key>final</key>
 		<string>big dipper finish</string>
 	</dict>
+	<key>2</key>
 	<dict>
-		<key>levelID</key>
-		<integer>2</integer>
 		<key>hint</key>
 		<string>ursa minor</string>
 		<key>final</key>
 		<string>ursa minor finish</string>
 	</dict>
+	<key>3</key>
 	<dict>
-		<key>levelID</key>
-		<integer>3</integer>
 		<key>hint</key>
 		<string>big dipper</string>
 		<key>final</key>
 		<string>big dipper finish</string>
 	</dict>
+	<key>4</key>
 	<dict>
-		<key>levelID</key>
-		<integer>4</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
 		<string></string>
 	</dict>
+	<key>5</key>
 	<dict>
-		<key>levelID</key>
-		<integer>5</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
 		<string></string>
 	</dict>
+	<key>6</key>
 	<dict>
-		<key>levelID</key>
-		<integer>6</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
 		<string></string>
 	</dict>
+	<key>7</key>
 	<dict>
-		<key>levelID</key>
-		<integer>7</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
 		<string></string>
 	</dict>
+	<key>8</key>
 	<dict>
-		<key>levelID</key>
-		<integer>8</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
 		<string></string>
 	</dict>
-</array>
+</dict>
 </plist>

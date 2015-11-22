@@ -71,22 +71,30 @@ class LevelsViewController: UIViewController {
         
         
         // load level info and generate level boxNode
-        let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
-        let ary = NSArray(contentsOfFile: path!)
-//        print(ary)
+        
+        let levelInfo: NSArray = YQDataMediator.instance.getConstellation()
+        print(levelInfo)
+        print(levelInfo.count)
+//        let kk = levelInfo[0]
+        var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+        print(airports)
+        print(airports["YYZ"])
+        
+
         
         
+
         
-        for index in 0...((ary?.count)!-1) {
-            let boxNode = genLevelBoxNode(index)
-            if index == 0 {
-                self.leftPosition = boxNode.position.x - 1
-            }
-            else if index == ((ary?.count)!-1) {
-                self.rightPosition = boxNode.position.x + 1
-            }
-            scene.rootNode.addChildNode(boxNode)
-        }
+//        for index in 0...((ary?.count)!-1) {
+//            let boxNode = genLevelBoxNode(index)
+//            if index == 0 {
+//                self.leftPosition = boxNode.position.x - 1
+//            }
+//            else if index == ((ary?.count)!-1) {
+//                self.rightPosition = boxNode.position.x + 1
+//            }
+//            scene.rootNode.addChildNode(boxNode)
+//        }
         
         
         // create and add a light to the scene
@@ -271,17 +279,14 @@ class LevelsViewController: UIViewController {
         if segue.identifier == "levelsViewToGameViewSegue" {
             
             let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
-            let ary = NSArray(contentsOfFile: path!)
+            let dict = NSDictionary(contentsOfFile: path!)
+
             
-            let index: Int = Int(sender as! String)!
+            let levelDict = dict?.valueForKey(sender as! String)
+
+            let levelHint = levelDict?.valueForKey("hint")
+            let levelFinal = levelDict?.valueForKey("final")
             
-            let levelDict = ary![index]
-//            print(levelDict)
-            let levelID = levelDict.valueForKey("levelID")
-            let levelHint = levelDict.valueForKey("hint")
-            let levelFinal = levelDict.valueForKey("final")
-            
-            print(levelID)
             //print(name)
             
             print(levelHint)
@@ -289,9 +294,9 @@ class LevelsViewController: UIViewController {
             
             let secondVC = segue.destinationViewController as! GameViewController
 
-            secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(levelID as! Int)
+            secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(sender as! Int)
             
-            secondVC.starList = YQDataMediator.instance.getStarByAttr(levelID as! Int) as! [Star]
+            secondVC.starList = YQDataMediator.instance.getStarByAttr(sender as! Int) as! [Star]
             
             secondVC.hintImageNamed = levelHint as! String
             
