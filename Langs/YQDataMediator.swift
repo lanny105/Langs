@@ -139,7 +139,50 @@ class YQDataMediator {
         // levelCat
 //        NSDictionary("levelID" )
 //        int, string, int
-        return []
+        
+        var myArrayOfDict: [NSDictionary]!
+//        NSDictionary()
+        
+        //select con_id, name,category from Constellation
+        
+        var (resultSet, err) = SD.executeQuery("select con_id, name,category from Constellation;")
+        
+        if err != nil {
+            //there was an error during the query, handle it here
+        } else {
+            
+            for row in resultSet {
+                var dic: [Int:String]!
+                
+                if let con_id = row["con_id"]?.asInt() {
+                    //                    print("The Star name is: \(ID)")
+                    //temp_star.id = ID
+                    
+                    dic[0] = String(con_id)
+                    
+                }
+                
+                if let name = row["name"]?.asString() {
+                    //println("The Star Hip is: \(Hip)")
+                    dic[1] = name
+                }
+                
+                
+                if let category = row["category"]?.asInt() {
+                    //                    print("The Star Hd is: \(Hd)")
+                    dic[2] = String(category)
+                }
+                
+                myArrayOfDict.append(dic)
+                
+            }
+            
+            
+            
+        }
+        
+        
+        return myArrayOfDict
     }
     
     func getStarByAttr(level: Int) -> NSArray{
