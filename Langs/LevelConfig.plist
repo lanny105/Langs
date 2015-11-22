@@ -4,6 +4,8 @@
 <dict>
 	<key>1</key>
 	<dict>
+		<key>bar</key>
+		<integer>0</integer>
 		<key>hint</key>
 		<string>big dipper</string>
 		<key>final</key>
@@ -11,6 +13,8 @@
 	</dict>
 	<key>2</key>
 	<dict>
+		<key>bar</key>
+		<integer>400</integer>
 		<key>hint</key>
 		<string>ursa minor</string>
 		<key>final</key>
@@ -18,6 +22,8 @@
 	</dict>
 	<key>3</key>
 	<dict>
+		<key>bar</key>
+		<integer>800</integer>
 		<key>hint</key>
 		<string>big dipper</string>
 		<key>final</key>
@@ -25,6 +31,8 @@
 	</dict>
 	<key>4</key>
 	<dict>
+		<key>bar</key>
+		<integer>1200</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
@@ -32,6 +40,8 @@
 	</dict>
 	<key>5</key>
 	<dict>
+		<key>bar</key>
+		<integer>1600</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
@@ -39,6 +49,8 @@
 	</dict>
 	<key>6</key>
 	<dict>
+		<key>bar</key>
+		<integer>2000</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
@@ -46,6 +58,8 @@
 	</dict>
 	<key>7</key>
 	<dict>
+		<key>bar</key>
+		<integer>2400</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
@@ -53,6 +67,8 @@
 	</dict>
 	<key>8</key>
 	<dict>
+		<key>bar</key>
+		<integer>2800</integer>
 		<key>hint</key>
 		<string></string>
 		<key>final</key>

@@ -27,7 +27,6 @@ class LevelsViewController: UIViewController {
     var leftPosition : Float = 0
     var rightPosition : Float = 0
     
-    
     //// animation
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
@@ -40,7 +39,13 @@ class LevelsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        //        defaults.setFloat(2001, forKey: "userScore")
         
+        if (defaults.stringForKey("userScore") == nil) {
+            defaults.setFloat(0, forKey: "userScore")
+        }
+            
         
         // create a new scene
         //        let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -83,22 +88,33 @@ class LevelsViewController: UIViewController {
 //        print(levelInfo)
 //        print(levelInfo.count)
         
+        let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)
+        
+        let score = defaults.stringForKey("userScore")
         
         for index in 0...((levelInfo.count)-1) {
-            let boxNode = genLevelBoxNode(index, dic: levelInfo[index] as! NSDictionary)
-            if index == 0 {
-                self.leftPosition = boxNode.position.x - 1
-            }
-            else if index == ((levelInfo.count)-1) {
+            let dic = levelInfo[index] as! NSDictionary
+            let levelID = dic.objectForKey("levelID") as! String
+            
+            let levelDict = dict!.valueForKey(levelID)
+            let levelBar = levelDict!.valueForKey("bar")
+            
+            if (Float(score!) >= levelBar as? Float) {
+//                print("Bar: \(levelBar)")
+//                print("Index: \(index)")
+//                print("Right: \(self.rightPosition)")
+                let boxNode = genLevelBoxNode(index, dic: dic)
+                if index == 0 {
+//                    print("Set left")
+                    self.leftPosition = boxNode.position.x - 1
+                }
+
                 self.rightPosition = boxNode.position.x + 1
+                scene.rootNode.addChildNode(boxNode)
             }
-            scene.rootNode.addChildNode(boxNode)
         }
         
-
-        
-        
-
         
 //        for index in 0...((ary?.count)!-1) {
 //            let boxNode = genLevelBoxNode(index)
@@ -145,7 +161,7 @@ class LevelsViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
         scnView.addGestureRecognizer(tapGesture)
         
-        // add back button
+        // add overlay
         let spriteScene = LevelOverlay(size: self.view.bounds.size)
         scnView.overlaySKScene = spriteScene
         
@@ -165,6 +181,7 @@ class LevelsViewController: UIViewController {
         let levelID = dic.objectForKey("levelID") as! String
         let levelName = dic.objectForKey("levelName") as! String
         let levelCat = dic.objectForKey("levelCat") as! String
+
 //        print(levelID)
 //        print(levelName)
 //        print(levelCat)
