@@ -29,6 +29,7 @@ class OverlayScene: SKScene {
     
     var isShow: Bool = false
     
+    
     override func didMoveToView(view: SKView) {
         
         self.backgroundColor = UIColor.clearColor()
@@ -136,6 +137,7 @@ class OverlayScene: SKScene {
             hintMap.yScale = 0.5
             hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
             addChild(hintMap)
+            addChild(progressbar)
         }
     }
     
@@ -155,7 +157,6 @@ class OverlayScene: SKScene {
     }
     
     func updateMaplocation(x: Double, y: Double) {
-        
         self.barra.updatelocation(CGFloat(x), y: CGFloat(y))
         
         

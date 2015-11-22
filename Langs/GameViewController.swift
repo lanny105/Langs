@@ -62,6 +62,10 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var zoom = 0
     
     
+    var mapNodeX:Double!
+    var mapNodeY:Double!
+    var progressbarB:Double!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -254,6 +258,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        }
 //    }
     
+    
     // show hint image
     func makeHintNotifi(){
         let sceneView = self.view as! SCNView
@@ -266,7 +271,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             
         }
         sceneView.overlaySKScene=spriteScene
-        
+        spriteScene.updateMaplocation(mapNodeX, y: mapNodeY)
+        spriteScene.updateProgressbar(0.5 - progressbarB/2)
     }
     
     // erase everything on screen
@@ -564,6 +570,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         spriteScene.updateProgressbar(0.5 - b/2)
         spriteScene.updateMaplocation(Double(c[0]), y: Double(c[1]))
+        mapNodeX = Double(c[0])
+        mapNodeY = Double(c[1])
+        progressbarB = b
     
         if( b>0.9) {
             print("Almost there!")
