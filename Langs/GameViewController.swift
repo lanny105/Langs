@@ -48,6 +48,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     var clickHintFlag=1
     var clickQuitFlag=1
+    var clickSetFlag=1
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
    
@@ -162,6 +163,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTouch", name: "updateTouchNotification", object: nil)
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "pause3D", name: "pause3DNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "clickSet", name: "clickSetNotification", object: nil)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
@@ -183,6 +185,39 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     // Function to pop this view controller and go back to my Levels screen
     func changeScene() {
         self.performSegueWithIdentifier("gameViewToLevelsViewSegue", sender: nil)
+    }
+    
+    func clickSet(){
+        if(clickSetFlag == 1){
+            for recognizer in self.view.gestureRecognizers! {
+                self.view.removeGestureRecognizer(recognizer)
+            }
+            changetimerstate();
+            clickSetFlag = 0;
+        }else{
+            changetimerstate();
+            let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+            self.view.addGestureRecognizer(panGesture)
+            
+            let doubletapGesture = UITapGestureRecognizer(target: self, action: "handleDoubleTapped:")
+            doubletapGesture.numberOfTapsRequired = 2
+            //doubletapGesture.numberOfTouchesRequired = 2
+            self.view.addGestureRecognizer(doubletapGesture)
+            //        let tap = UITapGestureRecognizer(target: self, action: "doubleTapped")
+            
+            
+            let pinchGesture = UIPinchGestureRecognizer()
+            pinchGesture.addTarget(self, action: "handlePinch:")
+            self.view.addGestureRecognizer(pinchGesture)
+            
+            // add a tap gesture recognizer
+            let tapRecognizer = UITapGestureRecognizer()
+            tapRecognizer.numberOfTapsRequired = 1
+            tapRecognizer.numberOfTouchesRequired = 1
+            tapRecognizer.addTarget(self, action: "handleTap:")
+            self.view.addGestureRecognizer(tapRecognizer)
+            clickSetFlag = 1;
+        }
     }
     
     // pause SceneKit scene

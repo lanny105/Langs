@@ -109,6 +109,7 @@ class OverlayScene: SKScene {
         }
         
         else if settingNode.containsPoint(location) {
+            self.clickSetNotifi()
             self.showSettings()
         }
         else if (isShow && quitNode.containsPoint(location)) {
@@ -193,7 +194,9 @@ class OverlayScene: SKScene {
         NSNotificationCenter.defaultCenter().postNotificationName("makeHintNotification", object: nil)
     }
     
-    
+    func clickSetNotifi() {
+        NSNotificationCenter.defaultCenter().postNotificationName("clickSetNotification", object: nil)
+    }
     func eraseAllNotifi() {
         NSNotificationCenter.defaultCenter().postNotificationName("eraseAllNotification", object: nil)
     }
