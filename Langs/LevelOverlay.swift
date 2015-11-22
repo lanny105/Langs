@@ -36,6 +36,13 @@ class LevelOverlay: SKScene {
         }
         else {
             defaults.setFloat(0, forKey: "userScore")
+            let scoreLabelNode = SKLabelNode(text: "Score: 0")
+            scoreLabelNode.fontName = "AppleSDGothicNeo-Medium"
+            scoreLabelNode.fontColor = UIColor.whiteColor()
+            scoreLabelNode.fontSize = size.width/30
+            scoreLabelNode.position = CGPoint(x: size.width/2, y: size.height*11.7/13)
+            
+            self.addChild(scoreLabelNode)
         }
         
         
