@@ -43,12 +43,16 @@ class StartViewController: UIViewController {
         //        ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
         
         // add game name
-        let gameNameText = SCNText(string: "Startrix", extrusionDepth: 5)
-        gameNameText.font = UIFont(name: "Optima", size: 4)
-        let gameNameTextNode = SCNNode(geometry: gameNameText)
-        gameNameTextNode.position = SCNVector3(x: -6, y: 1, z: 0)
+        let spriteScene = StartOverlay(size: self.view.bounds.size)
+        let sceneView = self.view as! SCNView
+        sceneView.overlaySKScene = spriteScene
         
-        scene.rootNode.addChildNode(gameNameTextNode)
+//        let gameNameText = SCNText(string: "Startrix", extrusionDepth: 5)
+//        gameNameText.font = UIFont(name: "Optima", size: 4)
+//        let gameNameTextNode = SCNNode(geometry: gameNameText)
+//        gameNameTextNode.position = SCNVector3(x: -6, y: 1, z: 0)
+//        
+//        scene.rootNode.addChildNode(gameNameTextNode)
         
         // add start info with text
         let layer = CALayer()
@@ -99,7 +103,7 @@ class StartViewController: UIViewController {
         scnView.showsStatistics = false
         
         // configure the view
-        scnView.backgroundColor = UIColor.blackColor()
+        scnView.backgroundColor = UIColor(red: 14.0/255, green: 18.0/255, blue: 60.0/255, alpha: 1.0)
         
         
         

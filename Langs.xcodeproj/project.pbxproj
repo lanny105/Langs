@@ -14,6 +14,8 @@
 		184536581BB9FC54009E3F9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184536561BB9FC54009E3F9C /* libsqlite3.tbd */; };
 		187E16B81BFD458100EBBE55 /* Progressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B71BFD458100EBBE55 /* Progressbar.swift */; };
 		187E16BA1BFD571B00EBBE55 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E16B91BFD571B00EBBE55 /* Map.swift */; };
+		363E3D681C01901A000BDB94 /* StartOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363E3D671C01901A000BDB94 /* StartOverlay.swift */; };
+		363E3D6A1C0194A2000BDB94 /* LevelOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363E3D691C0194A2000BDB94 /* LevelOverlay.swift */; };
 		3679B94E1BD2CBA30012211D /* LevelConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3679B94D1BD2CBA30012211D /* LevelConfig.plist */; };
 		368CC6BC1BB9F58C00A52548 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368CC6BB1BB9F58C00A52548 /* StartViewController.swift */; };
 		A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513E72C1BBCEB8900902483 /* LevelsViewController.swift */; };
@@ -39,6 +41,8 @@
 		184536561BB9FC54009E3F9C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		187E16B71BFD458100EBBE55 /* Progressbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progressbar.swift; sourceTree = "<group>"; };
 		187E16B91BFD571B00EBBE55 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		363E3D671C01901A000BDB94 /* StartOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartOverlay.swift; sourceTree = "<group>"; };
+		363E3D691C0194A2000BDB94 /* LevelOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOverlay.swift; sourceTree = "<group>"; };
 		3679B94D1BD2CBA30012211D /* LevelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LevelConfig.plist; sourceTree = "<group>"; };
 		368CC6BB1BB9F58C00A52548 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		A513E72C1BBCEB8900902483 /* LevelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
@@ -96,11 +100,13 @@
 			isa = PBXGroup;
 			children = (
 				A5CDB6EE1BB13A5300F2A0F1 /* GameViewController.swift */,
+				363E3D691C0194A2000BDB94 /* LevelOverlay.swift */,
 				368CC6BB1BB9F58C00A52548 /* StartViewController.swift */,
 				A513E72C1BBCEB8900902483 /* LevelsViewController.swift */,
 				D7053B2C1BC9E1EA00A807EC /* OverlayScene.swift */,
 				187E16B71BFD458100EBBE55 /* Progressbar.swift */,
 				187E16B91BFD571B00EBBE55 /* Map.swift */,
+				363E3D671C01901A000BDB94 /* StartOverlay.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -257,8 +263,10 @@
 				187E16BA1BFD571B00EBBE55 /* Map.swift in Sources */,
 				184536541BB9FC13009E3F9C /* SwiftData.swift in Sources */,
 				A58D50381BC0824B0029F7BA /* Constellation.swift in Sources */,
+				363E3D681C01901A000BDB94 /* StartOverlay.swift in Sources */,
 				A513E72D1BBCEB8900902483 /* LevelsViewController.swift in Sources */,
 				A539BD7B1BC1CF790048D472 /* ConstellationNode.swift in Sources */,
+				363E3D6A1C0194A2000BDB94 /* LevelOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

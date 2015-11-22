@@ -32,8 +32,14 @@ class LevelsViewController: UIViewController {
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
     
+//    override func viewWillAppear(animated: Bool) {
+//        code
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // create a new scene
         //        let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -127,7 +133,7 @@ class LevelsViewController: UIViewController {
         scnView.showsStatistics = false
         
         // configure the view
-        scnView.backgroundColor = UIColor.blackColor()
+        scnView.backgroundColor = UIColor(red: 14.0/255, green: 18.0/255, blue: 60.0/255, alpha: 1.0)
         
         // add a pan gesture recognizer
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
@@ -137,6 +143,16 @@ class LevelsViewController: UIViewController {
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
         scnView.addGestureRecognizer(tapGesture)
+        
+        // add back button
+        let spriteScene = LevelOverlay(size: self.view.bounds.size)
+        scnView.overlaySKScene = spriteScene
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToStartView", name: "backNotification", object: nil)
+    }
+    
+    func goToStartView() {
+        self.performSegueWithIdentifier("levelsViewToStartViewSegue", sender: nil)
     }
     
     func genLevelBoxNode(indexNum: Int, dic: NSDictionary) -> SCNNode {
@@ -150,26 +166,31 @@ class LevelsViewController: UIViewController {
         let material = SCNMaterial()
         //        material.diffuse.contents = UIImage(named: "level1-1.png")
         
-        material.diffuse.contents = genTextLayer(levelName)
+        material.diffuse.contents = genTextLayer(levelName, levelCat: levelCat)
         
         // add level box
-        let boxGeometry = SCNBox(width: 8, height: 8, length: 2, chamferRadius: 0.4)
+        let boxGeometry = SCNBox(width: 10, height: 6, length: 2, chamferRadius: 0.4)
         boxGeometry.materials = [material]
         let boxNode = SCNNode(geometry: boxGeometry)
         boxNode.name = levelID
-        boxNode.position = SCNVector3(indexNum * 10, 0, 0)
+        boxNode.position = SCNVector3(indexNum * 12, 0, 0)
         
         return boxNode
     }
     
-    func genTextLayer(textStr: String) -> CALayer {
+    func genTextLayer(textStr: String, levelCat: String) -> CALayer {
         let layer = CALayer()
-        layer.frame = CGRectMake(0, 0, 800, 800)
+        layer.frame = CGRectMake(0, 0, 1000, 600)
+        
         layer.backgroundColor = UIColor.whiteColor().CGColor
+        if (levelCat == "1") {
+            layer.backgroundColor = UIColor.yellowColor().CGColor
+        }
+        
         
         let textLayer = CATextLayer()
 //        print(layer.bounds)
-        textLayer.frame = CGRectMake(0, -320, layer.bounds.width, layer.bounds.height)
+        textLayer.frame = CGRectMake(0, -220, layer.bounds.width, layer.bounds.height)
         textLayer.fontSize = 140
         textLayer.string = textStr
         textLayer.alignmentMode = kCAAlignmentCenter
