@@ -171,15 +171,31 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         //self.spriteScene.addObserver(sceneView.scene!, forKeyPath: "isShow", options: .New, context: nil)
 
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let score = defaults.stringForKey("userScore") {
-            defaults.setFloat(Float(score)!+Float(100), forKey: "userScore")
-        }
         
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    // the final score player get when finish game
+    func getScore(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let score = defaults.stringForKey("userScore") {
+            // temp indicate how much time we spend to finish the game, if timecount < 60 sec, we give 400 score.
+            // timecount < 120 sec, we give 200 score, timecount < 180 sec, we give 100 score.
+            var temp = 0
+            if self.timecount < 30{
+                temp = 400
+            }else if self.timecount < 90{
+                temp = 200
+            }else if self.timecount < 180{
+                temp = 100
+            }else{
+                temp = 0
+            }
+            defaults.setFloat(Float(score)!+Float(temp), forKey: "userScore")
+        }
+
     }
     
     // Function to pop this view controller and go back to my Levels screen
@@ -187,6 +203,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         self.performSegueWithIdentifier("gameViewToLevelsViewSegue", sender: nil)
     }
     
+    //the function called when we click set
     func clickSet(){
         if(clickSetFlag == 1){
             for recognizer in self.view.gestureRecognizers! {
@@ -448,7 +465,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     for recognizer in self.view.gestureRecognizers! {
                         self.view.removeGestureRecognizer(recognizer)
                     }
-                    
+                    getScore()
                     spriteScene.removeAllChildren()
                     
                     spriteScene.timerNode.text = self.result
