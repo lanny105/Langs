@@ -46,7 +46,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var lastLocation : SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
     var scale: CGFloat = 1.0
     
-    var clickHintFlag=0
+    var clickHintFlag=1
+    var clickQuitFlag=1
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
    
@@ -96,26 +97,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         light.position = SCNVector3(x: 0, y: 0, z: 0)
         scene.rootNode.addChildNode(light)
         
-        
-        
-//        /******/
-//        
-//        let secondSphereGeometry = SCNSphere(radius: 0.5)
-//        let secondSphereNode = SCNNode(geometry: secondSphereGeometry)
-//        secondSphereNode.position = SCNVector3(x: 0.0, y: 10.0, z: 0.0)
-//        scene.rootNode.addChildNode(secondSphereNode)
-//        
-//        
-//        
-//        let firstSphereGeometry = SCNSphere(radius: 1.5)
-//        let firstSphereNode = SCNNode(geometry: secondSphereGeometry)
-//        secondSphereNode.position = SCNVector3(x: 0.0, y: -10.0, z: 0.0)
-//        scene.rootNode.addChildNode(secondSphereNode)
-//        
-//        /*****/
-        
-        
-        
         // add all stars
         for star in starList {
             let starNode: StarNode = StarNode(star: star )
@@ -132,16 +113,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //            //starNode.shiny(true)
             scene.rootNode.addChildNode(starNode)
         }
-        
-        
-        
-        
-//        for answer in constellation.starlist{
-//            let starnode1: StarNode = StarNode(star: answer as! Star)
-//            print(",............",starnode1)
-//            starnode1.shiny(true)
-//            scene.rootNode.addChildNode(starnode1)
-//        }
         
         let sceneView = self.view as! SCNView
         sceneView.scene = scene
@@ -190,10 +161,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTouch", name: "updateTouchNotification", object: nil)
         
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "pause3D", name: "pause3DNotification", object: nil)
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("Counting"), userInfo: nil, repeats: true)
         
         self.spriteScene.makeHint(hintImageNamed, showHint: 1)
-        clickHintFlag = 1
+        
+        //self.spriteScene.addObserver(sceneView.scene!, forKeyPath: "isShow", options: .New, context: nil)
+        
     }
     
     deinit {
@@ -204,6 +179,23 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     func changeScene() {
         self.performSegueWithIdentifier("gameViewToLevelsViewSegue", sender: nil)
     }
+    
+    // pause SceneKit scene
+//    func pause3D(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+//        if keyPath == "isShow" {
+//            self.spriteScene.isShow = change[NSKeyValueChangeNewKey] as! Bool
+//        }
+//    }
+//    func pause3D() {
+//        if (clickQuitFlag == 1) {
+//            clickQuitFlag = 0
+//            self.view.userInteractionEnabled = false
+//        }
+//        else {
+//            clickQuitFlag = 1
+//            self.view.userInteractionEnabled = true
+//        }
+//    }
     
     // show hint image
     func makeHintNotifi(){
@@ -253,8 +245,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             }
         }
         return false
-        
-        
     }
     
     func findLineIndex(node1: StarNode, node2: StarNode)->Int{
@@ -406,30 +396,23 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 
             }
             
-            
-            
-            //print(lineNum)
-            
-
-            
             if lineNum >= constellation.linelist.count {
                 let constellationNode = Constellation()
                 
                 for x in constellationUserState.linelist {
                     constellationNode.linelist.append(x)
                 }
-                //print(constellation.returnAttri())
+                
                 if constellationNode.isequal(constellation) {
-                    // to disable 3D
+                    // disable 3D
                     for recognizer in self.view.gestureRecognizers! {
                         self.view.removeGestureRecognizer(recognizer)
-                        spriteScene.hintNode.paused = true;
                     }
-                    //indicatefinal = 1
-                    //                    spriteScene.makeHintFinal()
+                    
+                    spriteScene.removeAllChildren()
+                    
                     spriteScene.timerNode.text = self.result
                     
-                    //spriteScene.updatemem(result)
                     changetimerstate()
 
                     spriteScene.makeHintFinal(finalImageNamed)
@@ -444,8 +427,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     
     func similarity(x: Double,y: Double,z: Double, x1: Double,y1: Double, z1:Double) ->Double{
-        
-        
         let a = x*x1 + y*y1 + z*z1
         
         let b = sqrt(x*x + y*y + z*z)*sqrt(x1*x1 + y1*y1 + z1*z1)
@@ -518,32 +499,19 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         let a = matrix_transform(self.cameraNode.eulerAngles.x,theta2: self.cameraNode.eulerAngles.y)
         
-//        print(a)
-        
-        
         let c = matrix_transform2(a.x,y: a.y,z: a.z)
-        
-        
-//        print("----------------------")
-        //print(c)
-        
+    
         let b = similarity((Double)(a.x),y: (Double)(a.y),z: (Double)(a.z),x1: (Double)(constellation.starlist[0].x),y1: (Double)(constellation.starlist[0].y),z1: (Double)(constellation.starlist[0].z))
         
  
         
         spriteScene.updateProgressbar(0.5 - b/2)
         spriteScene.updateMaplocation(Double(c[0]), y: Double(c[1]))
-        
-        print(b)
+    
         if( b>0.9) {
-            
-            
             print("Almost there!")
             print(b)
         }
-        
-        
-        
         
         //lastLocation = self.cameraNode.eulerAngles
         
@@ -585,19 +553,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     
     func Counting(){
-        
-        
         if(!timerRuning){
             return
         }
-        //let sceneView = self.view as! SCNView
+        
         self.timecount += 1
-        
-        //spriteScene = OverlayScene(size: self.view.bounds.size)
-        //spriteScene.timer()
-        
-        
-        
         
         result = "Time: "
         
@@ -622,39 +582,20 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         else{
             result += "\(self.timecount%60)"
         }
-        
-        
-        
-        //spriteScene.scoreNode.text = "Time: "+result
-        //spriteScene.updatemem(result)
-        
-        
-        //sceneView.overlaySKScene = spriteScene
-        
-        //print(result)
-        
-        //spriteScene.timer()
-        //print("hello")
-        
     }
     
     
     
     func matrix_transform(theta1: Float, theta2: Float) ->SCNVector3{
-        
-        //var a: SCNVector3
         let x = sin(-theta2)*cos(-theta1)
         let y = -sin(-theta1)
         let z = -cos(-theta1)*cos(-theta2)
         
         return SCNVector3Make(x,y,z)
-        
-    
     }
     
     
     func matrix_transform2(x:Float,y:Float,z:Float) ->[Float] {
-        
         let a = asin(x/(sqrt(pow(x, 2))+pow(z,2)))
         var jingdu: Float
         
@@ -682,8 +623,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             //print("4")
         }
         
-        
-        
         let weidu = asin(y)
         
         return [jingdu,weidu]
@@ -709,17 +648,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        
 //    }
     
-    func handleDoubleTapped(gestureRecognizer: UITapGestureRecognizer) {
-        
-        
-//        print("hello")
-//        self.cameraNode.position = SCNVector3Make(0.0, 0.0, 0.0)
-//        self.cameraNode.eulerAngles = SCNVector3Make(0.0, 0.0, 0.0)
-//        lastLocation = self.cameraNode.eulerAngles
-
-        return
-    }
-    
     
     func handlePinch(gestureRecognizer: UIPinchGestureRecognizer) {
         
@@ -738,9 +666,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //        //print(gestureRecognizer.scale)
 //        self.scale = gestureRecognizer.scale
         
-    
-        
-//        if()
         
         if(gestureRecognizer.scale < 1) {
             if(self.zoom > -20){

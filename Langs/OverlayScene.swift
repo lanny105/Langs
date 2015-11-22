@@ -27,7 +27,7 @@ class OverlayScene: SKScene {
     var progressbar: CircularProgressNode!
     var barra: Map!
     
-    var isShow: Int = 0
+    var isShow: Bool = false
     
     override func didMoveToView(view: SKView) {
         
@@ -80,43 +80,26 @@ class OverlayScene: SKScene {
         self.quitNode.fontSize = 28
         self.quitNode.position = CGPoint(x: size.width/2, y: size.height/2+10)
         
-        //init(radius: CGFloat, color: SKColor, width: CGFloat, startAngle: CGFloat = CGFloat(M_PI_2))
+        
+        // add progressbar and map
         self.progressbar = CircularProgressNode(radius: 20, color: SKColor.redColor(), width: 5, startAngle: 0.0)
         self.progressbar.position = CGPoint(x: size.width*12/13, y: size.height*12/13 )
         //self.progressbar.zPosition = 0.0
         self.addChild(self.progressbar)
         
-        //self.addChild(self.timerNode)
-        
-        
         self.barra = Map(width: size.width*0.12, color: SKColor.whiteColor(), height: size.width*0.12)
-        self.barra.position = CGPoint(x: size.width * 0.85, y: size.height * 0.48)
-        
-//        var barra = SKShapeNode(rectOfSize: CGSize(width: 100, height: 100))
-//        
-//        barra.name = "bar"
-//        barra.fillColor = SKColor.clearColor()
-        //barra.position = CGPoint(x: size.width * 0.85, y: size.height * 0.48)
-        
+        self.barra.position = CGPoint(x: size.width * 0.85, y: size.height * 0.48)        
         self.addChild(barra)
         
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first as UITouch?
-        //print("111")
-        //print(children.count)
         
-        //for touch in touches {
         let location = touch!.locationInNode(self)
         if hintNode.containsPoint(location) {
             self.makeHintNotifi()
         }
-        
-//        if quitNode.containsPoint(location) {
-//            self.changeScene()
-//        }
-        
         else if nextNode.containsPoint(location) {
             self.changeScene()
         }
@@ -128,7 +111,7 @@ class OverlayScene: SKScene {
         else if settingNode.containsPoint(location) {
             self.showSettings()
         }
-        else if (isShow == 1 && quitNode.containsPoint(location)) {
+        else if (isShow && quitNode.containsPoint(location)) {
             self.changeScene()
         }
         else {
@@ -217,14 +200,14 @@ class OverlayScene: SKScene {
     
     
     func showSettings() {
-        if (isShow == 0) {
-            isShow = 1
+        if (!isShow) {
             addChild(quitNode)
         }
         else {
-            isShow = 0
             quitNode.removeFromParent()
         }
+        isShow = !isShow
+        //NSNotificationCenter.defaultCenter().postNotificationName("pause3DNotification", object: nil)
     }
 
     
