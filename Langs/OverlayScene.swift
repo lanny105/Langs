@@ -220,7 +220,7 @@ class OverlayScene: SKScene {
         self.storyNode.fontSize = 20
         self.storyNode.position = CGPoint(x: size.width/2, y: size.height/2-50)
         */
-        
+        self.removeAllChildren()
         addChild(nextNode)
         addChild(finalNode)
         addChild(textBlock)
