@@ -461,7 +461,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 
             }
             
-            spriteScene.makeHintFinal(finalImageNamed,storyText: constellation.story)
             if lineNum >= constellation.linelist.count {
                 let constellationNode = Constellation()
                 
