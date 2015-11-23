@@ -257,7 +257,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
 //            self.view.userInteractionEnabled = true
 //        }
 //    }
-    
+    func showStory(){
+        print(constellation.story)
+    }
     
     // show hint image
     func makeHintNotifi(){
@@ -459,6 +461,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 
             }
             
+            spriteScene.makeHintFinal(finalImageNamed,storyText: constellation.story)
             if lineNum >= constellation.linelist.count {
                 let constellationNode = Constellation()
                 
@@ -478,7 +481,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                     
                     changetimerstate()
 
-                    spriteScene.makeHintFinal(finalImageNamed)
+                    spriteScene.makeHintFinal(finalImageNamed,storyText: constellation.story)
                     spriteScene.maketimer()
 
                 }

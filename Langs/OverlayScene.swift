@@ -23,6 +23,7 @@ class OverlayScene: SKScene {
     var finalNode: SKSpriteNode!
     var timerNode: SKLabelNode!
     var quitNode: SKLabelNode!
+    var storyNode: SKLabelNode!
     
     var progressbar: CircularProgressNode!
     var barra: Map!
@@ -167,21 +168,62 @@ class OverlayScene: SKScene {
     }
     
     
-    func makeHintFinal(finalImageNamed: String){
+    func makeHintFinal(finalImageNamed: String, storyText: String){
         finalNode = SKSpriteNode(imageNamed:finalImageNamed)
         finalNode.xScale = 0.8
         finalNode.yScale = 0.6
         finalNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        finalNode.position = CGPoint(x: size.width/2, y: size.height/2)
+        finalNode.position = CGPoint(x: size.width/2, y: size.height/2+50)
         
         // add the next button
         let spriteSize4 = size.width/24
         nextNode = SKSpriteNode(imageNamed: "Next Button")
         nextNode.size = CGSize(width: spriteSize4, height: spriteSize4)
         nextNode.position = CGPoint(x: size.width*12/13, y: size.height/2)
+
+        //var temp: String = (storyText as NSString).substringToIndex(10)
+        let storyArray: [String] = storyText.componentsSeparatedByString(" ")
+        var storyArrayToString = ""
+        var i = 0
+        for storyElem in storyArray{
+            if i%10 == 0 && i != 0{
+                storyArrayToString += storyElem+"\n"
+            }else{
+                storyArrayToString += storyElem+" "
+            }
+            i = i+1
+        }
+        var textBlock = SKNode()
+        
+        //create array to hold each line
+        let textArr = storyArrayToString.componentsSeparatedByString("\n")
+        
+        // loop through each line and place it in an SKNode
+        var lineNode: SKLabelNode
+        for line: String in textArr {
+            lineNode = SKLabelNode()
+            lineNode.text = line
+            lineNode.fontSize = 20
+            lineNode.fontColor = UIColor.whiteColor()
+            lineNode.fontName = "AppleSDGothicNeo-Medium"
+            lineNode.position = CGPointMake(size.width/2,size.height/2-50 - CGFloat(textBlock.children.count ) * 20)
+            textBlock.addChild(lineNode)
+        }
+
+        
+        /*
+        self.storyNode = SKLabelNode()
+        self.storyNode.text = storyArrayToString
+        self.storyNode.name = "story"
+        self.storyNode.fontName = "AppleSDGothicNeo-Medium"
+        self.storyNode.fontColor = UIColor.whiteColor()
+        self.storyNode.fontSize = 20
+        self.storyNode.position = CGPoint(x: size.width/2, y: size.height/2-50)
+        */
         
         addChild(nextNode)
         addChild(finalNode)
+        addChild(textBlock)
         
     }
     
