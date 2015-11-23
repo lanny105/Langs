@@ -62,9 +62,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var zoom = 0
     
     
-    var mapNodeX:Double!
-    var mapNodeY:Double!
-    var progressbarB:Double!
+    var mapNodeX = 0.0
+    var mapNodeY = 0.0
+    var progressbarB = -1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -192,9 +192,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             // temp indicate how much time we spend to finish the game, if timecount < 60 sec, we give 400 score.
             // timecount < 120 sec, we give 200 score, timecount < 180 sec, we give 100 score.
             var temp = 0
-            if self.timecount < 30{
+            if self.timecount < 60{
                 temp = 400
-            }else if self.timecount < 90{
+            }else if self.timecount < 120{
                 temp = 200
             }else if self.timecount < 180{
                 temp = 100
