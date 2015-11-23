@@ -2,6 +2,51 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>13</key>
+	<dict>
+		<key>bar</key>
+		<integer>4800</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>12</key>
+	<dict>
+		<key>bar</key>
+		<integer>4400</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>11</key>
+	<dict>
+		<key>bar</key>
+		<integer>4000</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>10</key>
+	<dict>
+		<key>bar</key>
+		<real>3600</real>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
+	<key>9</key>
+	<dict>
+		<key>bar</key>
+		<integer>3200</integer>
+		<key>hint</key>
+		<string></string>
+		<key>final</key>
+		<string></string>
+	</dict>
 	<key>1</key>
 	<dict>
 		<key>bar</key>
@@ -25,7 +70,7 @@
 		<key>bar</key>
 		<integer>800</integer>
 		<key>hint</key>
-		<string>big dipper</string>
+		<string>aries</string>
 		<key>final</key>
 		<string>big dipper finish</string>
 	</dict>
@@ -34,7 +79,7 @@
 		<key>bar</key>
 		<integer>1200</integer>
 		<key>hint</key>
-		<string></string>
+		<string>taurus</string>
 		<key>final</key>
 		<string></string>
 	</dict>
@@ -43,7 +88,7 @@
 		<key>bar</key>
 		<integer>1600</integer>
 		<key>hint</key>
-		<string></string>
+		<string>gemini</string>
 		<key>final</key>
 		<string></string>
 	</dict>
@@ -52,7 +97,7 @@
 		<key>bar</key>
 		<integer>2000</integer>
 		<key>hint</key>
-		<string></string>
+		<string>cancer</string>
 		<key>final</key>
 		<string></string>
 	</dict>

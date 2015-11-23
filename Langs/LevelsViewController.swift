@@ -85,7 +85,7 @@ class LevelsViewController: UIViewController {
         // load level info and generate level boxNode
         
         let levelInfo: NSArray = YQDataMediator.instance.getConstellation()
-//        print(levelInfo)
+        print(levelInfo)
 //        print(levelInfo.count)
         
         let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
@@ -93,10 +93,11 @@ class LevelsViewController: UIViewController {
         
         let score = defaults.stringForKey("userScore")
         
-        for index in 0...((levelInfo.count)-1) {
+        for index in 0...((13)-1) {
             let dic = levelInfo[index] as! NSDictionary
             let levelID = dic.objectForKey("levelID") as! String
             
+            print(levelID)
             let levelDict = dict!.valueForKey(levelID)
             let levelBar = levelDict!.valueForKey("bar")
             

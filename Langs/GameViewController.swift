@@ -174,7 +174,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         self.spriteScene.makeHint(hintImageNamed, showHint: 1)
         
         //self.spriteScene.addObserver(sceneView.scene!, forKeyPath: "isShow", options: .New, context: nil)
-
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let score = defaults.stringForKey("userScore") {
+            defaults.setFloat(Float(score)!+Float(4000), forKey: "userScore")
+        }
         
     }
     
@@ -364,6 +368,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             let result:SCNHitTestResult = hitResults[0]
             //let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
+            
+            print(star.data?.hd)
             
             if(activeStar == nil){
                 activeStar = star
