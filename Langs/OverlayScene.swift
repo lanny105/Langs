@@ -37,7 +37,7 @@ class OverlayScene: SKScene {
         //self.userInteractionEnabled = false;
         
         // add the clear button
-        let spriteSize = size.width/30
+        let spriteSize = size.width/28
         self.eraseNode = SKSpriteNode(imageNamed: "Erase Button")
         self.eraseNode.size = CGSize(width: spriteSize, height: spriteSize)
         self.eraseNode.position = CGPoint(x: spriteSize + 4, y: spriteSize + 4)
@@ -47,7 +47,7 @@ class OverlayScene: SKScene {
         
         
         // add the setting button
-        let spriteSize1 = size.width/30
+        let spriteSize1 = size.width/28
         self.settingNode = SKSpriteNode(imageNamed: "Setting Button")
         self.settingNode.size = CGSize(width: spriteSize1, height: spriteSize1)
         self.settingNode.position = CGPoint(x: spriteSize + 4, y: size.height*12.1/13)
@@ -56,10 +56,10 @@ class OverlayScene: SKScene {
         
         
         // add the hint button
-        let spriteSize2 = size.width/30
+        let spriteSize2 = size.width/28
         self.hintNode = SKSpriteNode(imageNamed: "Hint Button")
         self.hintNode.size = CGSize(width: spriteSize2, height: spriteSize2)
-        self.hintNode.position = CGPoint(x: settingNode.position.x + size.width/20, y: size.height*12.1/13)
+        self.hintNode.position = CGPoint(x: settingNode.position.x + size.width/18, y: size.height*12.1/13)
         //self.hintNode.userInteractionEnabled = true;
         self.addChild(self.hintNode)
         
@@ -78,7 +78,7 @@ class OverlayScene: SKScene {
         self.quitNode = SKLabelNode(text: "Quit Level")
         self.quitNode.name = "quit"
         self.quitNode.fontName = "AppleSDGothicNeo-Medium"
-        self.quitNode.fontColor = UIColor.whiteColor()
+        self.quitNode.fontColor = UIColor.redColor()
         self.quitNode.fontSize = 28
         self.quitNode.position = CGPoint(x: size.width/2, y: size.height/2+10)
         
@@ -130,6 +130,7 @@ class OverlayScene: SKScene {
             hintMap.yScale = 0.5
             hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
             addChild(hintMap)
+            //addChild(progressbar)
         }
         else {
             removeAllChildren()
@@ -193,7 +194,8 @@ class OverlayScene: SKScene {
             }
             i = i+1
         }
-        var textBlock = SKNode()
+        
+        let textBlock = SKNode()
         
         //create array to hold each line
         let textArr = storyArrayToString.componentsSeparatedByString("\n")
