@@ -194,7 +194,7 @@ class YQDataMediator {
         
         var Starlist: [Star] = []
         //var ran = random() % 300
-        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE MAG < 4 OR CON_ID = \(level)")
+        let (resultSet, err) = SD.executeQuery("SELECT * FROM Startrix_2 WHERE MAG < 3.5 OR CON_ID = \(level)")
         
         if err != nil {
             //there was an error during the query, handle it here

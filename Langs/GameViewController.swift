@@ -54,7 +54,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
    
     var timer = NSTimer()
     //var timer2 = NSTimer()
-    var timecount = 0
+    var timecount = 300
     var timerRuning = true
     var result = "Time: "
     
@@ -639,11 +639,21 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     
     func Counting(){
+        
+        if(self.timecount == 0) {
+            return
+        }
+        
+        
         if(!timerRuning){
             return
         }
         
-        self.timecount += 1
+        
+        
+        
+        
+        self.timecount -= 1
         
         result = "Time: "
         
@@ -668,6 +678,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         else{
             result += "\(self.timecount%60)"
         }
+        
+        
+        
+//        print(result)
+        self.spriteScene.timerNode.text = result
+        
+        
     }
     
     

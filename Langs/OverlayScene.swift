@@ -66,12 +66,13 @@ class OverlayScene: SKScene {
         self.finalNode = SKSpriteNode()
         self.nextNode = SKSpriteNode()
         
-        self.timerNode = SKLabelNode(text: "")
+        self.timerNode = SKLabelNode(text: "Time: 05:00")
         self.timerNode.name = "time"
         self.timerNode.fontName = "AppleSDGothicNeo-Medium"
         self.timerNode.fontColor = UIColor.whiteColor()
         self.timerNode.fontSize = 24
         self.timerNode.position = CGPoint(x: size.width/2, y: size.height*12.1/13)
+        self.addChild(self.timerNode)
         
         
         // add setting menu
