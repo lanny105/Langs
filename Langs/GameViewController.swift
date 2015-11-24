@@ -192,11 +192,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             // temp indicate how much time we spend to finish the game, if timecount < 60 sec, we give 400 score.
             // timecount < 120 sec, we give 200 score, timecount < 180 sec, we give 100 score.
             var temp = 0
-            if self.timecount < 60{
+            if self.timecount > 200{
                 temp = 400
-            }else if self.timecount < 120{
+            }else if self.timecount > 100{
                 temp = 200
-            }else if self.timecount < 180{
+            }else if self.timecount > 50{
                 temp = 100
             }else{
                 temp = 0
@@ -641,6 +641,18 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     func Counting(){
         
         if(self.timecount == 0) {
+            for recognizer in self.view.gestureRecognizers! {
+                self.view.removeGestureRecognizer(recognizer)
+            }
+            getScore()
+            spriteScene.removeAllChildren()
+            
+            spriteScene.timerNode.text = self.result
+            
+            //changetimerstate()
+            
+            spriteScene.makeHintFinal(finalImageNamed,storyText: constellation.story)
+            spriteScene.maketimer()
             return
         }
         
