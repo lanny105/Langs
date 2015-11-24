@@ -51,6 +51,43 @@ class LevelsViewController: UIViewController {
         //        let scene = SCNScene(named: "art.scnassets/ship.scn")!
         let scene = SCNScene()
         
+        
+        // load level info and generate level boxNode
+        
+        let levelInfo: NSArray = YQDataMediator.instance.getConstellation()
+        print(levelInfo)
+        //        print(levelInfo.count)
+        
+        let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)
+        
+        let score = defaults.stringForKey("userScore")
+        
+        for index in 0...((13)-1) {
+            let dic = levelInfo[index] as! NSDictionary
+            let levelID = dic.objectForKey("levelID") as! String
+            
+            print(levelID)
+            let levelDict = dict!.valueForKey(levelID)
+            let levelBar = levelDict!.valueForKey("bar")
+            
+            if (Float(score!) >= levelBar as? Float) {
+                //                print("Bar: \(levelBar)")
+                //                print("Index: \(index)")
+                //                print("Right: \(self.rightPosition)")
+                let boxNode = genLevelBoxNode(index, dic: dic)
+                if index == 0 {
+                    //                    print("Set left")
+                    self.leftPosition = boxNode.position.x - 1
+                }
+                
+                self.rightPosition = boxNode.position.x + 1
+                scene.rootNode.addChildNode(boxNode)
+            }
+        }
+        
+        
+        
         // create and add a camera to the scene
         //        let cameraNode = SCNNode()
         self.cameraNode.camera = SCNCamera()
@@ -63,7 +100,7 @@ class LevelsViewController: UIViewController {
         scene.rootNode.addChildNode(self.cameraNode)
         
         // place the camera
-        self.cameraNode.position = SCNVector3(x: 0, y: 0, z: self.cameraPositionZ)
+        self.cameraNode.position = SCNVector3(x: self.rightPosition, y: 0, z: self.cameraPositionZ)
         
         
         
@@ -82,39 +119,7 @@ class LevelsViewController: UIViewController {
         //        ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
         
         
-        // load level info and generate level boxNode
         
-        let levelInfo: NSArray = YQDataMediator.instance.getConstellation()
-        print(levelInfo)
-//        print(levelInfo.count)
-        
-        let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
-        let dict = NSDictionary(contentsOfFile: path!)
-        
-        let score = defaults.stringForKey("userScore")
-        
-        for index in 0...((13)-1) {
-            let dic = levelInfo[index] as! NSDictionary
-            let levelID = dic.objectForKey("levelID") as! String
-            
-            print(levelID)
-            let levelDict = dict!.valueForKey(levelID)
-            let levelBar = levelDict!.valueForKey("bar")
-            
-            if (Float(score!) >= levelBar as? Float) {
-//                print("Bar: \(levelBar)")
-//                print("Index: \(index)")
-//                print("Right: \(self.rightPosition)")
-                let boxNode = genLevelBoxNode(index, dic: dic)
-                if index == 0 {
-//                    print("Set left")
-                    self.leftPosition = boxNode.position.x - 1
-                }
-
-                self.rightPosition = boxNode.position.x + 1
-                scene.rootNode.addChildNode(boxNode)
-            }
-        }
         
         
 //        for index in 0...((ary?.count)!-1) {
@@ -136,7 +141,7 @@ class LevelsViewController: UIViewController {
         scene.rootNode.addChildNode(self.lightNode)
         
         // place the light
-        self.lightNode.position = SCNVector3(x: 0, y: 0, z: 5)
+        self.lightNode.position = SCNVector3(x: self.rightPosition, y: 0, z: 5)
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
