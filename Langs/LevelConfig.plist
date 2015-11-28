@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>14</key>
+	<dict>
+		<key>bar</key>
+		<integer>5200</integer>
+		<key>final</key>
+		<string></string>
+		<key>hint</key>
+		<string></string>
+	</dict>
 	<key>13</key>
 	<dict>
 		<key>bar</key>
