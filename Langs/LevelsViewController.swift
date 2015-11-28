@@ -63,7 +63,7 @@ class LevelsViewController: UIViewController {
         
         let score = defaults.stringForKey("userScore")
         
-        for index in 0...((13)-1) {
+        for index in 0...((14)-1) {
             let dic = levelInfo[index] as! NSDictionary
             let levelID = dic.objectForKey("levelID") as! String
             
