@@ -9,7 +9,7 @@
 		<key>final</key>
 		<string></string>
 		<key>hint</key>
-		<string></string>
+		<string>volans</string>
 	</dict>
 	<key>13</key>
 	<dict>
@@ -18,7 +18,7 @@
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
-		<string></string>
+		<string>pisces</string>
 	</dict>
 	<key>12</key>
 	<dict>
@@ -27,7 +27,7 @@
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
-		<string></string>
+		<string>aquarius</string>
 	</dict>
 	<key>11</key>
 	<dict>
@@ -36,7 +36,7 @@
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
-		<string></string>
+		<string>capricornus</string>
 	</dict>
 	<key>10</key>
 	<dict>
@@ -45,7 +45,7 @@
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
-		<string></string>
+		<string>scorpius</string>
 	</dict>
 	<key>9</key>
 	<dict>
@@ -54,7 +54,7 @@
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
-		<string></string>
+		<string>libra</string>
 	</dict>
 	<key>1</key>
 	<dict>
@@ -63,7 +63,7 @@
 		<key>hint</key>
 		<string>big dipper</string>
 		<key>final</key>
-		<string>big dipper finish</string>
+		<string>ursa-major</string>
 	</dict>
 	<key>2</key>
 	<dict>
@@ -72,43 +72,43 @@
 		<key>hint</key>
 		<string>ursa minor</string>
 		<key>final</key>
-		<string>ursa minor finish</string>
+		<string>ursa-minor</string>
 	</dict>
 	<key>3</key>
 	<dict>
 		<key>bar</key>
 		<integer>800</integer>
 		<key>hint</key>
-		<string>aries</string>
+		<string>aries-hint</string>
 		<key>final</key>
-		<string>big dipper finish</string>
+		<string>aries</string>
 	</dict>
 	<key>4</key>
 	<dict>
 		<key>bar</key>
 		<integer>1200</integer>
 		<key>hint</key>
-		<string>taurus</string>
+		<string>taurus-hint</string>
 		<key>final</key>
-		<string></string>
+		<string>taurus</string>
 	</dict>
 	<key>5</key>
 	<dict>
 		<key>bar</key>
 		<integer>1600</integer>
 		<key>hint</key>
-		<string>gemini</string>
+		<string>gemini-hint</string>
 		<key>final</key>
-		<string></string>
+		<string>gemini</string>
 	</dict>
 	<key>6</key>
 	<dict>
 		<key>bar</key>
 		<integer>2000</integer>
 		<key>hint</key>
-		<string>cancer</string>
+		<string>cancer-hint</string>
 		<key>final</key>
-		<string></string>
+		<string>cancer</string>
 	</dict>
 	<key>7</key>
 	<dict>
@@ -117,7 +117,7 @@
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
-		<string></string>
+		<string>leo</string>
 	</dict>
 	<key>8</key>
 	<dict>
@@ -126,7 +126,7 @@
 		<key>hint</key>
 		<string></string>
 		<key>final</key>
-		<string></string>
+		<string>virgo</string>
 	</dict>
 </dict>
 </plist>

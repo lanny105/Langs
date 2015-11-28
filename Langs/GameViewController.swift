@@ -356,6 +356,21 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
     }
     
+    func showInTheFinal(){
+        // disable 3D
+        for recognizer in self.view.gestureRecognizers! {
+            self.view.removeGestureRecognizer(recognizer)
+        }
+        getScore()
+        spriteScene.removeAllChildren()
+        
+        spriteScene.timerNode.text = self.result
+        
+        changetimerstate()
+        
+        spriteScene.makeHintFinal(finalImageNamed,storyText: constellation.story)
+        spriteScene.maketimer()
+    }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
         let sceneView = self.view as! SCNView
@@ -369,7 +384,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             //let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
             
-            print(star.data?.hd)
+            showInTheFinal()
             
             if(activeStar == nil){
                 activeStar = star
@@ -475,20 +490,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
                 }
                 
                 if constellationNode.isequal(constellation) {
-                    // disable 3D
-                    for recognizer in self.view.gestureRecognizers! {
-                        self.view.removeGestureRecognizer(recognizer)
-                    }
-                    getScore()
-                    spriteScene.removeAllChildren()
-                    
-                    spriteScene.timerNode.text = self.result
-                    
-                    changetimerstate()
-
-                    spriteScene.makeHintFinal(finalImageNamed,storyText: constellation.story)
-                    spriteScene.maketimer()
-
+                    showInTheFinal()
                 }
             }
         }
