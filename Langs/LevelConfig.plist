@@ -7,9 +7,9 @@
 		<key>bar</key>
 		<integer>5200</integer>
 		<key>final</key>
-		<string></string>
-		<key>hint</key>
 		<string>volans</string>
+		<key>hint</key>
+		<string></string>
 	</dict>
 	<key>13</key>
 	<dict>
