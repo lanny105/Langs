@@ -36,6 +36,7 @@ class AudioMediator: NSObject {
         }
 
         self.musicPlayer?.prepareToPlay()
+        self.musicPlayer?.numberOfLoops = -1
         self.musicPlayer?.play()
     }
 
@@ -54,7 +55,7 @@ class AudioMediator: NSObject {
                 self.tapPlayer = try AVAudioPlayer(contentsOfURL: fileUrl)
             }
             catch _ {
-                print("Music player error!")
+                print("Tap player error!")
             }
 
         }
@@ -72,7 +73,7 @@ class AudioMediator: NSObject {
                 self.congPlayer = try AVAudioPlayer(contentsOfURL: fileUrl)
             }
             catch _ {
-                print("Music player error!")
+                print("Congrate player error!")
             }
 
         }
