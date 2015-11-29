@@ -25,7 +25,7 @@ class OverlayScene: SKScene {
     var quitNode: SKLabelNode!
     var storyNode: SKLabelNode!
     
-    var progressbar: CircularProgressNode!
+    var progressbar: SKSpriteNode!
     var barra: Map!
     
     var isShow: Bool = false
@@ -85,10 +85,26 @@ class OverlayScene: SKScene {
         
         
         // add progressbar and map
-        self.progressbar = CircularProgressNode(radius: 20, color: SKColor.redColor(), width: 5, startAngle: 0.0)
-        self.progressbar.position = CGPoint(x: size.width*12/13, y: size.height*12/13 )
-        //self.progressbar.zPosition = 0.0
+//        self.progressbar = CircularProgressNode(radius: 20, color: SKColor.redColor(), width: 5, startAngle: 0.0)
+//        self.progressbar.position = CGPoint(x: size.width*12/13, y: size.height*12/13 )
+//        //self.progressbar.zPosition = 0.0
+//        self.addChild(self.progressbar)
+        
+        
+        
+        self.progressbar = SKSpriteNode()
+        self.progressbar.size = CGSizeMake(0, size.height*0.02)
+        self.progressbar.color = UIColor.orangeColor()
+        self.progressbar.position = CGPoint(x: size.width*0.85, y: size.height*0.46)
+        
+        self.progressbar.anchorPoint = CGPointMake(0.0, 0.0)
+        
         self.addChild(self.progressbar)
+        
+        
+        
+        //progressbar.size = CGSizeMake(progressValue, sprite.size.height);
+        
         
         self.barra = Map(width: size.width*0.12, color: SKColor.whiteColor(), height: size.width*0.12)
         self.barra.position = CGPoint(x: size.width * 0.85, y: size.height * 0.48)        
@@ -155,8 +171,12 @@ class OverlayScene: SKScene {
     }
     
     
-    func updateProgressbar(percentageCompleted: Double) {
-        self.progressbar.updateProgress(CGFloat(percentageCompleted))
+    func updateProgressbar(var percentageCompleted: CGFloat) {
+        //self.progressbar.updateProgress(CGFloat(percentageCompleted))
+        
+        percentageCompleted = percentageCompleted * size.width*0.12
+        self.progressbar.size = CGSizeMake(percentageCompleted, size.height*0.02)
+        
     }
     
     func updateMaplocation(x: Double, y: Double) {

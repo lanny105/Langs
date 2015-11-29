@@ -278,7 +278,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         }
         sceneView.overlaySKScene=spriteScene
         spriteScene.updateMaplocation(mapNodeX, y: mapNodeY)
-        spriteScene.updateProgressbar(0.5 - progressbarB/2)
+        spriteScene.updateProgressbar(CGFloat((progressbarB+1)/2 * 100))
     }
     
     // erase everything on screen
@@ -576,9 +576,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
         let b = similarity((Double)(a.x),y: (Double)(a.y),z: (Double)(a.z),x1: (Double)(constellation.starlist[0].x),y1: (Double)(constellation.starlist[0].y),z1: (Double)(constellation.starlist[0].z))
         
- 
         
-        spriteScene.updateProgressbar(0.5 - b/2)
+        
+        
+        
+        spriteScene.updateProgressbar(CGFloat((b+1)/2))
+        
+        //spriteScene.updateProgressbar(0.5 - b/2)
         spriteScene.updateMaplocation(Double(c[0]), y: Double(c[1]))
         mapNodeX = Double(c[0])
         mapNodeY = Double(c[1])
