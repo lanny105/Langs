@@ -174,9 +174,22 @@ class OverlayScene: SKScene {
     func updateProgressbar(var percentageCompleted: CGFloat) {
         //self.progressbar.updateProgress(CGFloat(percentageCompleted))
         
+        if( percentageCompleted>0.95) {
+            
+            updatecolor()
+        }
+            
+        else {
+            recovercolor()
+        }
+        
+        
         percentageCompleted = percentageCompleted * size.width*0.4
         self.progressbar.size = CGSizeMake(percentageCompleted, size.height*0.02)
         
+
+        
+    
     }
     
     

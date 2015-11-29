@@ -287,7 +287,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         }
         sceneView.overlaySKScene=spriteScene
         spriteScene.updateMaplocation(mapNodeX, y: mapNodeY)
-        spriteScene.updateProgressbar(CGFloat((progressbarB+1)/2 * 100))
+        spriteScene.updateProgressbar(CGFloat((progressbarB+1)/2))
     }
     
     // erase everything on screen
@@ -598,14 +598,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         mapNodeY = Double(c[1])
         progressbarB = b
         
-        if( b>0.9) {
-            
-            spriteScene.updatecolor()
-        }
-        
-        else {
-            spriteScene.recovercolor()
-        }
+//        if( b>0.9) {
+//            
+//            spriteScene.updatecolor()
+//        }
+//        
+//        else {
+//            spriteScene.recovercolor()
+//        }
         
         
         
