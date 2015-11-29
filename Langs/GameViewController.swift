@@ -384,7 +384,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             //let result: AnyObject! = hitResults[0]
             let star = result.node as! StarNode
             
-            showInTheFinal()
+            //showInTheFinal()
             
             if(activeStar == nil){
                 activeStar = star
