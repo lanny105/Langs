@@ -29,8 +29,10 @@ class Map : SKShapeNode
         self.height = height
         
         let rect = CGRect(origin: CGPoint(x: 0.5, y: 0.5), size: CGSize(width: width, height: height))
-        
+        let frame = SKShapeNode(rect: rect, cornerRadius: 2.0)
+        frame.fillColor = SKColor(red: 222.0, green: 222.0, blue: 222.0, alpha: 0.3)
         self.path = CGPathCreateWithRoundedRect(rect, 2.0, 2.0, nil)
+        self.addChild(frame)
 
         self.location = SKShapeNode(circleOfRadius: 5 ) // Size of Circle
         location.position = CGPointMake(width/2, height/2)  //Middle of Screen

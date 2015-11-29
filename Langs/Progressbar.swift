@@ -20,6 +20,7 @@ class CircularProgressNode : SKShapeNode
         
         self.radius = radius
         self.strokeColor = color
+        self.fillColor = SKColor.blueColor()
         self.lineWidth = width
         self.startAngle = startAngle
         
