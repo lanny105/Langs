@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //text = Cons.returnAttri()
         
         //print(text)
+
+        AudioMediator.instance.playBackgroudMusic()
         
         return true
     }
