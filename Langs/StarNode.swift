@@ -57,15 +57,19 @@ class StarNode: SCNNode {
 
         // Modify star size
         let innerNode = SCNNode()
-        //print(star.mag)
         innerNode.geometry = SCNSphere(radius: ((-0.25)*CGFloat(star.mag) + 1.75) * 0.8)
+        // innerNode.geometry = SCNBox(width: 1.0, height: 1.5, length: 2.0, chamferRadius: 0.0)
         let materialsphere1 = SCNMaterial()
-        materialsphere1.diffuse.contents = UIColor.whiteColor()
+        // materialsphere1.diffuse.contents = UIColor.whiteColor()
+        let x = drand48()
+        let y = 0.25*x + 0.75
+        let color = UIColor(red: CGFloat(y), green: CGFloat(y), blue: CGFloat(y), alpha: CGFloat(y))
+        materialsphere1.diffuse.contents = color
+        // materialsphere1.specular.contents = UIColor.blueColor()
+        // materialsphere1.shininess = 3.0
         innerNode.geometry?.materials = [materialsphere1]
         innerNode.position = SCNVector3(0, 0, 0)
         actualStar = innerNode
-
-        //self.shiny(true)
 
         self.addChildNode(actualStar)
     }

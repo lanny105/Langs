@@ -88,7 +88,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         let ambientLight = SCNLight()
         ambientLight.color = UIColor.whiteColor()
         ambientLight.type = SCNLightTypeAmbient
-        cameraNode.light = ambientLight
+         cameraNode.light = ambientLight
         cameraNode.camera?.zFar = 200
         
         let spotLight = SCNLight()
