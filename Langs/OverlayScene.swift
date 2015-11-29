@@ -147,7 +147,9 @@ class OverlayScene: SKScene {
             hintMap.yScale = 0.5
             hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
             addChild(hintMap)
-            //addChild(progressbar)
+            if !self.children.contains(progressbar){
+                addChild(progressbar)
+            }
         }
         else {
             removeAllChildren()
@@ -156,13 +158,16 @@ class OverlayScene: SKScene {
             hintMap.yScale = 0.5
             hintMap.position = CGPoint(x: size.width * 0.85, y: size.height * 0.15)
             addChild(hintMap)
-            addChild(progressbar)
+//            if !self.children.contains(progressbar){
+//                addChild(progressbar)
+//            }
         }
     }
     
     
     func hindHint() {
         removeAllChildren()
+        
     }
     
 
