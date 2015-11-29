@@ -93,6 +93,41 @@ class StarNode: SCNNode {
 
         actualStar.addAnimation(group, forKey: "shinyAnimation")
     }
+    
+    func redstar(star: Star){
+        self.data = star
+        
+        self.categoryBitMask = 1
+        
+        px = Float((data?.x)!)
+        py = Float((data?.y)!)
+        pz = Float((data?.z)!)
+        let l = pow(px*px + py*py + pz*pz, 0.5)
+        px = px * R/l
+        py = py * R/l
+        pz = pz * R/l
+        
+        self.geometry = SCNSphere(radius: 3.5)
+        let materialsphere = SCNMaterial()
+        materialsphere.transparency = 0.0
+        self.geometry?.materials = [materialsphere]
+        self.position = SCNVector3(x: px, y: py, z: pz)
+        
+        // Modify star size
+        let innerNode = SCNNode()
+        //print(star.mag)
+        innerNode.geometry = SCNSphere(radius: ((-0.25)*CGFloat(star.mag) + 1.75) * 0.8)
+        let materialsphere1 = SCNMaterial()
+        materialsphere1.diffuse.contents = UIColor.redColor()
+        innerNode.geometry?.materials = [materialsphere1]
+        innerNode.position = SCNVector3(0, 0, 0)
+        actualStar = innerNode
+        
+        //self.shiny(true)
+        
+        self.addChildNode(actualStar)
+
+    }
 
     func highlight(b: Bool) {
         let material = actualStar.geometry!.firstMaterial!

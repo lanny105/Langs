@@ -28,16 +28,16 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     
     let constellationUserState = Constellation()
     // get star statistics
-//    let starList = YQDataMediator.instance.getStarByAttr(2)
+    //    let starList = YQDataMediator.instance.getStarByAttr(2)
     var starList = [Star]()
     
     // get constellation
-//    var constellation = YQDataMediator.instance.getConstellationByLevel(1)
+    //    var constellation = YQDataMediator.instance.getConstellationByLevel(1)
     var constellation = Constellation()
     
     var hintImageNamed = "bdqx2"
     var finalImageNamed = "finish"
-    
+    var level = ""
     
     let cameraNode = SCNNode()
     
@@ -51,7 +51,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     var clickSetFlag=1
     
     var cameraHandleTranforms = [SCNMatrix4](count:10, repeatedValue:SCNMatrix4(m11: 0.0, m12: 0.0, m13: 0.0, m14: 0.0, m21: 0.0, m22: 0.0, m23: 0.0, m24: 0.0, m31: 0.0, m32: 0.0, m33: 0.0, m34: 0.0, m41: 0.0, m42: 0.0, m43: 0.0, m44: 0.0))
-   
+    
     var timer = NSTimer()
     //var timer2 = NSTimer()
     var timecount = 300
@@ -79,9 +79,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         // place the camera
         self.cameraNode.position = SCNVector3(x: 0, y: 0, z: self.cameraPositionZ)
         
-
         
-//        self.cameraNode.eulerAngles = SCNVector3Make((Float(x)*Float(M_PI)), (2*Float(y))*Float(M_PI)),0)
+        
+        //        self.cameraNode.eulerAngles = SCNVector3Make((Float(x)*Float(M_PI)), (2*Float(y))*Float(M_PI)),0)
         
         scene.rootNode.addChildNode(cameraNode)
         
@@ -108,14 +108,18 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             //starNode.shiny(true)
             for findstar in constellation.starlist {
                 if(findstar.hd==star.hd){
-                  starNode.shiny(true)
+                    starNode.shiny(true)
+                    if (Int(level) == 1){
+                        starNode.redstar(findstar)
+                    }
                 }
+                
             }
-//            let x=drand48()
-////            if(x>0.8){
-////                starNode.shiny(true)
-////            }
-//            //starNode.shiny(true)
+            //            let x=drand48()
+            ////            if(x>0.8){
+            ////                starNode.shiny(true)
+            ////            }
+            //            //starNode.shiny(true)
             scene.rootNode.addChildNode(starNode)
         }
         
@@ -139,7 +143,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         doubletapGesture.numberOfTapsRequired = 2
         //doubletapGesture.numberOfTouchesRequired = 2
         sceneView.addGestureRecognizer(doubletapGesture)
-//        let tap = UITapGestureRecognizer(target: self, action: "doubleTapped")
+        //        let tap = UITapGestureRecognizer(target: self, action: "doubleTapped")
         
         
         let pinchGesture = UIPinchGestureRecognizer()
@@ -153,7 +157,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         tapRecognizer.addTarget(self, action: "handleTap:")
         sceneView.addGestureRecognizer(tapRecognizer)
         
-
+        
         spriteScene = OverlayScene(size: self.view.bounds.size)
         sceneView.overlaySKScene = spriteScene
         
@@ -161,7 +165,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "makeHintNotifi", name: "makeHintNotification", object: nil)
         
-
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "eraseAllNotifi", name: "eraseAllNotification", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTouch", name: "updateTouchNotification", object: nil)
@@ -175,12 +179,16 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         //self.spriteScene.addObserver(sceneView.scene!, forKeyPath: "isShow", options: .New, context: nil)
         
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        if let score = defaults.stringForKey("userScore") {
-//            defaults.setFloat(Float(score)!+Float(4000), forKey: "userScore")
-//        }
+        //        let defaults = NSUserDefaults.standardUserDefaults()
+        //        if let score = defaults.stringForKey("userScore") {
+        //            defaults.setFloat(Float(score)!+Float(4000), forKey: "userScore")
+        //        }
+        //print(level)
         
     }
+    
+    
+    
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -203,7 +211,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             }
             defaults.setFloat(Float(score)!+Float(temp), forKey: "userScore")
         }
-
+        
     }
     
     // Function to pop this view controller and go back to my Levels screen
@@ -246,21 +254,21 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     }
     
     // pause SceneKit scene
-//    func pause3D(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-//        if keyPath == "isShow" {
-//            self.spriteScene.isShow = change[NSKeyValueChangeNewKey] as! Bool
-//        }
-//    }
-//    func pause3D() {
-//        if (clickQuitFlag == 1) {
-//            clickQuitFlag = 0
-//            self.view.userInteractionEnabled = false
-//        }
-//        else {
-//            clickQuitFlag = 1
-//            self.view.userInteractionEnabled = true
-//        }
-//    }
+    //    func pause3D(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    //        if keyPath == "isShow" {
+    //            self.spriteScene.isShow = change[NSKeyValueChangeNewKey] as! Bool
+    //        }
+    //    }
+    //    func pause3D() {
+    //        if (clickQuitFlag == 1) {
+    //            clickQuitFlag = 0
+    //            self.view.userInteractionEnabled = false
+    //        }
+    //        else {
+    //            clickQuitFlag = 1
+    //            self.view.userInteractionEnabled = true
+    //        }
+    //    }
     func showStory(){
         print(constellation.story)
     }
@@ -525,12 +533,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         if(lastLocation.x + Float(point.y)/400 > 1.57) {
             self.cameraNode.eulerAngles.x = 1.57
         }
-        
+            
         else if (lastLocation.x + Float(point.y)/400 < -1.57) {
             self.cameraNode.eulerAngles.x = -1.57
             
         }
-        
+            
         else {
             self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
             
@@ -538,33 +546,33 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
         
-//        
-//        
-//        if self.cameraNode.eulerAngles.x <= 1.57 && self.cameraNode.eulerAngles.x >= -1.57{
-//            
-//            self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-//            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
-//
-//        }
-//        
-//        else {
-//            
-//            if self.cameraNode.eulerAngles.x > 0 && point.y < 0{
-//                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-//                
-//                
-//            }
-//            
-//            
-//            else if self.cameraNode.eulerAngles.x < 0 && point.y > 0 {
-//                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
-//                
-//            }
-//            
-//            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
-//            
-//        }
-//        
+        //
+        //
+        //        if self.cameraNode.eulerAngles.x <= 1.57 && self.cameraNode.eulerAngles.x >= -1.57{
+        //
+        //            self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+        //            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+        //
+        //        }
+        //
+        //        else {
+        //
+        //            if self.cameraNode.eulerAngles.x > 0 && point.y < 0{
+        //                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+        //
+        //
+        //            }
+        //
+        //
+        //            else if self.cameraNode.eulerAngles.x < 0 && point.y > 0 {
+        //                self.cameraNode.eulerAngles.x = lastLocation.x + Float(point.y)/400
+        //
+        //            }
+        //
+        //            self.cameraNode.eulerAngles.y = lastLocation.y + Float(point.x)/400
+        //
+        //        }
+        //
         
         
         //print(self.cameraNode.eulerAngles)
@@ -573,17 +581,17 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         let a = matrix_transform(self.cameraNode.eulerAngles.x,theta2: self.cameraNode.eulerAngles.y)
         
         let c = matrix_transform2(a.x,y: a.y,z: a.z)
-    
+        
         let b = similarity((Double)(a.x),y: (Double)(a.y),z: (Double)(a.z),x1: (Double)(constellation.starlist[0].x),y1: (Double)(constellation.starlist[0].y),z1: (Double)(constellation.starlist[0].z))
         
- 
+        
         
         spriteScene.updateProgressbar(0.5 - b/2)
         spriteScene.updateMaplocation(Double(c[0]), y: Double(c[1]))
         mapNodeX = Double(c[0])
         mapNodeY = Double(c[1])
         progressbarB = b
-    
+        
         if( b>0.9) {
             print("Almost there!")
             print(b)
@@ -695,7 +703,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         
         
-//        print(result)
+        //        print(result)
         self.spriteScene.timerNode.text = result
         
         
@@ -721,19 +729,19 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             jingdu = -a
             //print("1")
         }
-        
+            
         else if(x<=0&&z>=0){
             //print(a)
             jingdu = a + Float((M_PI))
             //print("2")
         }
-        
+            
         else if (x > 0 && z>=0 ) {
             //print(a)
             jingdu = a + Float((M_PI))
             //print("3")
         }
-        
+            
         else {
             //print(a)
             jingdu = Float((M_PI))*2 - a
@@ -746,24 +754,24 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     }
     
     
-//    func coordinates_transform() ->SCNVector3{
-//        
-//        let theta1 = lastLocation.x
-//        let theta2 = lastLocation.y
-//        
-//        let x = self.cameraNode.position.x * cos(theta2) + sin(theta1) * sin(theta2) * self.cameraNode.position.y + self.cameraNode.position.z * cos(theta1) * sin(theta2)
-//        
-//        
-//        let y = self.cameraNode.position.y * cos(theta1) + sin(-theta1)*self.cameraNode.position.z
-//        
-//        let z = -self.cameraNode.position.x*sin(theta2) + self.cameraNode.position.y * sin(theta1)*cos(theta2) + self.cameraNode.position.z * cos(theta1)*cos(theta2)
-//        
-//        
-//        return SCNVector3Make(x,y,z)
-//        
-//        
-//        
-//    }
+    //    func coordinates_transform() ->SCNVector3{
+    //
+    //        let theta1 = lastLocation.x
+    //        let theta2 = lastLocation.y
+    //
+    //        let x = self.cameraNode.position.x * cos(theta2) + sin(theta1) * sin(theta2) * self.cameraNode.position.y + self.cameraNode.position.z * cos(theta1) * sin(theta2)
+    //
+    //
+    //        let y = self.cameraNode.position.y * cos(theta1) + sin(-theta1)*self.cameraNode.position.z
+    //
+    //        let z = -self.cameraNode.position.x*sin(theta2) + self.cameraNode.position.y * sin(theta1)*cos(theta2) + self.cameraNode.position.z * cos(theta1)*cos(theta2)
+    //
+    //
+    //        return SCNVector3Make(x,y,z)
+    //
+    //
+    //
+    //    }
     
     
     func handlePinch(gestureRecognizer: UIPinchGestureRecognizer) {
@@ -774,14 +782,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
         //print("|||||",self.lastLocation)
         //print("-----",a)
-//        let x = self.cameraNode.position.x
-//        let y = self.cameraNode.position.y
-//        let z = self.cameraNode.position.z
-//        
-//        
-//        print(pow(x*x + y*y + z*z, 0.5))
-//        //print(gestureRecognizer.scale)
-//        self.scale = gestureRecognizer.scale
+        //        let x = self.cameraNode.position.x
+        //        let y = self.cameraNode.position.y
+        //        let z = self.cameraNode.position.z
+        //
+        //
+        //        print(pow(x*x + y*y + z*z, 0.5))
+        //        //print(gestureRecognizer.scale)
+        //        self.scale = gestureRecognizer.scale
         
         
         if(gestureRecognizer.scale < 1) {
@@ -793,7 +801,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             //print("|||||",self.cameraNode.position)
             
         }
-        
+            
         else if(self.zoom < 20) {
             self.cameraNode.position = SCNVector3Make(self.cameraNode.position.x + Float(zoomindex)*a.x, self.cameraNode.position.y + Float(zoomindex)*a.y, self.cameraNode.position.z + Float(zoomindex)*a.z)
             //print("-----",lastLocation)
@@ -805,7 +813,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         
     }
     
-   
+    
     override func shouldAutorotate() -> Bool {
         return true
     }

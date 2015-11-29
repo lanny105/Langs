@@ -55,7 +55,6 @@ class LevelsViewController: UIViewController {
         // load level info and generate level boxNode
         
         let levelInfo: NSArray = YQDataMediator.instance.getConstellation()
-        print(levelInfo)
         //        print(levelInfo.count)
         
         let path = NSBundle.mainBundle().pathForResource("LevelConfig", ofType: "plist")
@@ -67,7 +66,7 @@ class LevelsViewController: UIViewController {
             let dic = levelInfo[index] as! NSDictionary
             let levelID = dic.objectForKey("levelID") as! String
             
-            print(levelID)
+            //print(levelID)
             let levelDict = dict!.valueForKey(levelID)
             let levelBar = levelDict!.valueForKey("bar")
             
@@ -332,6 +331,7 @@ class LevelsViewController: UIViewController {
             
             
             self.performSegueWithIdentifier("levelsViewToGameViewSegue", sender: result.node!.name!)
+            
             // segue.dest
         }
         
@@ -364,7 +364,7 @@ class LevelsViewController: UIViewController {
             
             let secondVC = segue.destinationViewController as! GameViewController
             
-            print(sender as! String)
+            //print(sender as! String)
             let levelIDNum = Int(sender as! String)!
             secondVC.constellation = YQDataMediator.instance.getConstellationByLevel(levelIDNum)
             
@@ -373,6 +373,8 @@ class LevelsViewController: UIViewController {
             secondVC.hintImageNamed = levelHint as! String
             
             secondVC.finalImageNamed = levelFinal as! String
+            
+            secondVC.level = sender as! String
 
         }
     }
