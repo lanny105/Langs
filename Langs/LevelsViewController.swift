@@ -62,27 +62,34 @@ class LevelsViewController: UIViewController {
         
         let score = defaults.stringForKey("userScore")
         
-        for index in 0...((14)-1) {
+        for index in 0...((levelInfo.count)-1) {
             let dic = levelInfo[index] as! NSDictionary
             let levelID = dic.objectForKey("levelID") as! String
             
             //print(levelID)
-            let levelDict = dict!.valueForKey(levelID)
-            let levelBar = levelDict!.valueForKey("bar")
             
-            if (Float(score!) >= levelBar as? Float) {
-                //                print("Bar: \(levelBar)")
-                //                print("Index: \(index)")
-                //                print("Right: \(self.rightPosition)")
-                let boxNode = genLevelBoxNode(index, dic: dic)
-                if index == 0 {
-                    //                    print("Set left")
-                    self.leftPosition = boxNode.position.x - 1
+            if let levelDict = dict!.valueForKey(levelID) {
+                let levelBar = levelDict.valueForKey("bar")
+                
+                if (Float(score!) >= levelBar as? Float) {
+                    //                print("Bar: \(levelBar)")
+                    //                print("Index: \(index)")
+                    //                print("Right: \(self.rightPosition)")
+                    let boxNode = genLevelBoxNode(index, dic: dic)
+                    if index == 0 {
+                        //                    print("Set left")
+                        self.leftPosition = boxNode.position.x - 1
+                    }
+                    
+                    self.rightPosition = boxNode.position.x + 1
+                    scene.rootNode.addChildNode(boxNode)
                 }
                 
-                self.rightPosition = boxNode.position.x + 1
-                scene.rootNode.addChildNode(boxNode)
             }
+            else {
+                print("\(levelID) is nil!!")
+            }
+            
         }
         
         
