@@ -23,7 +23,7 @@ class StartOverlay: SKScene {
         titleLabelNode.name = "Startrix"
         titleLabelNode.fontName = "Chalkduster"
         titleLabelNode.fontColor = UIColor.whiteColor()
-        titleLabelNode.fontSize = size.height/3
+        titleLabelNode.fontSize = size.height/3.7
         titleLabelNode.position = CGPoint(x: size.width/2, y: size.height/2+size.height/7)
         self.addChild(titleLabelNode)
         

@@ -70,7 +70,7 @@ class OverlayScene: SKScene {
         self.timerNode.name = "time"
         self.timerNode.fontName = "Chalkduster"
         self.timerNode.fontColor = UIColor(red: 255.0/255, green: 0.0/255, blue: 0.0/255, alpha: 1.0)
-        self.timerNode.fontSize = 24
+        self.timerNode.fontSize = size.width/30
         self.timerNode.position = CGPoint(x: size.width/2, y: size.height*11.7/13)
         self.addChild(self.timerNode)
         
@@ -80,7 +80,7 @@ class OverlayScene: SKScene {
         self.quitNode.name = "quit"
         self.quitNode.fontName = "Chalkduster"
         self.quitNode.fontColor = UIColor.redColor()
-        self.quitNode.fontSize = 28
+        self.quitNode.fontSize = size.width/27
         self.quitNode.position = CGPoint(x: size.width/2, y: size.height/2+10)
         
         
@@ -95,7 +95,7 @@ class OverlayScene: SKScene {
         self.progressbar = SKSpriteNode()
         self.progressbar.size = CGSizeMake(0, size.height*0.02)
         self.progressbar.color = UIColor.orangeColor()
-        self.progressbar.position = CGPoint(x: eraseNode.position.x + size.width/9.5, y: size.width/24+3)
+        self.progressbar.position = CGPoint(x: eraseNode.position.x + size.width/9, y: size.width/24+3)
         
         self.progressbar.anchorPoint = CGPointMake(0.0, 0.0)
         
@@ -206,8 +206,8 @@ class OverlayScene: SKScene {
     
     func makeHintFinal(finalImageNamed: String, storyText: String){
         finalNode = SKSpriteNode(imageNamed:finalImageNamed)
-        finalNode.xScale = 1.0
-        finalNode.yScale = 1.0
+        finalNode.xScale = 1.1
+        finalNode.yScale = 1.1
         finalNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         finalNode.position = CGPoint(x: size.width*10/13, y: size.height/2)
         
@@ -215,7 +215,7 @@ class OverlayScene: SKScene {
         let spriteSize4 = size.width/18
         nextNode = SKSpriteNode(imageNamed: "ok")
         nextNode.size = CGSize(width: spriteSize4, height: spriteSize4)
-        nextNode.position = CGPoint(x: size.width/2, y: size.height/20+12)
+        nextNode.position = CGPoint(x: size.width/2, y: size.height*1.7/13)
 
         //var temp: String = (storyText as NSString).substringToIndex(10)
         let storyArray: [String] = storyText.componentsSeparatedByString(" ")
@@ -259,10 +259,10 @@ class OverlayScene: SKScene {
         for line: String in textArr {
             lineNode = SKLabelNode()
             lineNode.text = line
-            lineNode.fontSize = 15
+            lineNode.fontSize = size.width/45
             lineNode.fontColor = UIColor.orangeColor()
             lineNode.fontName = "Chalkduster"
-            lineNode.position = CGPointMake(size.width/4+4,size.height-70 - CGFloat(textBlock.children.count ) * 20)
+            lineNode.position = CGPointMake(size.width/4+4,size.height*10.0/13 - CGFloat(textBlock.children.count ) * 20)
             textBlock.addChild(lineNode)
         }
 
