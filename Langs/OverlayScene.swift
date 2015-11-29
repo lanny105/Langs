@@ -187,12 +187,31 @@ class OverlayScene: SKScene {
         let storyArray: [String] = storyText.componentsSeparatedByString(" ")
         var storyArrayToString = ""
         var i = 0
+        var countnum = 0
         for storyElem in storyArray{
-            if i%5 == 0 && i != 0{
-                storyArrayToString += storyElem+"\n"
-            }else{
+            
+            countnum = countnum + storyElem.characters.count
+            
+            //print("---",storyElem.characters.count)
+            
+            
+            if(countnum<=30) {
                 storyArrayToString += storyElem+" "
             }
+            
+            else {
+                
+                storyArrayToString += "\n" + storyElem + " "
+                countnum = storyElem.characters.count
+                
+            }
+            
+//            if ((i%5 == 0 && i != 0) || countnum > 30 ){
+//                storyArrayToString += "\n" + storyElem
+//                countnum = storyElem.characters.count
+//            }else{
+//                storyArrayToString += storyElem+" "
+//            }
             i = i+1
         }
         
