@@ -218,6 +218,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     // Function to pop this view controller and go back to my Levels screen
     func changeScene() {
         self.performSegueWithIdentifier("gameViewToLevelsViewSegue", sender: nil)
+        AudioMediator.instance.playBackgroudMusic()
     }
     
     //the function called when we click set
@@ -371,6 +372,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         for recognizer in self.view.gestureRecognizers! {
             self.view.removeGestureRecognizer(recognizer)
         }
+        AudioMediator.instance.pauseBackgroudMusic()
+        AudioMediator.instance.playSoundCongrate()
         getScore()
         spriteScene.removeAllChildren()
         
@@ -395,6 +398,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
             let star = result.node as! StarNode
             
             //showInTheFinal()
+            AudioMediator.instance.playSoundTap()
+            
             
             if(activeStar == nil){
                 activeStar = star
