@@ -599,9 +599,15 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         progressbarB = b
         
         if( b>0.9) {
-            print("Almost there!")
-            print(b)
+            
+            spriteScene.updatecolor()
         }
+        
+        else {
+            spriteScene.recovercolor()
+        }
+        
+        
         
         //lastLocation = self.cameraNode.eulerAngles
         

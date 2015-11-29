@@ -179,6 +179,20 @@ class OverlayScene: SKScene {
         
     }
     
+    
+    func updatecolor() {
+        self.progressbar.color = UIColor.yellowColor()
+        
+    }
+    
+    
+    func recovercolor() {
+        
+        self.progressbar.color = UIColor.orangeColor()
+    }
+    
+    
+    
     func updateMaplocation(x: Double, y: Double) {
         self.barra.updatelocation(CGFloat(x), y: CGFloat(y))
         
