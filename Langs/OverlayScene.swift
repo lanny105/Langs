@@ -37,7 +37,7 @@ class OverlayScene: SKScene {
         //self.userInteractionEnabled = false;
         
         // add the clear button
-        let spriteSize = size.width/28
+        let spriteSize = size.width/24
         self.eraseNode = SKSpriteNode(imageNamed: "Erase Button")
         self.eraseNode.size = CGSize(width: spriteSize, height: spriteSize)
         self.eraseNode.position = CGPoint(x: spriteSize + 4, y: spriteSize + 4)
@@ -47,7 +47,7 @@ class OverlayScene: SKScene {
         
         
         // add the setting button
-        let spriteSize1 = size.width/28
+        let spriteSize1 = size.width/24
         self.settingNode = SKSpriteNode(imageNamed: "Setting Button")
         self.settingNode.size = CGSize(width: spriteSize1, height: spriteSize1)
         self.settingNode.position = CGPoint(x: spriteSize + 4, y: size.height*12.1/13)
@@ -56,10 +56,10 @@ class OverlayScene: SKScene {
         
         
         // add the hint button
-        let spriteSize2 = size.width/28
+        let spriteSize2 = size.width/24
         self.hintNode = SKSpriteNode(imageNamed: "Hint Button")
         self.hintNode.size = CGSize(width: spriteSize2, height: spriteSize2)
-        self.hintNode.position = CGPoint(x: settingNode.position.x + size.width/18, y: size.height*12.1/13)
+        self.hintNode.position = CGPoint(x: settingNode.position.x + size.width/14, y: size.height*12.1/13)
         //self.hintNode.userInteractionEnabled = true;
         self.addChild(self.hintNode)
         
@@ -68,17 +68,17 @@ class OverlayScene: SKScene {
         
         self.timerNode = SKLabelNode(text: "Time: 05:00")
         self.timerNode.name = "time"
-        self.timerNode.fontName = "AppleSDGothicNeo-Medium"
-        self.timerNode.fontColor = UIColor.whiteColor()
+        self.timerNode.fontName = "Chalkduster"
+        self.timerNode.fontColor = UIColor(red: 255.0/255, green: 0.0/255, blue: 0.0/255, alpha: 1.0)
         self.timerNode.fontSize = 24
-        self.timerNode.position = CGPoint(x: size.width/2, y: size.height*12.1/13)
+        self.timerNode.position = CGPoint(x: size.width/2, y: size.height*11.7/13)
         self.addChild(self.timerNode)
         
         
         // add setting menu
         self.quitNode = SKLabelNode(text: "Quit Level")
         self.quitNode.name = "quit"
-        self.quitNode.fontName = "AppleSDGothicNeo-Medium"
+        self.quitNode.fontName = "Chalkduster"
         self.quitNode.fontColor = UIColor.redColor()
         self.quitNode.fontSize = 28
         self.quitNode.position = CGPoint(x: size.width/2, y: size.height/2+10)
@@ -172,23 +172,23 @@ class OverlayScene: SKScene {
     
     func makeHintFinal(finalImageNamed: String, storyText: String){
         finalNode = SKSpriteNode(imageNamed:finalImageNamed)
-        finalNode.xScale = 0.8
-        finalNode.yScale = 0.6
+        finalNode.xScale = 1.0
+        finalNode.yScale = 1.0
         finalNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        finalNode.position = CGPoint(x: size.width/2, y: size.height/2+50)
+        finalNode.position = CGPoint(x: size.width*10/13, y: size.height/2)
         
         // add the next button
-        let spriteSize4 = size.width/24
-        nextNode = SKSpriteNode(imageNamed: "Next Button")
+        let spriteSize4 = size.width/18
+        nextNode = SKSpriteNode(imageNamed: "ok")
         nextNode.size = CGSize(width: spriteSize4, height: spriteSize4)
-        nextNode.position = CGPoint(x: size.width*12/13, y: size.height/2)
+        nextNode.position = CGPoint(x: size.width/2, y: size.height/20+12)
 
         //var temp: String = (storyText as NSString).substringToIndex(10)
         let storyArray: [String] = storyText.componentsSeparatedByString(" ")
         var storyArrayToString = ""
         var i = 0
         for storyElem in storyArray{
-            if i%10 == 0 && i != 0{
+            if i%5 == 0 && i != 0{
                 storyArrayToString += storyElem+"\n"
             }else{
                 storyArrayToString += storyElem+" "
@@ -206,10 +206,10 @@ class OverlayScene: SKScene {
         for line: String in textArr {
             lineNode = SKLabelNode()
             lineNode.text = line
-            lineNode.fontSize = 20
-            lineNode.fontColor = UIColor.whiteColor()
-            lineNode.fontName = "AppleSDGothicNeo-Medium"
-            lineNode.position = CGPointMake(size.width/2,size.height/2-50 - CGFloat(textBlock.children.count ) * 20)
+            lineNode.fontSize = 15
+            lineNode.fontColor = UIColor.orangeColor()
+            lineNode.fontName = "Chalkduster"
+            lineNode.position = CGPointMake(size.width/4+4,size.height-70 - CGFloat(textBlock.children.count ) * 20)
             textBlock.addChild(lineNode)
         }
 
@@ -224,10 +224,9 @@ class OverlayScene: SKScene {
         self.storyNode.position = CGPoint(x: size.width/2, y: size.height/2-50)
         */
         self.removeAllChildren()
+        addChild(textBlock)
         addChild(nextNode)
         addChild(finalNode)
-        addChild(textBlock)
-        
     }
     
     

@@ -63,6 +63,7 @@ class StartViewController: UIViewController {
         print(layer.bounds)
         textLayer.frame = CGRectMake(0, -45, layer.bounds.width, layer.bounds.height)
         textLayer.fontSize = 80
+        textLayer.font = "Chalkduster"
         textLayer.string = "Start"
         textLayer.alignmentMode = kCAAlignmentCenter
         textLayer.foregroundColor = UIColor.blackColor().CGColor
@@ -76,10 +77,10 @@ class StartViewController: UIViewController {
 
         
         // add start box
-        let boxGeometry = SCNBox(width: 4, height: 2, length: 2, chamferRadius: 0.4)
+        let boxGeometry = SCNBox(width: 4.5, height: 2.5, length: 2, chamferRadius: 0.4)
         boxGeometry.materials = [material]
         let boxNode = SCNNode(geometry: boxGeometry)
-        boxNode.position = SCNVector3(0, 0, 0)
+        boxNode.position = SCNVector3(0, -1, 0)
         
         scene.rootNode.addChildNode(boxNode)
         

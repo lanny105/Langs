@@ -221,6 +221,7 @@ class LevelsViewController: UIViewController {
 //        print(layer.bounds)
         textLayer.frame = CGRectMake(0, -220, layer.bounds.width, layer.bounds.height)
         textLayer.fontSize = 140
+        textLayer.font = "Chalkduster"
         textLayer.string = textStr
         textLayer.alignmentMode = kCAAlignmentCenter
         textLayer.foregroundColor = UIColor.blackColor().CGColor

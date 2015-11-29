@@ -14,7 +14,7 @@ class LevelOverlay: SKScene {
 
     override func didMoveToView(view: SKView) {
         // add back button
-        let iconSize = size.width/30
+        let iconSize = size.width/24
         self.backButtonNode.size = CGSize(width: iconSize, height: iconSize)
         self.backButtonNode.position = CGPoint(x: iconSize+6, y: size.height*12.1/13)
         
@@ -27,7 +27,7 @@ class LevelOverlay: SKScene {
             print(score)
             // add score label
             let scoreLabelNode = SKLabelNode(text: "Score: \(score)")
-            scoreLabelNode.fontName = "AppleSDGothicNeo-Medium"
+            scoreLabelNode.fontName = "Chalkduster"
             scoreLabelNode.fontColor = UIColor.whiteColor()
             scoreLabelNode.fontSize = size.width/30
             scoreLabelNode.position = CGPoint(x: size.width/2, y: size.height*11.7/13)
