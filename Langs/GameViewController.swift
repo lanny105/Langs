@@ -288,6 +288,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         sceneView.overlaySKScene=spriteScene
         spriteScene.updateMaplocation(mapNodeX, y: mapNodeY)
         spriteScene.updateProgressbar(CGFloat((progressbarB+1)/2))
+        spriteScene.timerNode.text = result
     }
     
     // erase everything on screen
