@@ -155,7 +155,8 @@ class LevelsViewController: UIViewController {
         scnView.showsStatistics = false
         
         // configure the view
-        scnView.backgroundColor = UIColor(red: 14.0/255, green: 18.0/255, blue: 60.0/255, alpha: 1.0)
+        //scnView.backgroundColor = UIColor(red: 14.0/255, green: 18.0/255, blue: 60.0/255, alpha: 1.0)
+        scnView.scene?.background.contents = UIImage(named: "level-1.png")
         
         // add a pan gesture recognizer
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
