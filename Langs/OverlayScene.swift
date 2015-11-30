@@ -277,10 +277,10 @@ class OverlayScene: SKScene {
         for line: String in textArr {
             lineNode = SKLabelNode()
             lineNode.text = line
-            lineNode.fontSize = size.width/45
+            lineNode.fontSize = size.width/50
             lineNode.fontColor = UIColor.orangeColor()
             lineNode.fontName = "Chalkduster"
-            lineNode.position = CGPointMake(size.width/4+4,size.height*10.0/13 - CGFloat(textBlock.children.count ) * 20)
+            lineNode.position = CGPointMake(size.width/4+4,size.height*10.7/13 - CGFloat(textBlock.children.count ) * 20)
             textBlock.addChild(lineNode)
         }
 
