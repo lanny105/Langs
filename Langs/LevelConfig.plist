@@ -88,7 +88,7 @@
 		<key>bar</key>
 		<integer>1200</integer>
 		<key>hint</key>
-		<string>taurus-hint</string>
+		<string>taurus-hint2</string>
 		<key>final</key>
 		<string>taurus</string>
 	</dict>
@@ -97,7 +97,7 @@
 		<key>bar</key>
 		<integer>1600</integer>
 		<key>hint</key>
-		<string>gemini-hint</string>
+		<string>gemini-hint2</string>
 		<key>final</key>
 		<string>gemini</string>
 	</dict>
