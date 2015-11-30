@@ -62,7 +62,7 @@ class StarNode: SCNNode {
         let materialsphere1 = SCNMaterial()
         // materialsphere1.diffuse.contents = UIColor.whiteColor()
         let x = drand48()
-        let y = 0.25*x + 0.75
+        let y = 0.2*x + 0.8
         let color = UIColor(red: CGFloat(y), green: CGFloat(y), blue: CGFloat(y), alpha: CGFloat(y))
         materialsphere1.diffuse.contents = color
         // materialsphere1.specular.contents = UIColor.blueColor()
