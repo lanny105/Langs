@@ -37,6 +37,7 @@ class AudioMediator: NSObject {
 
         self.musicPlayer?.prepareToPlay()
         self.musicPlayer?.numberOfLoops = -1
+        self.musicPlayer?.volume = 0.75
         self.musicPlayer?.play()
     }
 
